@@ -4,9 +4,9 @@
     box-sizing: border-box;
 }
 body{
-    padding: 10vh;
     background-color: goldenrod;
     font-family: 'Montserrat', sans-serif;
+    padding: 50px;
 }
 #banner,
 #tabs{
@@ -14,6 +14,9 @@ body{
     background-color: green;
     padding: 20px;
     color: white;
+}
+#bodyObject{
+    margin: auto;
 }
 #clock2{
     text-decoration: underline;
@@ -23,10 +26,10 @@ body{
     justify-content: space-between;
 }
 #main{
+    margin: auto;
     display: grid;
     grid-template-columns: 20% 80%;
     grid-template-rows: 100%;
-    min-height: 60vh;
 }
 .tab{
     padding: 10px;

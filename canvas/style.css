@@ -1,3 +1,31 @@
 #canvas{
     background-color: white;
 }
+#banner{
+    display: flex;
+    justify-content: space-between;
+    background-color: goldenrod;
+    padding: auto;
+}
+button{
+    border-radius: 50px;
+    border: 10px solid gray;
+    background-color: white;
+    height: 50px;
+    min-width: 50px;
+}
+#black{
+    background-color: black;
+}
+#white{
+    background-color: white;
+}
+#red{
+    background-color: red;
+}
+#blue{
+    background-color: blue;
+}
+#green{
+    background-color: green;
+}

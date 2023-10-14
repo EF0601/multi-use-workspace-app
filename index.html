@@ -10,57 +10,62 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="banner">
-        <div class="container">
-            <h1>Multi Usage Workspace Application</h1>
-            <p>Proudly created and maintained by EF0601 studios. You are using: <code>v0.8.1-beta</code> release</p>
+    <div id="bodyObject">
+        <div id="banner">
+            <div class="container">
+                <h1>Multi Usage Workspace Application</h1>
+                <p>Proudly created and maintained by EF0601 studios. You are using: <code>v1.0.0</code> release</p>
+            </div>
+            <div id="clock2"></div>
         </div>
-        <div id="clock2"></div>
-    </div>
-    <div id="main">
-        <div id="tabs">
-            <div class="tab" id="home_tab">
-                <h2>Home</h2>
+        <div id="main">
+            <div id="tabs">
+                <div class="tab" id="home_tab">
+                    <h2>Home</h2>
+                </div>
+                <div class="tab" id="stickies_tab">
+                    <h2>Stickies [soon!]</h2>
+                </div>
+                <div class="tab" id="timer_tab">
+                    <h2>Timer [soon!]</h2>
+                </div>
+                <div class="tab" id="calculator_tab">
+                    <h2>Calculator (From previous projects)</h2>
+                </div>
+                <div class="tab" id="canvas_tab">
+                    <h2>Canvas Lite [updated soon!]</h2>
+                </div>
+                <div class="tab" id="search_tab">
+                    <h2>Web Explorer</h2>
+                </div>
             </div>
-            <div class="tab" id="stickies_tab">
-                <h2>Stickies [soon!]</h2>
-            </div>
-            <div class="tab" id="timer_tab">
-                <h2>Timer [soon!]</h2>
-            </div>
-            <div class="tab" id="calculator_tab">
-                <h2>Calculator (From previous projects)</h2>
-            </div>
-            <div class="tab" id="canvas_tab">
-                <h2>Canvas Lite [updated soon!]</h2>
-            </div>
-            <div class="tab" id="search_tab">
-                <h2>Web Explorer</h2>
-            </div>
-        </div>
-        <div id="mainSide">
-            <div id="homeTab">
-                <h2 id="clock"></h2>
-                <h1>Welcome to Multi Usage Workspace Application!</h1>
-                <p>The home screen displays the current time and describes the usage of each tab.</p>
-            </div>
-            <div id="canvasTab">
-                <iframe src="./canvas/main.html" frameborder="0" width="100%" height="515"></iframe>
-            </div>
-            <div id="calculatorTab">
-                <iframe src="https://ef0601.github.io/Basic-Calculator-App/home.html" frameborder="0" width="100%" height="515"></iframe>
-            </div>
-            <div id="searchTab">
-                <h2>Open a new tab with url</h2>
-                <div class="searcher"><input type="text" maxlength="254" minlength="10" placeholder="https://www.google.com" id="searchInput"><button onclick="go()">Go</button></div>
-                <h2>Or search with Google</h2>
-                <div class="searcher"><input type="text" maxlength="254" minlength="10" placeholder="Food near me"
-                        id="GoogleSearchInput"><button onclick="search()">Go</button></div>
+            <div id="mainSide">
+                <div id="homeTab">
+                    <h2 id="clock"></h2>
+                    <h1>Welcome to Multi Usage Workspace Application!</h1>
+                    <p>The home screen displays the current time and describes the usage of each tab.</p>
+                </div>
+                <div id="canvasTab">
+                    <iframe src="./canvas/main.html" frameborder="0" width="100%" height="515"></iframe>
+                </div>
+                <div id="calculatorTab">
+                    <iframe src="https://ef0601.github.io/Basic-Calculator-App/home.html" frameborder="0" width="100%"
+                        height="515"></iframe>
+                </div>
+                <div id="searchTab">
+                    <h2>Open a new tab with url</h2>
+                    <div class="searcher"><input type="text" maxlength="254" minlength="10" placeholder="https://www.google.com"
+                            id="searchInput"><button onclick="go()">Go</button></div>
+                    <h2>Or search with Google</h2>
+                    <div class="searcher"><input type="text" maxlength="254" minlength="10" placeholder="Food near me"
+                            id="GoogleSearchInput"><button onclick="search()">Go</button></div>
+                </div>
             </div>
         </div>
     </div>
 </body>
-<script src="tab-manager.js"></script>
-<script src="clock.js"></script>
-<script src="searcher.js"></script>
+<script src="./misc-js/resizer.js"></script>
+<script src="./misc-js/tab-manager.js"></script>
+<script src="./other-functions-js/clock.js"></script>
+<script src="./other-functions-js/searcher.js"></script>
 </html>

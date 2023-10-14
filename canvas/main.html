@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canvas</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div id="banner"><button id="colorButton">Change Color</button>
-    <button id="strokeWidthButton">Change Stroke Width</button><button onclick="location.reload()">Clear all</button></div>
+    <div id="banner">
+        <button id="black" onclick="color('black')"></button>
+        <button id="red" onclick="color('red')"></button>
+        <button id="blue" onclick="color('blue')"></button>
+        <button id="green" onclick="color('green')"></button>
+        <button id="white" onclick="color('white')"></button>
+        <button id="1" onclick="smaller()">-</button>
+        <button id="10" onclick="larger()">+</button><button onclick="location.reload()">Clear all</button>
+    </div>
 
     <canvas id="canvas" width="800px" height="450px"></canvas>
     <script src="canvas.js"></script>
+    <script src="resizer.js"></script>
 </body>
+
 </html>
