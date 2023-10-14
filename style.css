@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    padding: 10vh;
+    background-color: goldenrod;
+    font-family: 'Montserrat', sans-serif;
+}
+#banner,
+#tabs{
+    width: 100%;
+    background-color: green;
+    padding: 20px;
+    color: white;
+}
+#clock2{
+    text-decoration: underline;
+}
+#banner{
+    display: flex;
+    justify-content: space-between;
+}
+#main{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 100%;
+    min-height: 60vh;
+}
+.tab{
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.tab:hover{
+    background-color: darkgreen;
+}
+#mainSide{
+    background-color: yellowgreen;
+}
+#homeTab{
+    padding: 20px;
+    color: black;
+    font-size: 24px;
+    text-align: center;
+}
+#clock{
+    font-size: 60px;
+}
+#calculatorTab,
+#canvasTab,
+#searchTab{
+    display: none;
+}
+#searchTab{
+    text-align: center;
+    padding: 40px;
+}
+.searcher{
+    padding: 20px;
+    background-color: goldenrod;
+    font-size: 24px;
+}
+.searcher button,
+.searcher input{
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+}
