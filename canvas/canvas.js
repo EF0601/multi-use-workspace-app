@@ -9,17 +9,27 @@ canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', stopDrawing);
 canvas.addEventListener('mouseout', stopDrawing);
 
+// Add touch event listeners for mobile devices
+canvas.addEventListener('touchstart', startDrawing);
+canvas.addEventListener('touchmove', draw);
+canvas.addEventListener('touchend', stopDrawing);
+
 function startDrawing(event) {
+    event.preventDefault(); // Prevent scrolling on touch devices
     isDrawing = true;
+    const clientX = event.type === 'mousedown' ? event.clientX : event.touches[0].clientX;
+    const clientY = event.type === 'mousedown' ? event.clientY : event.touches[0].clientY;
     context.beginPath();
-    context.moveTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+    context.moveTo(clientX - canvas.offsetLeft, clientY - canvas.offsetTop);
 }
 
 function draw(event) {
     if (!isDrawing) return;
     context.strokeStyle = drawingColor;
     context.lineWidth = drawingWidth;
-    context.lineTo(event.clientX - canvas.offsetLeft, event.clientY - canvas.offsetTop);
+    const clientX = event.type === 'mousemove' ? event.clientX : event.touches[0].clientX;
+    const clientY = event.type === 'mousemove' ? event.clientY : event.touches[0].clientY;
+    context.lineTo(clientX - canvas.offsetLeft, clientY - canvas.offsetTop);
     context.stroke();
 }
 
