@@ -71,3 +71,23 @@ body{
     font-size: 24px;
     font-family: 'Montserrat', sans-serif;
 }
+form{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: green;
+    padding: 10px;
+}
+form input{
+    width: 80%;
+    border: none;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+form button{
+    width: 20%;
+    border: none;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+}
