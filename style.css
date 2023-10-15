@@ -93,3 +93,17 @@ form button{
     cursor: pointer;
     outline: none;
 }
+@media screen and (max-width: 950px) {
+    .tab{
+        margin: auto;
+        text-align: center;
+    }
+    #tabs,
+    #main,
+    #banner{
+        display: block;
+    }
+    #banner{
+        text-align: center;
+    }
+}

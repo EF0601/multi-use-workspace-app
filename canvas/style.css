@@ -29,3 +29,10 @@ button{
 #green{
     background-color: green;
 }
+@media screen and (max-width: 650px) {
+    button{
+        height: 20px;
+        min-width: 20px;
+        border: 2.5px solid gray;
+    }
+}
