@@ -83,6 +83,7 @@ form input{
     border: none;
     padding: 10px;
     font-family: 'Montserrat', sans-serif;
+    outline: none;
 }
 form button{
     width: 20%;
@@ -90,4 +91,5 @@ form button{
     padding: 10px;
     font-family: 'Montserrat', sans-serif;
     cursor: pointer;
+    outline: none;
 }
