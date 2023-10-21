@@ -52,6 +52,7 @@ body{
 #clock{
     font-size: 60px;
 }
+#timerTab,
 #calculatorTab,
 #canvasTab,
 #searchTab{
@@ -60,6 +61,25 @@ body{
 #searchTab{
     text-align: center;
     padding: 40px;
+}
+#timerTab{
+    text-align: center;
+    padding: 20px;
+}
+#timerTab input,
+#timerTab button,
+#timerTab span{
+    text-align: center;
+    background: none;
+    border: none;
+    font-size: 48px;
+    width: 120px;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+}
+#timerTab button{
+    background-color: green;
+    color: white;
 }
 .searcher{
     padding: 20px;
