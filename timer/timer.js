@@ -39,6 +39,7 @@ function HMS(timerInput) {
 function stopTimer() {
     timerEnd = true;
     timer = 0;
+    document.getElementById('banner').style.backgroundColor = 'green';
 }
 
 setInterval(() => {

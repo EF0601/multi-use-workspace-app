@@ -1,0 +1,52 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+canvas {
+    border: 1px solid #000;
+}
+#toolTip{
+    display: flex;
+    background-color: rgb(200, 195, 195);
+    justify-content: left;
+}
+h1{
+    margin: 10px;
+}
+#colorPicker{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 50% 50%;
+    overflow: scroll;
+    padding: 5px;
+    height: 80px;
+    margin: 10px;
+}
+#colorPicker button,
+#colorPicker input{
+    width: 25px;
+    height: 25px;
+    margin: 5px;
+    border: none;
+}
+#sizePicker{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 50% 50%;
+    overflow: scroll;
+    padding: 5px;
+    height: 80px;
+    margin: 10px;
+}
+
+#sizePicker button,
+#sizePicker input{
+    width: 25px;
+    height: 25px;
+    margin: 5px;
+    border: none;
+}

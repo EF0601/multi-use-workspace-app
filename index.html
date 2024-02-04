@@ -48,9 +48,9 @@
                 <div id="timerTab">
                     <h2>Timer Lite</h2>
                     <p>Timer Lite is a tab that allows you to set a timer for a certain amount of time. It will alert you from the upper banner when the time is up. (Turns red until the banner is clicked.) Timer pro will be out sometime in the future!</p>
-                    <input type="number" placeholder="HH" min="0" max="23" maxlength="2" onblur="checker('hour')" id="hour" value="0"><span>:</span>
-                    <input type="number" placeholder="MM" min="0" max="59" maxlength="2" onblur="checker('minute')" id="minute" value="0"><span>:</span>
-                    <input type="number" placeholder="SS" min="0" max="59" maxlength="2" onblur="checker('second')" id="second" value="0"><br>
+                    <input type="number" placeholder="HH" min="0" max="23" maxlength="2" onblur="checker('hour')" id="hour" value="0" style="color: green;"><span>:</span>
+                    <input type="number" placeholder="MM" min="0" max="59" maxlength="2" onblur="checker('minute')" id="minute" value="0" style="color: green;"><span>:</span>
+                    <input type="number" placeholder="SS" min="0" max="59" maxlength="2" onblur="checker('second')" id="second" value="0" style="color: green;"><br>
                     <p><b>NOTICE! YOU MUST MAKE SURE ALL INPUTS ARE COLORED <u>GREEN</u>. FAILURE TO DO SO WILL CAUSE THE TIMER TO NOT INITIATE! STUCK? TRY CLICKING ALL OF THE INPUTS ONE MORE TIME.</b></p>
                     <button onclick="setTimer()">SET</button>
                     <h1 id="timer">0:0:0</h1><br>
