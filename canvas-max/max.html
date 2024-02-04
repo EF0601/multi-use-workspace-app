@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Drawing App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="canvasContainer">
+        <canvas id="drawingCanvas" width="800" height="400"></canvas>
+        <div id="toolTip">
+            <h1>Canvas Max</h1>
+            <div id="colorPicker">
+                <button onclick="color('#000000',1)" style="background-color: #000000; border: 2px solid gray;" id="black"></button>
+                <button onclick="color('#798622',4)" style="background-color: #798622;" id="green"></button>
+                <button onclick="color('#0000ff',3)" style="background-color: #0000ff;" id="blue"></button>
+                <button onclick="color('#ff0000',2)" style="background-color: #ff0000;" id="red"></button>
+                <button onclick="color('#ffff00',5)" style="background-color: #ffff00;" id="yellow"></button>
+                <button onclick="color('#ffffff',6)" id="purple">E</button>
+                <button onclick="color('random',7)" id="R">R</button>
+                <input type="color" id="colorPickerInput" value="#000000" onblur="submitCustomColor()">
+            </div>
+            <div id="sizePicker">
+                <button onclick="size(0.5,1)" id="0.5">0.5</button>
+                <button onclick="size(1,2)" id="1">1</button>
+                <button onclick="size(2,3)" id="2">2</button>
+                <button onclick="size(4,4)" id="4">4</button>
+                <button onclick="size(8,5)" id="8">8</button>
+                <button onclick="size(16,6)" id="16">16</button>
+                <button onclick="size(32,7)" id="32">32</button>
+                <button onclick="size(64,8)" id="64">64</button>
+            </div>
+            <input type="range" name="" id="sizePicker" onblur="size()">
+        </div>
+    </div>
+
+</body>
+<script src="max.js"></script>
+<script src="resizer.js"></script>
+</html>
