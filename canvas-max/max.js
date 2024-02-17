@@ -119,6 +119,7 @@ function color(input, buttonClicked) {
         default:
             break;
     }
+    updateCanvas();
 }
 
 function submitCustomColor() {
@@ -131,9 +132,32 @@ function submitCustomColor() {
     document.getElementById("R").style.border = "none";
     document.getElementById("colorPickerInput").style.border = "2px solid black";
     context.strokeStyle = document.getElementById("colorPickerInput").value;
+    updateCanvas();
 }
 
-function changeWidth() {
-    console.log(document.getElementById("sizePicker").value);
-    context.strokeStyle = document.getElementById("sizePicker").value;
+const sizer = {
+    slider: document.getElementById("sizeRange"),
+
+    canvas: document.getElementById("sizeCanvas"),
+    ctx: document.getElementById("sizeCanvas").getContext("2d"),
+
+    span: document.getElementById("sizeSpan"),
+};
+
+function updateCanvas(){
+    sizer.ctx.lineWidth = sizer.slider.value;
+    sizer.ctx.strokeStyle = context.strokeStyle;
+    sizer.ctx.clearRect(0, 0, 100,100);
+    sizer.ctx.moveTo(0, 50);
+    sizer.ctx.lineTo(100, 50);
+    sizer.ctx.stroke();
+    context.lineWidth = sizer.slider.value;
+    sizer.span.innerHTML = sizer.slider.value;
 }
+
+sizer.slider.oninput = function() {
+    updateCanvas();
+}
+
+window.onload = updateCanvas();
+
