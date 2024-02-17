@@ -34,8 +34,8 @@ function color(input, buttonClicked) {
     if (input != "random") {
         context.strokeStyle = input;
     }
-    else{
-        const possibleValues = ["A","B","C","D","E","F","1","2","3","4","5","6","7","8","9","0"];
+    else {
+        const possibleValues = ["A", "B", "C", "D", "E", "F", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
         let selection = ["#"];
         for (let i = 0; i < 6; i++) {
             selection.push(possibleValues[Math.floor(Math.random() * (16 + 1))]);
@@ -121,7 +121,7 @@ function color(input, buttonClicked) {
     }
 }
 
-function submitCustomColor(){
+function submitCustomColor() {
     document.getElementById("black").style.border = "none";
     document.getElementById("red").style.border = "none";
     document.getElementById("blue").style.border = "none";
@@ -133,6 +133,7 @@ function submitCustomColor(){
     context.strokeStyle = document.getElementById("colorPickerInput").value;
 }
 
-function size() {
+function changeWidth() {
+    console.log(document.getElementById("sizePicker").value);
     context.strokeStyle = document.getElementById("sizePicker").value;
 }
