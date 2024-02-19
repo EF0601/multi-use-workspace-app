@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div id="bodyObject">
         <div id="banner">
@@ -47,18 +49,24 @@
                 </div>
                 <div id="timerTab">
                     <h2>Timer Lite</h2>
-                    <p>Timer Lite is a tab that allows you to set a timer for a certain amount of time. It will alert you from the upper banner when the time is up. (Turns red until the banner is clicked.) Timer pro will be out sometime in the future!</p>
-                    <input type="number" placeholder="HH" min="0" max="23" maxlength="2" onblur="checker('hour')" id="hour" value="0" style="color: green;"><span>:</span>
-                    <input type="number" placeholder="MM" min="0" max="59" maxlength="2" onblur="checker('minute')" id="minute" value="0" style="color: green;"><span>:</span>
-                    <input type="number" placeholder="SS" min="0" max="59" maxlength="2" onblur="checker('second')" id="second" value="0" style="color: green;"><br>
-                    <p><b>NOTICE! YOU MUST MAKE SURE ALL INPUTS ARE COLORED <u>GREEN</u>. FAILURE TO DO SO WILL CAUSE THE TIMER TO NOT INITIATE! STUCK? TRY CLICKING ALL OF THE INPUTS ONE MORE TIME.</b></p>
+                    <p>Timer Lite is a tab that allows you to set a timer for a certain amount of time. It will alert
+                        you from the upper banner when the time is up. (Turns red until the banner is clicked.) Timer
+                        pro will be out sometime in the future!</p>
+                    <input type="number" placeholder="HH" min="0" max="23" maxlength="2" onblur="checker('hour')"
+                        id="hour" value="0" style="color: green;"><span>:</span>
+                    <input type="number" placeholder="MM" min="0" max="59" maxlength="2" onblur="checker('minute')"
+                        id="minute" value="0" style="color: green;"><span>:</span>
+                    <input type="number" placeholder="SS" min="0" max="59" maxlength="2" onblur="checker('second')"
+                        id="second" value="0" style="color: green;"><br>
+                    <p><b>NOTICE! YOU MUST MAKE SURE ALL INPUTS ARE COLORED <u>GREEN</u>. FAILURE TO DO SO WILL CAUSE
+                            THE TIMER TO NOT INITIATE! STUCK? TRY CLICKING ALL OF THE INPUTS ONE MORE TIME.</b></p>
                     <button onclick="setTimer()">SET</button>
                     <h1 id="timer">0:0:0</h1><br>
                     <button onclick="stopTimer()" style="background-color: red; width:auto;">STOP</button>
                     <div id="timerAlerts">No warnings yet.</div>
                 </div>
                 <div id="canvasTab">
-                    <iframe src="./canvas/main.html" frameborder="0" width="100%" height="515"></iframe>
+                    <iframe src="./canvas-max/max.html" frameborder="0" width="100%" height="515" id="canvasIframe"></iframe>
                 </div>
                 <div id="calculatorTab">
                     <iframe src="https://ef0601.github.io/Basic-Calculator-App/home.html" frameborder="0" width="100%"
@@ -66,8 +74,9 @@
                 </div>
                 <div id="searchTab">
                     <h2>Open a new tab with url</h2>
-                    <div class="searcher"><input type="text" maxlength="254" minlength="10" placeholder="https://www.google.com"
-                            id="searchInput"><button onclick="go()">Go</button></div>
+                    <div class="searcher"><input type="text" maxlength="254" minlength="10"
+                            placeholder="https://www.google.com" id="searchInput"><button onclick="go()">Go</button>
+                    </div>
                     <h2>Or search with Google</h2>
                     <div class="searcher"><input type="text" maxlength="254" minlength="10" placeholder="Food near me"
                             id="GoogleSearchInput"><button onclick="search()">Go</button></div>
@@ -86,4 +95,5 @@
 <script src="./other-functions-js/searcher.js"></script>
 <script src="./timer/checker.js"></script>
 <script src="./timer/timer.js"></script>
+
 </html>

@@ -1,47 +1,70 @@
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 canvas {
-    border: 1px solid #000;
+  border: 1px solid #000;
+  background-color: #fff;
 }
-#toolTip{
-    display: flex;
-    background-color: rgb(200, 195, 195);
-    justify-content: left;
-    align-items: center;
+#toolTip {
+  display: flex;
+  background-color: rgb(200, 195, 195);
+  justify-content: left;
+  align-items: center;
+  margin: 0;
 }
-h1{
-    margin: 10px;
+h1 {
+  margin: 10px;
 }
-#colorPicker{
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 50% 50%;
-    overflow: scroll;
-    padding: 5px;
-    height: 80px;
-    margin: 10px;
+#colorPicker {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 50% 50%;
+  overflow: scroll;
+  padding: 5px;
+  height: 80px;
+  margin: 10px;
 }
 #colorPicker button,
-#colorPicker input{
-    width: 25px;
-    height: 25px;
-    margin: 5px;
-    border: none;
+#colorPicker input {
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+  border: none;
 }
 
-#sliderContainer p{
-    text-align: center;
+#sliderContainer p {
+  text-align: center;
 }
 
-#sliderContainer{
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 50% 50%;
+#sliderContainer {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 25% 25% 25% 25%;
+  outline: none;
+  margin: 10px;
+}
+
+/*removes arrows*/
+#sliderMax::-webkit-outer-spin-button,
+#sliderMax::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#positionContainer {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 50% 50%;
+  margin: 10px;
+}
+#positionContainer p {
+  text-align: center;
+  background-color: rgb(234, 226, 226);
+  padding: 10px;
 }

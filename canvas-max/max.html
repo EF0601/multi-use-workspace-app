@@ -25,10 +25,16 @@
                 <input type="color" id="colorPickerInput" value="#000000" onblur="submitCustomColor()" />
             </div>
             <div id="sliderContainer">
-                <input type="range" min="1" max="100" value="5" class="slider" id="sizeRange" />
+                <input type="range" min="1" max="100" value="1" class="slider" id="sizeRange" />
                 <p><span id="sizeSpan">1</span>px thick</p>
+                <p>Slider Max: <input type="number" name="slider max" id="sliderMax" style='width:25px;' value="100"
+                        maxlength="3" onblur="updateSliderMax()" max="999" min="1">px</p>
             </div>
-            <canvas width="100" height="100" id="sizeCanvas"></canvas>
+            <canvas width=" 100" height="100" id="sizeCanvas"></canvas>
+            <div id="positionContainer">
+                <p><b><u>X</u></b> Pos: <span id="xPos">0</span></p>
+                <p><b><u>Y</u></b> Pos: <span id="yPos">0</span></p>
+            </div>
         </div>
     </div>
 </body>

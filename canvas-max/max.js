@@ -20,14 +20,22 @@ function startDrawing(e) {
 }
 
 function draw(e) {
-    if (!isDrawing) return;
+    if (!isDrawing) {
+        //nothing lol
+    }
+    else {
+        context.lineCap = "round";
 
-    context.lineCap = "round";
+        context.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        context.stroke();
+        context.beginPath();
+        context.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+    }
 
-    context.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+    //update position
+    document.getElementById("xPos").innerHTML = e.clientX - canvas.offsetLeft;
+    document.getElementById("yPos").innerHTML = e.clientY - canvas.offsetTop;
+
 }
 
 function stopDrawing() {
@@ -149,10 +157,10 @@ const sizer = {
     span: document.getElementById("sizeSpan"),
 };
 
-function updateCanvas(){
+function updateCanvas() {
     sizer.ctx.lineWidth = sizer.slider.value;
     sizer.ctx.strokeStyle = context.strokeStyle;
-    sizer.ctx.clearRect(0, 0, 100,100);
+    sizer.ctx.clearRect(0, 0, 100, 100);
     sizer.ctx.moveTo(0, 50);
     sizer.ctx.lineTo(100, 50);
     sizer.ctx.stroke();
@@ -160,9 +168,26 @@ function updateCanvas(){
     sizer.span.innerHTML = sizer.slider.value;
 }
 
-sizer.slider.oninput = function() {
+sizer.slider.oninput = function () {
     updateCanvas();
 };
 
+//onload
 window.onload = updateCanvas();
 
+//updates the max of slider
+function updateSliderMax() {
+    const thing = document.getElementById('sliderMax');
+    if (typeof (Number(thing.value)) === "number" && thing.value > 0 && thing.value < 1000) {
+        sizer.slider.max = thing.value;
+    }
+    else {
+        sizer.slider.max = 100;
+        thing.value = 0;
+    }
+}
+
+//deletes value on click
+document.getElementById('sliderMax').addEventListener('click', function () {
+    document.getElementById('sliderMax').value = '';
+});

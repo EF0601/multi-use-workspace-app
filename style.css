@@ -130,3 +130,6 @@ form button{
         width: 100%;
     }
 }
+#canvasIframe{
+    padding: 10px;
+}
