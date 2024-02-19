@@ -68,3 +68,19 @@ h1 {
   background-color: rgb(234, 226, 226);
   padding: 10px;
 }
+#headerButtons {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 33% 33% 33%;
+  margin: 10px;
+}
+#headerButtons button {
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  background-color: rgb(234, 226, 226);
+  cursor: pointer;
+}
+#headerButtons button:hover {
+  background-color: rgb(255, 255, 255);
+}

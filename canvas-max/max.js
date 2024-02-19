@@ -43,6 +43,7 @@ function stopDrawing() {
     context.beginPath();
 }
 
+//color picker
 function color(input, buttonClicked) {
     if (input != "random") {
         context.strokeStyle = input;
@@ -148,6 +149,7 @@ function submitCustomColor() {
     updateCanvas();
 }
 
+//size picker
 const sizer = {
     slider: document.getElementById("sizeRange"),
 
@@ -191,3 +193,8 @@ function updateSliderMax() {
 document.getElementById('sliderMax').addEventListener('click', function () {
     document.getElementById('sliderMax').value = '';
 });
+
+//clear canvas
+function clearCanvas() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+}

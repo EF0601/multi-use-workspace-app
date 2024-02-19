@@ -12,7 +12,11 @@
     <div id="canvasContainer">
         <canvas id="drawingCanvas" width="800" height="400"></canvas>
         <div id="toolTip">
-            <h1>CM</h1>
+            <div id="headerButtons">
+                <button onclick="clearCanvas()">Clear All</button>
+                <button>Settings</button>
+                <button>Help</button>
+            </div>
             <div id="colorPicker">
                 <button onclick="color('#000000',1)" style="background-color: #000000; border: 2px solid gray"
                     id="black"></button>
