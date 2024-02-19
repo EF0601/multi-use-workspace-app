@@ -9,6 +9,11 @@ canvas.addEventListener("mousemove", draw);
 canvas.addEventListener("mouseup", stopDrawing);
 canvas.addEventListener("mouseout", stopDrawing);
 
+//touchscreen support
+canvas.addEventListener('touchstart', startDrawing);
+canvas.addEventListener('touchmove', draw);
+canvas.addEventListener('touchend', stopDrawing);
+
 function startDrawing(e) {
     isDrawing = true;
     draw(e);
@@ -157,7 +162,7 @@ function updateCanvas(){
 
 sizer.slider.oninput = function() {
     updateCanvas();
-}
+};
 
 window.onload = updateCanvas();
 
