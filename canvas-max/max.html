@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple Drawing App</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="modals.css">
 </head>
 
 <body>
@@ -14,8 +15,8 @@
         <div id="toolTip">
             <div id="headerButtons">
                 <button onclick="clearCanvas()">Clear All</button>
-                <button>Settings</button>
-                <button>Help</button>
+                <button id="SettingsBTN">Settings</button>
+                <button id="HelpBTN">Help</button>
             </div>
             <div id="colorPicker">
                 <button onclick="color('#000000',1)" style="background-color: #000000; border: 2px solid gray"
@@ -42,7 +43,69 @@
         </div>
     </div>
 </body>
+<!--Modals-->
+<!--Settings Modal here-->
+<div id="settings" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span id="SettingsClose">&times;</span>
+        <p>Coming soon</p>
+    </div>
+
+</div>
+<!--Help Modal here-->
+<div id="help" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span id="HelpClose">&times;</span>
+        <h1>Help</h1>
+        <h2>Welcome</h2>
+        <p>Welcome to the help page, here, you can find many critical function descriptions. Refer to the README for
+            more information. The document cannot provide help with bugs. Please open a ticket on GitHub.</p>
+        <a href="https://github.com/EF0601/multi-use-workspace-app" target="_blank">GitHub Project Page</a><br>
+        <a href="https://github.com/EF0601/multi-use-workspace-app/issues" target="_blank">GitHub Issues</a><br>
+        <a href="https://github.com/EF0601/multi-use-workspace-app/releases" target="_blank">GitHub Releases Page</a>
+        <h2>General Functions</h2>
+        <h3>Color picker</h3>
+        <p>There are 8 options, 5 main colors, one eraser tool, a random tool, and a custom color picker. Click the R
+            button for random options. Click the E button for the eraser tool. Each tool will be outlined in black if
+            they are picked.</p>
+        <h3>Size picker</h3>
+        <p>There is a slider next to the color picker. By default the max is 100px and min is 1, but the max can be
+            changed for a bigger brush or a more precise selection of brushes. The interval can be changed in the
+            settings. By default it is 1.</p>
+        <h3>Preview window</h3>
+        <p>There is a small window that shows the current color and size of the brush. It is updated in real time. It
+            will give you a preview sample of the brush, up to 100px in width. It displays data in a line.</p>
+        <h3>Coordinates</h3>
+        <p>There is a small window that shows the current coordinates of the mouse. It is updated in real time. It will
+            give you the current position of the mouse in the canvas. It will show the x and y coordinates and will be
+            helpful in future updates when tools become a thing.</p>
+        <h2>General Operations</h2>
+        <h3>Clear All</h3>
+        <p>There is a button that clears the canvas. It is located in the top right corner of the canvas. It will clear
+            the canvas and reset the color and size to the default settings.</p>
+        <h3>Settings</h3>
+        <p>There is a button that opens the settings modal. It is located in the top right corner of the canvas. It will
+            open the settings modal. It is currently under construction.</p>
+        <h3>Help</h3>
+        <p>There is a button that opens the help modal. It is located in the top right corner of the canvas. It will
+            open the help modal. It will give you a brief overview of the functions and operations of the app.</p>
+        <h2>How to use</h2>
+        <p>To draw, use the cursor and drag. Use the toolbar to customize your brush. On touchscreen, drag your fingers
+            across the screen. To use the coordinates finder on touchscreens, tap the screen. Styluses work similarly to
+            touchscreen.</p>
+        <h3>Resizing mechanics</h3>
+        <p>When resizing the browser, most of your work will be preserved. Any data that appears outside of the newly
+            resized window will disappear, however. This is because our programs make a copy of your original work onto
+            a new canvas and attempt to repaint it. This data is not stored.</p>
+    </div>
+
+</div>
 <script src="max.js"></script>
 <script src="resizer.js"></script>
+<script src="modals.js"></script>
 
 </html>
