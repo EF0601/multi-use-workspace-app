@@ -1,112 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple Drawing App</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="modals.css">
-</head>
+    <link rel="stylesheet" href="modals.css" />
+  </head>
 
-<body>
+  <body>
     <div id="canvasContainer">
-        <canvas id="drawingCanvas" width="800" height="400"></canvas>
-        <div id="toolTip">
-            <div id="headerButtons">
-                <button onclick="clearCanvas()">Clear All</button>
-                <button id="SettingsBTN">Settings</button>
-                <button id="HelpBTN">Help</button>
-            </div>
-            <div id="colorPicker">
-                <button onclick="color('#000000',1)" style="background-color: #000000; border: 2px solid gray"
-                    id="black"></button>
-                <button onclick="color('#798622',4)" style="background-color: #798622" id="green"></button>
-                <button onclick="color('#0000ff',3)" style="background-color: #0000ff" id="blue"></button>
-                <button onclick="color('#ff0000',2)" style="background-color: #ff0000" id="red"></button>
-                <button onclick="color('#ffff00',5)" style="background-color: #ffff00" id="yellow"></button>
-                <button onclick="color('#ffffff',6)" id="purple">E</button>
-                <button onclick="color('random',7)" id="R">R</button>
-                <input type="color" id="colorPickerInput" value="#000000" onblur="submitCustomColor()" />
-            </div>
-            <div id="sliderContainer">
-                <input type="range" min="1" max="100" value="1" class="slider" id="sizeRange" />
-                <p><span id="sizeSpan">1</span>px thick</p>
-                <p>Slider Max: <input type="number" name="slider max" id="sliderMax" style='width:25px;' value="100"
-                        maxlength="3" onblur="updateSliderMax()" max="999" min="1">px</p>
-            </div>
-            <canvas width=" 100" height="100" id="sizeCanvas"></canvas>
-            <div id="positionContainer">
-                <p><b><u>X</u></b> Pos: <span id="xPos">0</span></p>
-                <p><b><u>Y</u></b> Pos: <span id="yPos">0</span></p>
-            </div>
-            <button></button>
+      <canvas id="drawingCanvas" width="800" height="400"></canvas>
+      <div id="toolTip">
+        <img src="./icons/main.png" alt="logo" id="CMLogo" />
+        <div id="headerButtons">
+          <button onclick="clearCanvas()">Clear All</button>
+          <button id="SettingsBTN">Settings</button>
+          <button id="HelpBTN">Help</button>
         </div>
+        <div id="colorPicker">
+          <button
+            onclick="color('#000000',1)"
+            style="background-color: #000000; border: 2px solid gray"
+            id="black"
+          ></button>
+          <button
+            onclick="color('#798622',4)"
+            style="background-color: #798622"
+            id="green"
+          ></button>
+          <button
+            onclick="color('#0000ff',3)"
+            style="background-color: #0000ff"
+            id="blue"
+          ></button>
+          <button
+            onclick="color('#ff0000',2)"
+            style="background-color: #ff0000"
+            id="red"
+          ></button>
+          <button
+            onclick="color('#ffff00',5)"
+            style="background-color: #ffff00"
+            id="yellow"
+          ></button>
+          <button onclick="color('#ffffff',6)" id="purple">E</button>
+          <button onclick="color('random',7)" id="R">R</button>
+          <input
+            type="color"
+            id="colorPickerInput"
+            value="#000000"
+            onblur="submitCustomColor()"
+          />
+        </div>
+        <div id="sliderContainer">
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value="1"
+            class="slider"
+            id="sizeRange"
+          />
+          <p><span id="sizeSpan">1</span>px thick</p>
+          <p>
+            Slider Max:
+            <input
+              type="number"
+              name="slider max"
+              id="sliderMax"
+              style="width: 25px"
+              value="100"
+              maxlength="3"
+              onblur="updateSliderMax()"
+              max="999"
+              min="1"
+            />px
+          </p>
+        </div>
+        <canvas width=" 100" height="100" id="sizeCanvas"></canvas>
+        <div id="positionContainer">
+          <p>
+            <b><u>X</u></b> Pos: <span id="xPos">0</span>
+          </p>
+          <p>
+            <b><u>Y</u></b> Pos: <span id="yPos">0</span>
+          </p>
+        </div>
+        <div id="specialToolsContainer">
+          <button>No Tool</button>
+          <button>Rectangle</button>
+          <button>Circle</button>
+          <button>Text</button>
+        </div>
+      </div>
     </div>
-</body>
-<!--Modals-->
-<!--Settings Modal here-->
-<div id="settings" class="modal">
-
+  </body>
+  <!--Modals-->
+  <!--Settings Modal here-->
+  <div id="settings" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
-        <span id="SettingsClose">&times;</span>
-        <p>Coming soon</p>
+      <span id="SettingsClose">&times;</span>
+      <p>Coming soon</p>
     </div>
-
-</div>
-<!--Help Modal here-->
-<div id="help" class="modal">
-
+  </div>
+  <!--Help Modal here-->
+  <div id="help" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
-        <span id="HelpClose">&times;</span>
-        <h1>Help</h1>
-        <h2>Welcome</h2>
-        <p>Welcome to the help page, here, you can find many critical function descriptions. Refer to the README for
-            more information. The document cannot provide help with bugs. Please open a ticket on GitHub.</p>
-        <a href="https://github.com/EF0601/multi-use-workspace-app" target="_blank">GitHub Project Page</a><br>
-        <a href="https://github.com/EF0601/multi-use-workspace-app/issues" target="_blank">GitHub Issues</a><br>
-        <a href="https://github.com/EF0601/multi-use-workspace-app/releases" target="_blank">GitHub Releases Page</a>
-        <h2>General Functions</h2>
-        <h3>Color picker</h3>
-        <p>There are 8 options, 5 main colors, one eraser tool, a random tool, and a custom color picker. Click the R
-            button for random options. Click the E button for the eraser tool. Each tool will be outlined in black if
-            they are picked.</p>
-        <h3>Size picker</h3>
-        <p>There is a slider next to the color picker. By default the max is 100px and min is 1, but the max can be
-            changed for a bigger brush or a more precise selection of brushes. The interval can be changed in the
-            settings. By default it is 1.</p>
-        <h3>Preview window</h3>
-        <p>There is a small window that shows the current color and size of the brush. It is updated in real time. It
-            will give you a preview sample of the brush, up to 100px in width. It displays data in a line.</p>
-        <h3>Coordinates</h3>
-        <p>There is a small window that shows the current coordinates of the mouse. It is updated in real time. It will
-            give you the current position of the mouse in the canvas. It will show the x and y coordinates and will be
-            helpful in future updates when tools become a thing.</p>
-        <h2>General Operations</h2>
-        <h3>Clear All</h3>
-        <p>There is a button that clears the canvas. It is located in the top right corner of the canvas. It will clear
-            the canvas and reset the color and size to the default settings.</p>
-        <h3>Settings</h3>
-        <p>There is a button that opens the settings modal. It is located in the top right corner of the canvas. It will
-            open the settings modal. It is currently under construction.</p>
-        <h3>Help</h3>
-        <p>There is a button that opens the help modal. It is located in the top right corner of the canvas. It will
-            open the help modal. It will give you a brief overview of the functions and operations of the app.</p>
-        <h2>How to use</h2>
-        <p>To draw, use the cursor and drag. Use the toolbar to customize your brush. On touchscreen, drag your fingers
-            across the screen. To use the coordinates finder on touchscreens, tap the screen. Styluses work similarly to
-            touchscreen.</p>
-        <h3>Resizing mechanics</h3>
-        <p>When resizing the browser, most of your work will be preserved. Any data that appears outside of the newly
-            resized window will disappear, however. This is because our programs make a copy of your original work onto
-            a new canvas and attempt to repaint it. This data is not stored.</p>
+      <span id="HelpClose">&times;</span>
+      <h1>Help</h1>
+      <h2>Welcome</h2>
+      <p>
+        Welcome to the help page, here, you can find many critical function
+        descriptions. Refer to the README for more information. The document
+        cannot provide help with bugs. Please open a ticket on GitHub.
+      </p>
+      <a
+        href="https://github.com/EF0601/multi-use-workspace-app"
+        target="_blank"
+        >GitHub Project Page</a
+      ><br />
+      <a
+        href="https://github.com/EF0601/multi-use-workspace-app/issues"
+        target="_blank"
+        >GitHub Issues</a
+      ><br />
+      <a
+        href="https://github.com/EF0601/multi-use-workspace-app/releases"
+        target="_blank"
+        >GitHub Releases Page</a
+      >
+      <h2>General Functions</h2>
+      <h3>Color picker</h3>
+      <p>
+        There are 8 options, 5 main colors, one eraser tool, a random tool, and
+        a custom color picker. Click the R button for random options. Click the
+        E button for the eraser tool. Each tool will be outlined in black if
+        they are picked.
+      </p>
+      <h3>Size picker</h3>
+      <p>
+        There is a slider next to the color picker. By default the max is 100px
+        and min is 1, but the max can be changed for a bigger brush or a more
+        precise selection of brushes. The interval can be changed in the
+        settings. By default it is 1.
+      </p>
+      <h3>Preview window</h3>
+      <p>
+        There is a small window that shows the current color and size of the
+        brush. It is updated in real time. It will give you a preview sample of
+        the brush, up to 100px in width. It displays data in a line.
+      </p>
+      <h3>Coordinates</h3>
+      <p>
+        There is a small window that shows the current coordinates of the mouse.
+        It is updated in real time. It will give you the current position of the
+        mouse in the canvas. It will show the x and y coordinates and will be
+        helpful in future updates when tools become a thing.
+      </p>
+      <h2>General Operations</h2>
+      <h3>Clear All</h3>
+      <p>
+        There is a button that clears the canvas. It is located in the top right
+        corner of the canvas. It will clear the canvas and reset the color and
+        size to the default settings.
+      </p>
+      <h3>Settings</h3>
+      <p>
+        There is a button that opens the settings modal. It is located in the
+        top right corner of the canvas. It will open the settings modal. It is
+        currently under construction.
+      </p>
+      <h3>Help</h3>
+      <p>
+        There is a button that opens the help modal. It is located in the top
+        right corner of the canvas. It will open the help modal. It will give
+        you a brief overview of the functions and operations of the app.
+      </p>
+      <h2>How to use</h2>
+      <p>
+        To draw, use the cursor and drag. Use the toolbar to customize your
+        brush. On touchscreen, drag your fingers across the screen. To use the
+        coordinates finder on touchscreens, tap the screen. Styluses work
+        similarly to touchscreen.
+      </p>
+      <h3>Resizing mechanics</h3>
+      <p>
+        When resizing the browser, most of your work will be preserved. Any data
+        that appears outside of the newly resized window will disappear,
+        however. This is because our programs make a copy of your original work
+        onto a new canvas and attempt to repaint it. This data is not stored.
+      </p>
     </div>
-
-</div>
-<script src="max.js"></script>
-<script src="resizer.js"></script>
-<script src="modals.js"></script>
-
+  </div>
+  <script src="max.js"></script>
+  <script src="resizer.js"></script>
+  <script src="modals.js"></script>
 </html>
