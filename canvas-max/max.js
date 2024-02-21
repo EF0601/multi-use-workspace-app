@@ -215,8 +215,8 @@ function clearCanvas() {
 //tools
 let currentTool = "none";
 //tool select
-function toolSelect(tool){
-    switch(tool) {
+function toolSelect(tool) {
+    switch (tool) {
         case "none":
             document.getElementById("noTool").style.border = "2px solid black";
             document.getElementById("rectangle").style.border = "none";
@@ -248,10 +248,27 @@ function toolSelect(tool){
     }
 }
 
-function toolUse(){
-    switch(currentTool){
+function toolUse() {
+    switch (currentTool) {
         case "rectangle":
-            // drawRectangle();
+            if (rectangleDataPoints.firstCoordChosen == false) {
+                rectangleDataPoints.x1 = x;
+                rectangleDataPoints.y1 = y;
+                rectangleDataPoints.firstCoordChosen = true;
+            }
+            else if (rectangleDataPoints.secondCoordChosen == false) {
+                rectangleDataPoints.x2 = x;
+                rectangleDataPoints.y2 = y;
+                rectangleDataPoints.secondCoordChosen = true;
+                drawRectangle(rectangleDataPoints.x1, rectangleDataPoints.y1, rectangleDataPoints.x2, rectangleDataPoints.y2);
+                rectangleDataPoints.firstCoordChosen = false;
+                rectangleDataPoints.secondCoordChosen = false;
+                rectangleDataPoints.x1 = 0;
+                rectangleDataPoints.y1 = 0;
+                rectangleDataPoints.x2 = 0;
+                rectangleDataPoints.y2 = 0;
+            }
+            else { }
             break;
         case "circle":
             // drawCircle();
@@ -263,10 +280,29 @@ function toolUse(){
 }
 
 //text
-function drawText(){
+function drawText() {
     let text = document.getElementById("textToolInput").value;
-    if(text != null){
+    if (text != null) {
         context.font = "30px Georgia";
         context.fillText(text, x, y);
     }
+}
+
+let rectangleDataPoints = {
+    x1: 0,
+    y1: 0,
+    x2: 0,
+    y2: 0,
+    firstCoordChosen: false,
+    secondCoordChosen: false,
+};
+function drawRectangle(x1, y1, x2, y2) {
+    context.lineCap = "square";
+    context.moveTo(x1, y1);
+    context.lineTo(x2, y1);
+    context.lineTo(x2, y2);
+    context.lineTo(x1, y2);
+    context.lineTo(x1, y1);
+    context.stroke();
+    context.lineCap = "round";
 }

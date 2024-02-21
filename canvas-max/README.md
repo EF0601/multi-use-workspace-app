@@ -51,6 +51,21 @@ There is a button that opens the settings modal. It is located in the top right 
 
 There is a button that opens the help modal. It is located in the top right corner of the canvas. It will open the help modal. It will give you a brief overview of the functions and operations of the app.
 
+### "No tool"
+
+No tool is essentially the pen tool, where no special tool is used.
+
+### Rectangle Tool
+
+The rectangle tool is used for creating a simple 4 sided polygon. The stroke style uses the stroke style of the pen (color will be red if your pen color is set to red.) To operate:
+
+- Click on the canvas the first point
+- Click on the second point of the rectangle on the canvas
+
+### Text Tool
+
+The text tool will create the piece of text inserted into the input area. The text can then be pasted across the canvas by clicking on the canvas.
+
 ***A closer look at all of the functions can be found in the help tab.***
 
 ## Licensing
