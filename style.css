@@ -1,135 +1,146 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body{
-    background-color: goldenrod;
-    font-family: 'Montserrat', sans-serif;
-    padding: 50px;
+body {
+  background-color: goldenrod;
+  font-family: 'Montserrat', sans-serif;
+  padding: 50px;
 }
 #banner,
-#tabs{
-    width: 100%;
-    background-color: green;
-    padding: 20px;
-    color: white;
+#tabs {
+  width: 100%;
+  background-color: green;
+  padding: 20px;
+  color: white;
 }
-#bodyObject{
-    margin: auto;
+#bodyObject {
+  margin: auto;
 }
-#clock2{
-    text-decoration: underline;
+#clock2 {
+  text-decoration: underline;
 }
-#banner{
-    display: flex;
-    justify-content: space-between;
+#banner {
+  display: flex;
+  justify-content: space-between;
 }
-#main{
-    margin: auto;
-    display: grid;
-    grid-template-columns: 20% 80%;
-    grid-template-rows: 100%;
+#main {
+  margin: auto;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 100%;
 }
-.tab{
-    padding: 10px;
-    color: white;
-    cursor: pointer;
-    margin-bottom: 20px;
+.tab {
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
-.tab:hover{
-    background-color: darkgreen;
+.tab:hover {
+  background-color: darkgreen;
 }
-#mainSide{
-    background-color: yellowgreen;
+#mainSide {
+  background-color: yellowgreen;
 }
-#homeTab{
-    padding: 20px;
-    color: black;
-    font-size: 24px;
-    text-align: center;
+#homeTab {
+  padding: 20px;
+  color: black;
+  font-size: 24px;
+  text-align: center;
 }
-#clock{
-    font-size: 60px;
+#clock {
+  font-size: 60px;
 }
 #timerTab,
 #calculatorTab,
 #canvasTab,
-#searchTab{
-    display: none;
+#searchTab {
+  display: none;
 }
-#searchTab{
-    text-align: center;
-    padding: 40px;
+#searchTab {
+  text-align: center;
+  padding: 40px;
 }
-#timerTab{
-    text-align: center;
-    padding: 20px;
+#timerTab {
+  text-align: center;
+  padding: 20px;
 }
 #timerTab input,
 #timerTab button,
-#timerTab span{
-    text-align: center;
-    background: none;
-    border: none;
-    font-size: 48px;
-    width: 120px;
-    outline: none;
-    font-family: 'Montserrat', sans-serif;
+#timerTab span {
+  text-align: center;
+  background: none;
+  border: none;
+  font-size: 48px;
+  width: 120px;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
 }
-#timerTab button{
-    background-color: green;
-    color: white;
+#timerTab button {
+  background-color: green;
+  color: white;
 }
-.searcher{
-    padding: 20px;
-    background-color: goldenrod;
-    font-size: 24px;
+.searcher {
+  padding: 20px;
+  background-color: goldenrod;
+  font-size: 24px;
 }
 .searcher button,
-.searcher input{
-    font-size: 24px;
-    font-family: 'Montserrat', sans-serif;
+.searcher input {
+  font-size: 24px;
+  font-family: 'Montserrat', sans-serif;
 }
-form{
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    background-color: green;
-    padding: 10px;
+form {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: green;
+  padding: 10px;
 }
-form input{
-    width: 80%;
-    border: none;
-    padding: 10px;
-    font-family: 'Montserrat', sans-serif;
-    outline: none;
+form input {
+  width: 80%;
+  border: none;
+  padding: 10px;
+  font-family: 'Montserrat', sans-serif;
+  outline: none;
 }
-form button{
-    width: 20%;
-    border: none;
-    padding: 10px;
-    font-family: 'Montserrat', sans-serif;
-    cursor: pointer;
-    outline: none;
+form button {
+  width: 20%;
+  border: none;
+  padding: 10px;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  outline: none;
 }
 @media screen and (max-width: 950px) {
-    .tab{
-        margin: auto;
-        text-align: center;
-    }
-    #tabs,
-    #main,
-    #banner{
-        display: block;
-    }
-    #banner{
-        text-align: center;
-    }
-    .searcher input{
-        width: 100%;
-    }
+  .tab {
+    margin: auto;
+    text-align: center;
+  }
+  #tabs,
+  #main,
+  #banner {
+    display: block;
+  }
+  #banner {
+    text-align: center;
+  }
+  .searcher input {
+    width: 100%;
+  }
 }
-#canvasIframe{
-    padding: 10px;
+#canvasIframe {
+  padding: 10px;
+}
+footer {
+  padding: 20px;
+  background-color: green;
+  color: white;
+}
+footer a {
+  color: yellowgreen;
+}
+footer a:hover {
+  color: yellow;
 }
