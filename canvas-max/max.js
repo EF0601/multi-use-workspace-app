@@ -1,18 +1,24 @@
-
 const canvas = document.getElementById("drawingCanvas");
 const context = canvas.getContext("2d");
 
 let isDrawing = false;
+
+let x = 0;
+let y = 0;
 
 canvas.addEventListener("mousedown", startDrawing);
 canvas.addEventListener("mousemove", draw);
 canvas.addEventListener("mouseup", stopDrawing);
 canvas.addEventListener("mouseout", stopDrawing);
 
+canvas.addEventListener("mousedown", toolUse)
+
 //touchscreen support
 canvas.addEventListener('touchstart', startDrawing);
 canvas.addEventListener('touchmove', draw);
 canvas.addEventListener('touchend', stopDrawing);
+
+canvas.addEventListener("touchstart", toolUse)
 
 function startDrawing(e) {
     isDrawing = true;
@@ -20,7 +26,7 @@ function startDrawing(e) {
 }
 
 function draw(e) {
-    if (!isDrawing) {
+    if (!isDrawing || currentTool != "none") {
         //nothing lol
     }
     else {
@@ -33,8 +39,10 @@ function draw(e) {
     }
 
     //update position
-    document.getElementById("xPos").innerHTML = e.clientX - canvas.offsetLeft;
-    document.getElementById("yPos").innerHTML = e.clientY - canvas.offsetTop;
+    x = e.clientX - canvas.offsetLeft;
+    y = e.clientY - canvas.offsetTop;
+    document.getElementById("xPos").innerHTML = x;
+    document.getElementById("yPos").innerHTML = y;
 
 }
 
@@ -197,4 +205,63 @@ document.getElementById('sliderMax').addEventListener('click', function () {
 //clear canvas
 function clearCanvas() {
     context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+//tools
+let currentTool = "none";
+//tool select
+function toolSelect(tool){
+    switch(tool) {
+        case "none":
+            document.getElementById("noTool").style.border = "2px solid black";
+            document.getElementById("rectangle").style.border = "none";
+            document.getElementById("circle").style.border = "none";
+            document.getElementById("text").style.border = "none";
+            currentTool = "none";
+            break;
+        case "rect":
+            document.getElementById("noTool").style.border = "none";
+            document.getElementById("rectangle").style.border = "2px solid black";
+            document.getElementById("circle").style.border = "none";
+            document.getElementById("text").style.border = "none";
+            currentTool = "rectangle";
+            break;
+        case "circ":
+            document.getElementById("noTool").style.border = "none";
+            document.getElementById("rectangle").style.border = "none";
+            document.getElementById("circle").style.border = "2px solid black";
+            document.getElementById("text").style.border = "none";
+            currentTool = "circle";
+            break;
+        case "text":
+            document.getElementById("noTool").style.border = "none";
+            document.getElementById("rectangle").style.border = "none";
+            document.getElementById("circle").style.border = "none";
+            document.getElementById("text").style.border = "2px solid black";
+            currentTool = "text";
+            break;
+    }
+}
+
+function toolUse(){
+    switch(currentTool){
+        case "rectangle":
+            // drawRectangle();
+            break;
+        case "circle":
+            // drawCircle();
+            break;
+        case "text":
+            drawText();
+            break;
+    }
+}
+
+//text
+function drawText(){
+    let text = document.getElementById("textToolInput").value;
+    if(text != null){
+        context.font = "30px Georgia";
+        context.fillText(text, x, y);
+    }
 }

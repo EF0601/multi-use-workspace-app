@@ -104,3 +104,18 @@ h1 {
     cursor: pointer;
     padding: 5px;
 }
+button#text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#textToolInput{
+    margin: 10px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: aqua;
+    outline: none;
+}

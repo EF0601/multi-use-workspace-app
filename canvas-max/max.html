@@ -88,10 +88,18 @@
           </p>
         </div>
         <div id="specialToolsContainer">
-          <button>No Tool</button>
-          <button>Rectangle</button>
-          <button>Circle</button>
-          <button>Text</button>
+          <button
+            id="noTool"
+            onclick="toolSelect('none')"
+            style="border: 2px solid black"
+          >
+            No Tool
+          </button>
+          <button id="rectangle" onclick="toolSelect('rect')">Rectangle</button>
+          <button id="circle" onclick="toolSelect('circ')">Circle</button>
+          <button id="text" onclick="toolSelect('text')">
+            <input type="text" id="textToolInput" value="Sample Text" />OK
+          </button>
         </div>
       </div>
     </div>
