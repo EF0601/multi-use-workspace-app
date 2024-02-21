@@ -184,6 +184,11 @@ sizer.slider.oninput = function () {
 
 //onload
 window.onload = updateCanvas();
+window.onload = function () {
+    setTimeout(() => {
+        location.reload();
+    }, 5);
+};
 
 //updates the max of slider
 function updateSliderMax() {
