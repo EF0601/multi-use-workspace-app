@@ -11,14 +11,14 @@ canvas.addEventListener("mousemove", draw);
 canvas.addEventListener("mouseup", stopDrawing);
 canvas.addEventListener("mouseout", stopDrawing);
 
-canvas.addEventListener("mousedown", toolUse)
+canvas.addEventListener("mousedown", toolUse);
 
 //touchscreen support
 canvas.addEventListener('touchstart', startDrawing);
 canvas.addEventListener('touchmove', draw);
 canvas.addEventListener('touchend', stopDrawing);
 
-canvas.addEventListener("touchstart", toolUse)
+canvas.addEventListener("touchstart", toolUse);
 
 function startDrawing(e) {
     isDrawing = true;
