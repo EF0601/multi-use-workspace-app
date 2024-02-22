@@ -172,7 +172,7 @@ function updateCanvas() {
     sizer.ctx.strokeStyle = context.strokeStyle;
     sizer.ctx.clearRect(0, 0, 100, 100);
     sizer.ctx.moveTo(0, 50);
-    sizer.ctx.lineTo(100, 50);
+    sizer.ctx.lineTo(50, 50);
     sizer.ctx.stroke();
     context.lineWidth = sizer.slider.value;
     sizer.span.innerHTML = sizer.slider.value;
@@ -222,6 +222,7 @@ function toolSelect(tool) {
             document.getElementById("rectangle").style.border = "none";
             document.getElementById("circle").style.border = "none";
             document.getElementById("text").style.border = "none";
+            document.getElementById("line").style.border = "none";
             currentTool = "none";
             break;
         case "rect":
@@ -229,6 +230,7 @@ function toolSelect(tool) {
             document.getElementById("rectangle").style.border = "2px solid black";
             document.getElementById("circle").style.border = "none";
             document.getElementById("text").style.border = "none";
+            document.getElementById("line").style.border = "none";
             currentTool = "rectangle";
             break;
         case "circ":
@@ -236,13 +238,23 @@ function toolSelect(tool) {
             document.getElementById("rectangle").style.border = "none";
             document.getElementById("circle").style.border = "2px solid black";
             document.getElementById("text").style.border = "none";
+            document.getElementById("line").style.border = "none";
             currentTool = "circle";
+            break;
+        case "line":
+            document.getElementById("noTool").style.border = "none";
+            document.getElementById("rectangle").style.border = "none";
+            document.getElementById("circle").style.border = "none";
+            document.getElementById("text").style.border = "none";
+            document.getElementById("line").style.border = "2px solid black";
+            currentTool = "line";
             break;
         case "text":
             document.getElementById("noTool").style.border = "none";
             document.getElementById("rectangle").style.border = "none";
             document.getElementById("circle").style.border = "none";
             document.getElementById("text").style.border = "2px solid black";
+            document.getElementById("line").style.border = "none";
             currentTool = "text";
             break;
     }

@@ -85,37 +85,37 @@ h1 {
 #specialToolsContainer button:hover {
   background-color: rgb(255, 255, 255);
 }
-#CMLogo{
-    width: 100px;
-    height: 100px;
-    margin: 10px;
+#CMLogo {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
 }
-#specialToolsContainer{
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-    margin: 10px;
+#specialToolsContainer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 33% 33% 33%;
+  margin: 10px;
 }
-#specialToolsContainer button{
-    margin: 5px;
-    padding: 5px;
-    border: none;
-    background-color: rgb(234, 226, 226);
-    cursor: pointer;
-    padding: 5px;
+#specialToolsContainer button {
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  background-color: rgb(234, 226, 226);
+  cursor: pointer;
+  padding: 5px;
 }
-button#text{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+button#text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#textToolInput{
-    margin: 10px;
-    padding: 5px;
-    border: none;
-    cursor: pointer;
-    width: 60%;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    background-color: aqua;
-    outline: none;
+#textToolInput {
+  margin: 10px;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  width: 60%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: aqua;
+  outline: none;
 }
