@@ -62,9 +62,21 @@ The rectangle tool is used for creating a simple 4 sided polygon. The stroke sty
 - Click on the canvas the first point
 - Click on the second point of the rectangle on the canvas
 
+### Line Tool
+
+The line tool is used for creating direct straight lines. Click on two points to create a line segment in between.
+
+### Circle Tool
+
+The circle tool will be added in the future, but for now it will be a disabled feature as we cannot create a stable version of the circle tool.
+
 ### Text Tool
 
 The text tool will create the piece of text inserted into the input area. The text can then be pasted across the canvas by clicking on the canvas.
+
+#### Changing Font
+
+The font can be changed by using the dropdowns next to the input area.
 
 ***A closer look at all of the functions can be found in the help tab.***
 

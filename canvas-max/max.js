@@ -187,6 +187,7 @@ window.onload = updateCanvas();
 window.onload = function () {
     setTimeout(() => {
         location.reload();
+        context.font = "32px Georgia";
     }, 5);
 };
 
@@ -285,6 +286,26 @@ function toolUse() {
         case "circle":
             // drawCircle();
             break;
+        case "line":
+            if (lineDataPoints.firstCoordChosen == false) {
+                lineDataPoints.x1 = x;
+                lineDataPoints.y1 = y;
+                lineDataPoints.firstCoordChosen = true;
+            }
+            else if (lineDataPoints.secondCoordChosen == false) {
+                lineDataPoints.x2 = x;
+                lineDataPoints.y2 = y;
+                lineDataPoints.secondCoordChosen = true;
+                drawLine(lineDataPoints.x1, lineDataPoints.y1, lineDataPoints.x2, lineDataPoints.y2);
+                lineDataPoints.firstCoordChosen = false;
+                lineDataPoints.secondCoordChosen = false;
+                lineDataPoints.x1 = 0;
+                lineDataPoints.y1 = 0;
+                lineDataPoints.x2 = 0;
+                lineDataPoints.y2 = 0;
+            }
+            else { }
+            break;
         case "text":
             drawText();
             break;
@@ -295,11 +316,49 @@ function toolUse() {
 function drawText() {
     let text = document.getElementById("textToolInput").value;
     if (text != null) {
-        context.font = "30px Georgia";
         context.fillText(text, x, y);
     }
 }
 
+//text change
+let textData = {
+    font: "Georgia",
+    size: 32,
+
+    fontDropdown: document.getElementById("fontDropdown"),
+    sizeDropdown: document.getElementById("sizeDropdown"),
+};
+
+function changeFont() {
+    textData.font = textData.fontDropdown.value;
+    context.font = textData.size + "px " + textData.font;
+    document.getElementById("textToolInput").style.fontFamily = textData.font;
+    console.log(context.font);
+}
+
+function changeFontSize() {
+    textData.size = textData.sizeDropdown.value;
+    context.font = textData.size + "px " + textData.font;
+    console.log(context.font);
+}
+
+//line
+let lineDataPoints = {
+    x1: 0,
+    y1: 0,
+    x2: 0,
+    y2: 0,
+    firstCoordChosen: false,
+    secondCoordChosen: false,
+};
+
+function drawLine(x1, y1, x2, y2) {
+    context.moveTo(x1, y1);
+    context.lineTo(x2, y2);
+    context.stroke();
+}
+
+//rectangle
 let rectangleDataPoints = {
     x1: 0,
     y1: 0,
