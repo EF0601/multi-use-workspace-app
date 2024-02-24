@@ -187,7 +187,7 @@ window.onload = updateCanvas();
 window.onload = function () {
     setTimeout(() => {
         location.reload();
-        context.font = "32px Georgia";
+        context.font = textData.size + "px " + textData.font;
     }, 5);
 };
 
@@ -376,4 +376,34 @@ function drawRectangle(x1, y1, x2, y2) {
     context.lineTo(x1, y1);
     context.stroke();
     context.lineCap = "round";
+}
+
+//settings
+function changeSetting(settingToBeChanged) {
+    switch (settingToBeChanged) {
+        case 'interval':
+            document.getElementById("sizeRange").step = Number(document.getElementById("sliderIntervalSet").value);
+            break;
+        case 'x-y':
+            if (document.getElementById('x-yYN').value == 'yes') {
+                document.getElementById('positionContainer').style.display = 'block';
+            }
+            else if (document.getElementById('x-yYN').value == 'no') {
+                document.getElementById('positionContainer').style.display = 'none';
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+//download
+function saveImage() {
+    const dataURL = canvas.toDataURL('image/jpeg');
+    const link = document.createElement('a');
+    link.href = dataURL;
+    link.download = String(document.getElementById('downloadName').value) + '.jpg';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }

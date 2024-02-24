@@ -78,6 +78,10 @@ The text tool will create the piece of text inserted into the input area. The te
 
 The font can be changed by using the dropdowns next to the input area.
 
+### Downloading
+
+You can download the canvas in the "settings" page as a .jpg file. The name of the file can be changed in the input area.
+
 ***A closer look at all of the functions can be found in the help tab.***
 
 ## Licensing

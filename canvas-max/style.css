@@ -115,7 +115,7 @@ button#text {
   border: none;
   cursor: pointer;
   width: 60%;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: sans-serif;
   background-color: aqua;
   outline: none;
 }
