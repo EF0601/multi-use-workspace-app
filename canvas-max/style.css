@@ -119,3 +119,9 @@ button#text {
   background-color: aqua;
   outline: none;
 }
+#shortcutsGrid{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55%;
+  margin: 10px;
+}
