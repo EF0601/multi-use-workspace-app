@@ -77,9 +77,9 @@ function color(input, buttonClicked) {
             break;
         case 2:
             document.getElementById("black").style.border = "none";
-            document.getElementById("red").style.border = "2px solid black";
+            document.getElementById("red").style.border = "none";
             document.getElementById("blue").style.border = "none";
-            document.getElementById("green").style.border = "none";
+            document.getElementById("green").style.border = "2px solid black";
             document.getElementById("yellow").style.border = "none";
             document.getElementById("purple").style.border = "none";
             document.getElementById("R").style.border = "none";
@@ -97,9 +97,9 @@ function color(input, buttonClicked) {
             break;
         case 4:
             document.getElementById("black").style.border = "none";
-            document.getElementById("red").style.border = "none";
+            document.getElementById("red").style.border = "2px solid black";
             document.getElementById("blue").style.border = "none";
-            document.getElementById("green").style.border = "2px solid black";
+            document.getElementById("green").style.border = "none";
             document.getElementById("yellow").style.border = "none";
             document.getElementById("purple").style.border = "none";
             document.getElementById("R").style.border = "none";
@@ -407,3 +407,15 @@ function saveImage() {
     link.click();
     document.body.removeChild(link);
 }
+
+//keyboard shortcuts
+const colorsList = ['black', 'green', 'blue', 'red', 'yellow', 'white', 'R', 'colorPickerInput'];
+document.addEventListener('keydown', function (e) {
+    keyPressed = e.key;
+    if (!isNaN(Number(keyPressed)) && keyPressed > 0 && keyPressed < 9) {
+        color(colorsList[Number(keyPressed) - 1], Number(keyPressed));
+        if (keyPressed === 8) {
+            submitCustomColor();
+        }
+    }
+});
