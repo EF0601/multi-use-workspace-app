@@ -51,6 +51,17 @@ function stopDrawing() {
     context.beginPath();
 }
 
+function clearColorBorders() {
+    document.getElementById("black").style.border = "none";
+    document.getElementById("red").style.border = "none";
+    document.getElementById("blue").style.border = "none";
+    document.getElementById("green").style.border = "none";
+    document.getElementById("yellow").style.border = "none";
+    document.getElementById("purple").style.border = "none";
+    document.getElementById("R").style.border = "none";
+    document.getElementById("colorPickerInput").style.border = "none";
+}
+
 //color picker
 function color(input, buttonClicked) {
     if (input != "random") {
@@ -64,78 +75,31 @@ function color(input, buttonClicked) {
         }
         context.strokeStyle = selection.join("");
     }
+    clearColorBorders();
     switch (buttonClicked) {
         case 1:
             document.getElementById("black").style.border = "2px solid gray";
-            document.getElementById("red").style.border = "none";
-            document.getElementById("blue").style.border = "none";
-            document.getElementById("green").style.border = "none";
-            document.getElementById("yellow").style.border = "none";
-            document.getElementById("purple").style.border = "none";
-            document.getElementById("R").style.border = "none";
-            document.getElementById("colorPickerInput").style.border = "none";
+
             break;
         case 2:
-            document.getElementById("black").style.border = "none";
-            document.getElementById("red").style.border = "none";
-            document.getElementById("blue").style.border = "none";
             document.getElementById("green").style.border = "2px solid black";
-            document.getElementById("yellow").style.border = "none";
-            document.getElementById("purple").style.border = "none";
-            document.getElementById("R").style.border = "none";
-            document.getElementById("colorPickerInput").style.border = "none";
             break;
         case 3:
-            document.getElementById("black").style.border = "none";
-            document.getElementById("red").style.border = "none";
             document.getElementById("blue").style.border = "2px solid black";
-            document.getElementById("green").style.border = "none";
-            document.getElementById("yellow").style.border = "none";
-            document.getElementById("purple").style.border = "none";
-            document.getElementById("R").style.border = "none";
-            document.getElementById("colorPickerInput").style.border = "none";
             break;
         case 4:
-            document.getElementById("black").style.border = "none";
             document.getElementById("red").style.border = "2px solid black";
-            document.getElementById("blue").style.border = "none";
-            document.getElementById("green").style.border = "none";
-            document.getElementById("yellow").style.border = "none";
-            document.getElementById("purple").style.border = "none";
-            document.getElementById("R").style.border = "none";
-            document.getElementById("colorPickerInput").style.border = "none";
             break;
         case 5:
-            document.getElementById("black").style.border = "none";
-            document.getElementById("red").style.border = "none";
-            document.getElementById("blue").style.border = "none";
-            document.getElementById("green").style.border = "none";
             document.getElementById("yellow").style.border = "2px solid black";
-            document.getElementById("purple").style.border = "none";
-            document.getElementById("R").style.border = "none";
-            document.getElementById("colorPickerInput").style.border = "none";
             break;
 
         case 6:
-            document.getElementById("black").style.border = "none";
-            document.getElementById("red").style.border = "none";
-            document.getElementById("blue").style.border = "none";
-            document.getElementById("green").style.border = "none";
-            document.getElementById("yellow").style.border = "none";
             document.getElementById("purple").style.border = "2px solid black";
-            document.getElementById("R").style.border = "none";
-            document.getElementById("colorPickerInput").style.border = "none";
             break;
 
         case 7:
-            document.getElementById("black").style.border = "none";
-            document.getElementById("red").style.border = "none";
-            document.getElementById("blue").style.border = "none";
-            document.getElementById("green").style.border = "none";
-            document.getElementById("yellow").style.border = "none";
-            document.getElementById("purple").style.border = "none";
             document.getElementById("R").style.border = "2px solid black";
-            document.getElementById("colorPickerInput").style.border = "none";
             break;
 
         default:
@@ -145,13 +109,7 @@ function color(input, buttonClicked) {
 }
 
 function submitCustomColor() {
-    document.getElementById("black").style.border = "none";
-    document.getElementById("red").style.border = "none";
-    document.getElementById("blue").style.border = "none";
-    document.getElementById("green").style.border = "none";
-    document.getElementById("yellow").style.border = "none";
-    document.getElementById("purple").style.border = "none";
-    document.getElementById("R").style.border = "none";
+    clearColorBorders();
     document.getElementById("colorPickerInput").style.border = "2px solid black";
     context.strokeStyle = document.getElementById("colorPickerInput").value;
     updateCanvas();
@@ -216,46 +174,36 @@ function clearCanvas() {
 //tools
 let currentTool = "none";
 //tool select
+
+function clearToolBorders() {
+    document.getElementById("noTool").style.border = "none";
+    document.getElementById("rectangle").style.border = "none";
+    document.getElementById("circle").style.border = "none";
+    document.getElementById("text").style.border = "none";
+    document.getElementById("line").style.border = "none";
+}
+
 function toolSelect(tool) {
+    clearToolBorders();
     switch (tool) {
         case "none":
             document.getElementById("noTool").style.border = "2px solid black";
-            document.getElementById("rectangle").style.border = "none";
-            document.getElementById("circle").style.border = "none";
-            document.getElementById("text").style.border = "none";
-            document.getElementById("line").style.border = "none";
             currentTool = "none";
             break;
         case "rect":
-            document.getElementById("noTool").style.border = "none";
             document.getElementById("rectangle").style.border = "2px solid black";
-            document.getElementById("circle").style.border = "none";
-            document.getElementById("text").style.border = "none";
-            document.getElementById("line").style.border = "none";
             currentTool = "rectangle";
             break;
         case "circ":
-            document.getElementById("noTool").style.border = "none";
-            document.getElementById("rectangle").style.border = "none";
             document.getElementById("circle").style.border = "2px solid black";
-            document.getElementById("text").style.border = "none";
-            document.getElementById("line").style.border = "none";
             currentTool = "circle";
             break;
         case "line":
-            document.getElementById("noTool").style.border = "none";
-            document.getElementById("rectangle").style.border = "none";
-            document.getElementById("circle").style.border = "none";
-            document.getElementById("text").style.border = "none";
             document.getElementById("line").style.border = "2px solid black";
             currentTool = "line";
             break;
         case "text":
-            document.getElementById("noTool").style.border = "none";
-            document.getElementById("rectangle").style.border = "none";
-            document.getElementById("circle").style.border = "none";
             document.getElementById("text").style.border = "2px solid black";
-            document.getElementById("line").style.border = "none";
             currentTool = "text";
             break;
     }
@@ -398,24 +346,63 @@ function changeSetting(settingToBeChanged) {
 }
 
 //download
-function saveImage() {
+function saveImage(downloadName) {
     const dataURL = canvas.toDataURL('image/jpeg');
     const link = document.createElement('a');
     link.href = dataURL;
-    link.download = String(document.getElementById('downloadName').value) + '.jpg';
+    if (downloadName != null) {
+        link.download = downloadName;
+    }
+    else {
+        link.download = String(document.getElementById('downloadName').value) + '.jpg';
+    }
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 }
 
 //keyboard shortcuts
-const colorsList = ['black', 'green', 'blue', 'red', 'yellow', 'white', 'R', 'colorPickerInput'];
+const colorsList = ['black', 'green', 'blue', 'red', 'yellow', 'white', 'random', 'colorPickerInput'];
 document.addEventListener('keydown', function (e) {
     keyPressed = e.key;
     if (!isNaN(Number(keyPressed)) && keyPressed > 0 && keyPressed < 9) {
         color(colorsList[Number(keyPressed) - 1], Number(keyPressed));
         if (keyPressed === 8) {
             submitCustomColor();
+        }
+    }
+    else{
+        keyPressed = keyPressed.toLowerCase();
+        switch (keyPressed) {
+            case 'e':
+                color('white', 6);
+                break;
+            case 'f':
+                toolSelect('none');
+                break;
+            case 'r':
+                toolSelect('rect');
+                break;
+            case 'l':
+                toolSelect('line');
+                break;
+            case 't':
+                toolSelect('text');
+                break;
+            case 's':
+                document.getElementById("SettingsBTN").click();
+                break;
+            case 'h':
+                document.getElementById("HelpBTN").click();
+                break;
+            case 'c':
+                clearCanvas();
+                break;
+            case 'd':
+                saveImage(prompt('Enter a name for the file'));
+                break;
+            default:
+                break;
         }
     }
 });
