@@ -2,42 +2,148 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Drawing App</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas Max</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="modals.css" />
 </head>
 
 <body>
     <div id="canvasContainer">
         <canvas id="drawingCanvas" width="800" height="400"></canvas>
         <div id="toolTip">
-            <h1>Canvas Max</h1>
+            <div id="headerButtons">
+                <button onclick="clearCanvas()">Clear All</button>
+                <button id="SettingsBTN">Settings</button>
+                <button id="HelpBTN">Help</button>
+            </div>
             <div id="colorPicker">
-                <button onclick="color('#000000',1)" style="background-color: #000000; border: 2px solid gray;" id="black"></button>
-                <button onclick="color('#798622',4)" style="background-color: #798622;" id="green"></button>
-                <button onclick="color('#0000ff',3)" style="background-color: #0000ff;" id="blue"></button>
-                <button onclick="color('#ff0000',2)" style="background-color: #ff0000;" id="red"></button>
-                <button onclick="color('#ffff00',5)" style="background-color: #ffff00;" id="yellow"></button>
+                <button onclick="color('#000000',1)" style="background-color: #000000; border: 2px solid gray"
+                    id="black"></button>
+                <button onclick="color('#798622',2)" style="background-color: #798622" id="green"></button>
+                <button onclick="color('#0000ff',3)" style="background-color: #0000ff" id="blue"></button>
+                <button onclick="color('#ff0000',4)" style="background-color: #ff0000" id="red"></button>
+                <button onclick="color('#ffff00',5)" style="background-color: #ffff00" id="yellow"></button>
                 <button onclick="color('#ffffff',6)" id="purple">E</button>
                 <button onclick="color('random',7)" id="R">R</button>
-                <input type="color" id="colorPickerInput" value="#000000" onblur="submitCustomColor()">
+                <input type="color" id="colorPickerInput" value="#000000" onblur="submitCustomColor()" />
             </div>
-            <div id="sizePicker">
-                <button onclick="size(0.5,1)" id="0.5">0.5</button>
-                <button onclick="size(1,2)" id="1">1</button>
-                <button onclick="size(2,3)" id="2">2</button>
-                <button onclick="size(4,4)" id="4">4</button>
-                <button onclick="size(8,5)" id="8">8</button>
-                <button onclick="size(16,6)" id="16">16</button>
-                <button onclick="size(32,7)" id="32">32</button>
-                <button onclick="size(64,8)" id="64">64</button>
+            <div id="sliderContainer">
+                <input type="range" min="1" max="100" value="1" class="slider" id="sizeRange" />
+                <p><span id="sizeSpan">1</span>px thick</p>
+                <p>
+                    Slider Max:
+                    <input type="number" name="slider max" id="sliderMax" style="width: 25px" value="100" maxlength="3"
+                        onblur="updateSliderMax()" max="999" min="1" />px
+                </p>
             </div>
-            <input type="range" name="" id="sizePicker" onblur="size()">
+            <canvas width=" 50" height="100" id="sizeCanvas"></canvas>
+            <div id="positionContainer">
+                <p>
+                    <b><u>X</u></b> Pos: <span id="xPos">0</span>
+                </p>
+                <p>
+                    <b><u>Y</u></b> Pos: <span id="yPos">0</span>
+                </p>
+            </div>
+            <div id="specialToolsContainer">
+                <button id="noTool" onclick="toolSelect('none')" style="border: 2px solid black">
+                    Freehand
+                </button>
+                <button id="rectangle" onclick="toolSelect('rect')">Rectangle</button>
+                <button id="circle" onclick="toolSelect('circ')" disabled>Circle</button>
+                <button id="line" onclick="toolSelect('line')">Line</button>
+                <button id="text" onclick="toolSelect('text')">
+                    <input type="text" id="textToolInput" value="Sample Text" />OK
+                </button>
+                <button>
+                    <select name="" id="fontDropdown" onchange="changeFont()">
+                        <option value="Georgia" selected="selected">Georgia</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Impact">Impact</option>
+                        <option value="SansSerif">Sans Serif</option>
+                    </select>
+                    <select name="" id="sizeDropdown" onchange="changeFontSize()">
+                        <option value="10">10px</option>
+                        <option value="12">12px</option>
+                        <option value="14">14px</option>
+                        <option value="15">15px</option>
+                        <option value="18">18px</option>
+                        <option value="20">20px</option>
+                        <option value="26">26px</option>
+                        <option value="32" selected="selected">32px</option>
+                        <option value="38">38px</option>
+                        <option value="42">42px</option>
+                    </select>
+
+                </button>
+            </div>
         </div>
     </div>
-
 </body>
+<!--Modals-->
+<!--Settings Modal here-->
+<div id="settings" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span id="SettingsClose">&times;</span><br>
+        <h1>Settings</h1>
+        <div id="settingsGrid">
+            <div>
+                <h2>Slider Change Interval</h2>
+                <p><input type="number" value="1" id="sliderIntervalSet">px <button onclick="changeSetting('interval')">Update</button></p>
+            </div>
+            <div>
+                <h2>Show X-pos and Y-pos</h2>
+                <select name="" id="x-yYN">
+                    <option value="yes">yes</option>
+                    <option value="no">no</option>
+                </select>
+                <button onclick="changeSetting('x-y')">Update</button>
+            </div>
+            <div>
+                <h2>Save Image</h2>
+                <input type="text" value="name" id="downloadName">.jpg <button onclick="saveImage()">Save</button>
+            </div>
+            <div>
+                <h2>Keyboard Shortcuts</h2>
+                <div id="shortcutsGrid">
+                    <p>1,2,3,4,5,6,7,8</p>
+                    <p>Choose one of the color options (1 for black; 5 for yellow; etc.)</p>
+                    <p>E</p>
+                    <p>Eraser</p>
+                    <p>F</p>
+                    <p>Freehand</p>
+                    <p>R</p>
+                    <p>Rectangle</p>
+                    <p>L</p>
+                    <p>Line</p>
+                    <p>T</p>
+                    <p>Text</p>
+                    <p>S</p>
+                    <p>Settings</p>
+                    <p>H</p>
+                    <p>Help</p>
+                    <p>C</p>
+                    <p>Clear All</p>
+                    <p>D</p>
+                    <p>Download</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Help Modal here-->
+<div id="help" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span id="HelpClose">&times;</span> <br>
+        <iframe src="./help.html" width="100%" height="90%" style="border:none;"></iframe>
+    </div>
+</div>
 <script src="max.js"></script>
 <script src="resizer.js"></script>
+<script src="modals.js"></script>
+
 </html>

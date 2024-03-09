@@ -1,52 +1,138 @@
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height: 90vh; */
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 canvas {
-    border: 1px solid #000;
-}
-#toolTip{
-    display: flex;
-    background-color: rgb(200, 195, 195);
-    justify-content: left;
-}
-h1{
-    margin: 10px;
-}
-#colorPicker{
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 50% 50%;
-    overflow: scroll;
-    padding: 5px;
-    height: 80px;
-    margin: 10px;
-}
-#colorPicker button,
-#colorPicker input{
-    width: 25px;
-    height: 25px;
-    margin: 5px;
-    border: none;
-}
-#sizePicker{
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 50% 50%;
-    overflow: scroll;
-    padding: 5px;
-    height: 80px;
-    margin: 10px;
+  border: 1px solid #000;
+  background-color: #fff;
 }
 
-#sizePicker button,
-#sizePicker input{
-    width: 25px;
-    height: 25px;
-    margin: 5px;
-    border: none;
+#toolTip {
+  display: flex;
+  background-color: rgb(200, 195, 195);
+  justify-content: left;
+  align-items: center;
+  margin: 0;
+}
+h1 {
+  margin: 10px;
+}
+#colorPicker {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 50% 50%;
+  overflow: scroll;
+  padding: 5px;
+  height: 80px;
+  margin: 10px;
+}
+#colorPicker button,
+#colorPicker input {
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+  border: none;
+}
+
+#sliderContainer p {
+  text-align: center;
+}
+
+#sliderContainer {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 25% 25% 25% 25%;
+  outline: none;
+  margin: 10px;
+}
+
+/*removes arrows*/
+#sliderMax::-webkit-outer-spin-button,
+#sliderMax::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#positionContainer {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 50% 50%;
+  margin: 10px;
+}
+#positionContainer p {
+  text-align: center;
+  background-color: rgb(234, 226, 226);
+  padding: 10px;
+}
+#headerButtons {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 33% 33% 33%;
+  margin: 10px;
+}
+#headerButtons button {
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  background-color: rgb(234, 226, 226);
+  cursor: pointer;
+}
+#headerButtons button:hover,
+#specialToolsContainer button:hover {
+  background-color: rgb(255, 255, 255);
+}
+#CMLogo {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+}
+#specialToolsContainer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 33% 33% 33%;
+  margin: 10px;
+}
+#specialToolsContainer button {
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  background-color: rgb(234, 226, 226);
+  cursor: pointer;
+  padding: 5px;
+}
+button#text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#textToolInput {
+  margin: 10px;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  width: 60%;
+  font-family: sans-serif;
+  background-color: aqua;
+  outline: none;
+}
+#shortcutsGrid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 11% 11% 11% 11% 11% 11% 11% 11% 11%;
+  margin: 10px;
+}
+@media screen and (max-width: 650px) {
+  #toolTip {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+  }
+  #sizeCanvas{
+    display: none;
+  }
 }
