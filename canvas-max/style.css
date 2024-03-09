@@ -2,7 +2,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 90vh;
+  /* height: 90vh; */
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -11,6 +11,7 @@ canvas {
   border: 1px solid #000;
   background-color: #fff;
 }
+
 #toolTip {
   display: flex;
   background-color: rgb(200, 195, 195);
@@ -119,9 +120,19 @@ button#text {
   background-color: aqua;
   outline: none;
 }
-#shortcutsGrid{
+#shortcutsGrid {
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55% 5.55%;
+  grid-template-rows: 11% 11% 11% 11% 11% 11% 11% 11% 11%;
   margin: 10px;
+}
+@media screen and (max-width: 650px) {
+  #toolTip {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+  }
+  #sizeCanvas{
+    display: none;
+  }
 }

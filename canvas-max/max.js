@@ -365,44 +365,46 @@ function saveImage(downloadName) {
 const colorsList = ['black', 'green', 'blue', 'red', 'yellow', 'white', 'random', 'colorPickerInput'];
 document.addEventListener('keydown', function (e) {
     keyPressed = e.key;
-    if (!isNaN(Number(keyPressed)) && keyPressed > 0 && keyPressed < 9) {
-        color(colorsList[Number(keyPressed) - 1], Number(keyPressed));
-        if (keyPressed === 8) {
-            submitCustomColor();
+    if (document.getElementById('sliderIntervalSet') != document.activeElement && document.getElementById('downloadName') != document.activeElement && document.getElementById('textToolInput') != document.activeElement && document.getElementById('sliderMax') != document.activeElement) {
+        if (!isNaN(Number(keyPressed)) && keyPressed > 0 && keyPressed < 9) {
+            color(colorsList[Number(keyPressed) - 1], Number(keyPressed));
+            if (keyPressed === 8) {
+                submitCustomColor();
+            }
         }
-    }
-    else{
-        keyPressed = keyPressed.toLowerCase();
-        switch (keyPressed) {
-            case 'e':
-                color('white', 6);
-                break;
-            case 'f':
-                toolSelect('none');
-                break;
-            case 'r':
-                toolSelect('rect');
-                break;
-            case 'l':
-                toolSelect('line');
-                break;
-            case 't':
-                toolSelect('text');
-                break;
-            case 's':
-                document.getElementById("SettingsBTN").click();
-                break;
-            case 'h':
-                document.getElementById("HelpBTN").click();
-                break;
-            case 'c':
-                clearCanvas();
-                break;
-            case 'd':
-                saveImage(prompt('Enter a name for the file'));
-                break;
-            default:
-                break;
+        else {
+            keyPressed = keyPressed.toLowerCase();
+            switch (keyPressed) {
+                case 'e':
+                    color('white', 6);
+                    break;
+                case 'f':
+                    toolSelect('none');
+                    break;
+                case 'r':
+                    toolSelect('rect');
+                    break;
+                case 'l':
+                    toolSelect('line');
+                    break;
+                case 't':
+                    toolSelect('text');
+                    break;
+                case 's':
+                    document.getElementById("SettingsBTN").click();
+                    break;
+                case 'h':
+                    document.getElementById("HelpBTN").click();
+                    break;
+                case 'c':
+                    clearCanvas();
+                    break;
+                case 'd':
+                    saveImage(prompt('Enter a name for the file'));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 });
