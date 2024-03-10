@@ -199,3 +199,37 @@ footer a:hover {
   background-color: white;
   color: black;
 }
+
+#weatherContainer {
+  overflow: scroll;
+  height: 200px;
+}
+
+.weatherPart button {
+  background-color: green;
+  color: white;
+  padding: 5px;
+  border: none;
+  font-size: 14px;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.weatherPart button:hover {
+  background-color: darkgreen;
+}
+
+.weatherPart button:disabled {
+  background-color: yellow;
+  color: black;
+  cursor: not-allowed;
+}
+
+.weatherPart p {
+  font-size: 18px;
+  text-align: left;
+}
+.weatherPart span {
+  text-decoration: underline;
+  margin: 10px;
+}

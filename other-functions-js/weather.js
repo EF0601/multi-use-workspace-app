@@ -47,12 +47,21 @@ function currentPosition(position) {
 let lastFetchedData = {
     today: {
         temp: 0,
+        condition: "",
+        wind: "",
+        precipitation: 0,
     },
     tomorrow: {
         temp: 0,
+        condition: "",
+        wind: "",
+        precipitation: 0,
     },
     dayAfterTomorrow: {
         temp: 0,
+        condition: "",
+        wind: "",
+        precipitation: 0,
     },
 };
 
@@ -87,20 +96,43 @@ function fetchWeatherData() {
                     .then(response => response.json())
                     .then(data2 => {
                         fetchedType = (data2.properties.periods[0].temperatureUnit).toLowerCase();
-                        console.log("Fetched Type:", fetchedType);
-                        console.log("Today's data");
-                        //today
+                        //find the day
+                        const date = new Date();
+                        const day = date.getDay();
+                        const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                        document.getElementById('today').textContent = weekdays[day];
+                        //today/now
                         const todayData = data2.properties.periods[0].temperature;
-                        console.log(todayData);
                         lastFetchedData.today.temp = Math.round(todayData);
+                        lastFetchedData.today.condition = data2.properties.periods[0].shortForecast;
+                        lastFetchedData.today.wind = data2.properties.periods[0].windSpeed;
+                        lastFetchedData.today.precipitation = Number(data2.properties.periods[0].probabilityOfPrecipitation.value);
+
+                        //find where the other data is
+                        let dataLocation = [];
+                        for (let i = 0; i < data2.properties.periods.length; i++) {
+                            if (data2.properties.periods[i].name === weekdays[day + 1]) {
+                                dataLocation.push(i);
+                            }
+                            if (data2.properties.periods[i].name === weekdays[day + 2]) {
+                                dataLocation.push(i);
+                            }
+                        }
                         //tomorrow
-                        const tomorrowData = data2.properties.periods[1].temperature;
-                        console.log(tomorrowData);
+                        document.getElementById('tomorrow').textContent = weekdays[day + 1];
+                        const tomorrowData = data2.properties.periods[dataLocation[0]].temperature;
                         lastFetchedData.tomorrow.temp = Math.round(tomorrowData);
+                        lastFetchedData.tomorrow.condition = data2.properties.periods[dataLocation[0]].shortForecast;
+                        lastFetchedData.tomorrow.wind = data2.properties.periods[dataLocation[0]].windSpeed;
+                        lastFetchedData.tomorrow.precipitation = Number(data2.properties.periods[dataLocation[0]].probabilityOfPrecipitation.value);
                         //day after
-                        const dayAfterData = data2.properties.periods[3].temperature;
-                        console.log(dayAfterData);
+                        document.getElementById('dayAfter').textContent = weekdays[day + 2];
+                        const dayAfterData = data2.properties.periods[dataLocation[1]].temperature;
                         lastFetchedData.dayAfterTomorrow.temp = Math.round(dayAfterData);
+                        lastFetchedData.dayAfterTomorrow.condition = data2.properties.periods[dataLocation[1]].shortForecast;
+                        lastFetchedData.dayAfterTomorrow.wind = data2.properties.periods[dataLocation[1]].windSpeed;
+                        lastFetchedData.dayAfterTomorrow.precipitation = Number(data2.properties.periods[dataLocation[1]].probabilityOfPrecipitation.value);
+                        //reset button
                         refetchWeatherButton.innerHTML = "Refetch weather";
                         refetchWeatherButton.disabled = false;
                         outputData();
@@ -110,7 +142,7 @@ function fetchWeatherData() {
                 // console.log("Extracted Name:", name);
             });
     }
-    else{
+    else {
         console.warn("Too many requests in 10 seconds.");
         refetchWeatherButton.innerHTML = "Too many requests. Try again in 10 seconds.";
         setTimeout(() => {
@@ -123,6 +155,24 @@ function outputData() {
     document.getElementById('TodayTemp').textContent = Math.round(convert(lastFetchedData.today.temp)) + " " + temperatureType.toUpperCase();
     document.getElementById('TomorrowTemp').textContent = Math.round(convert(lastFetchedData.tomorrow.temp)) + " " + temperatureType.toUpperCase();
     document.getElementById('DayAfterTemp').textContent = Math.round(convert(lastFetchedData.dayAfterTomorrow.temp)) + " " + temperatureType.toUpperCase();
+
+    // for (let i = 0; i < lastFetchedData.length; i++) {
+    //     if (lastFetchedData[i].precipitation == null) {
+    //         lastFetchedData[i].precipitation = 0;
+    //     }
+    // }
+
+    document.getElementById('todayCondition').textContent = lastFetchedData.today.condition;
+    document.getElementById('tomorrowCondition').textContent = lastFetchedData.tomorrow.condition;
+    document.getElementById('dayAfterCondition').textContent = lastFetchedData.dayAfterTomorrow.condition;
+
+    document.getElementById('todayWind').textContent = lastFetchedData.today.wind;
+    document.getElementById('tomorrowWind').textContent = lastFetchedData.tomorrow.wind;
+    document.getElementById('dayAfterWind').textContent = lastFetchedData.dayAfterTomorrow.wind;
+
+    document.getElementById('todayPrecipitation').textContent = lastFetchedData.today.precipitation + "%";
+    document.getElementById('tomorrowPrecipitation').textContent = lastFetchedData.tomorrow.precipitation + "%";
+    document.getElementById('dayAfterPrecipitation').textContent = lastFetchedData.dayAfterTomorrow.precipitation + "%";
 }
 
 getLocation();
