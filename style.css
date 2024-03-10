@@ -113,6 +113,15 @@ form button {
   cursor: pointer;
   outline: none;
 }
+#weatherFlexContainer {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 100%;
+}
+#weatherFlexContainer div {
+  text-align: center;
+  margin: 10px;
+}
 @media screen and (max-width: 950px) {
   .tab {
     margin: auto;
@@ -129,6 +138,9 @@ form button {
   .searcher input {
     width: 100%;
   }
+  #weatherFlexContainer {
+    display: block;
+  }
 }
 #canvasIframe {
   padding: 10px;
@@ -143,4 +155,47 @@ footer a {
 }
 footer a:hover {
   color: yellow;
+}
+
+#loadingScreen {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 1); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+#loadingScreenContent {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  height: 40vh;
+  overflow: scroll;
+  text-align: center;
+}
+
+#loadingScreenBTN {
+  display: none;
+  background-color: green;
+  color: white;
+  padding: 10px;
+  border: none;
+  font-size: 24px;
+  margin: 20px;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+}
+
+#loadingScreenBTN:hover {
+  background-color: white;
+  color: black;
 }
