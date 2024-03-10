@@ -1,6 +1,5 @@
 let name;
 let temperatureType = 'f';
-
 let fetchedType;
 
 function changeTemp(toType) {
@@ -57,51 +56,67 @@ let lastFetchedData = {
     },
 };
 
+let fetchedWeatherTimes = 0;
+
+setInterval(() => {
+    fetchedWeatherTimes = 0;
+}, 10000);
+
 function fetchWeatherData() {
-    refetchWeatherButton.disabled = true;
-    refetchWeatherButton.innerHTML = "Working...";
-    setTimeout(() => {
-        if (refetchWeatherButton.disabled === true) {
-            refetchWeatherButton.innerHTML = "Refetch weather failed. Try again.";
-            refetchWeatherButton.disabled = false;
-            setTimeout(() => {
-                refetchWeatherButton.innerHTML = "Refetch weather";
-            }, 1000);
-            console.warn("Weather fetch timed out. Retry again.");
-        }
-    }, 20000);
-    if (lat === undefined || lon === undefined) {
-        getLocation();
-    }
-    fetch("https://api.weather.gov/points/" + lat + "," + lon)
-        .then(response => response.json())
-        .then(data => {
-            const url = data.properties.forecast;
-            fetch(url)
-                .then(response => response.json())
-                .then(data2 => {
-                    fetchedType = (data2.properties.periods[0].temperatureUnit).toLowerCase();
-                    console.log("Fetched Type:", fetchedType);
-                    console.log("Today's data");
-                    //today
-                    const todayData = data2.properties.periods[0].temperature;
-                    console.log(todayData);
-                    lastFetchedData.today.temp = Math.round(todayData);
-                    //tomorrow
-                    const tomorrowData = data2.properties.periods[1].temperature;
-                    console.log(tomorrowData);
-                    lastFetchedData.tomorrow.temp = Math.round(tomorrowData);
-                    //day after
-                    const dayAfterData = data2.properties.periods[3].temperature;
-                    console.log(dayAfterData);
-                    lastFetchedData.dayAfterTomorrow.temp = Math.round(dayAfterData);
+    if (fetchedWeatherTimes <= 4) {
+        refetchWeatherButton.disabled = true;
+        refetchWeatherButton.innerHTML = "Working...";
+        setTimeout(() => {
+            if (refetchWeatherButton.disabled === true) {
+                refetchWeatherButton.innerHTML = "Refetch weather failed. Try again.";
+                refetchWeatherButton.disabled = false;
+                setTimeout(() => {
                     refetchWeatherButton.innerHTML = "Refetch weather";
-                    refetchWeatherButton.disabled = false;
-                    outputData();
-                });
-            // const name = data.properties.forecast;
-            // console.log("Extracted Name:", name);
-        });
+                }, 1000);
+                console.warn("Weather fetch timed out. Retry again.");
+            }
+        }, 20000);
+        if (lat === undefined || lon === undefined) {
+            getLocation();
+        }
+        fetch("https://api.weather.gov/points/" + lat + "," + lon)
+            .then(response => response.json())
+            .then(data => {
+                const url = data.properties.forecast;
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data2 => {
+                        fetchedType = (data2.properties.periods[0].temperatureUnit).toLowerCase();
+                        console.log("Fetched Type:", fetchedType);
+                        console.log("Today's data");
+                        //today
+                        const todayData = data2.properties.periods[0].temperature;
+                        console.log(todayData);
+                        lastFetchedData.today.temp = Math.round(todayData);
+                        //tomorrow
+                        const tomorrowData = data2.properties.periods[1].temperature;
+                        console.log(tomorrowData);
+                        lastFetchedData.tomorrow.temp = Math.round(tomorrowData);
+                        //day after
+                        const dayAfterData = data2.properties.periods[3].temperature;
+                        console.log(dayAfterData);
+                        lastFetchedData.dayAfterTomorrow.temp = Math.round(dayAfterData);
+                        refetchWeatherButton.innerHTML = "Refetch weather";
+                        refetchWeatherButton.disabled = false;
+                        outputData();
+                        fetchedWeatherTimes++;
+                    });
+                // const name = data.properties.forecast;
+                // console.log("Extracted Name:", name);
+            });
+    }
+    else{
+        console.warn("Too many requests in 10 seconds.");
+        refetchWeatherButton.innerHTML = "Too many requests. Try again in 10 seconds.";
+        setTimeout(() => {
+            refetchWeatherButton.innerHTML = "Refetch weather";
+        }, 1500);
+    }
 }
 
 function outputData() {
