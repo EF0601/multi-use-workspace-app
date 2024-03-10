@@ -16,7 +16,10 @@
                 <h1>Multi Usage Workspace Application</h1>
                 <p>Proudly created and maintained by EF0601 studios. You are using: <code>v1.3.1</code> release</p>
             </div>
-            <div id="clock2"></div>
+            <div class="container">
+                <div id="clock2"></div>
+                <p id="smallWeatherDisplay"><span id="smallLocation"></span>: <span id="smallTemp"></span> <br><span id="smallForecast"></span></p>
+            </div>
         </div>
         <div id="main">
             <div id="tabs">
@@ -80,6 +83,7 @@
                                     <button onclick="changeTemp('c')">C</button>
                                     <button onclick="changeTemp('f')">F</button>
                                 </div>
+                                <p>Location: <span id="locationDisplay">Loading...</span></p>
                             </div>
                         </div>
                     </div>

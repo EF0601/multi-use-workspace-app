@@ -4,7 +4,7 @@ let fetchedType;
 
 function changeTemp(toType) {
     temperatureType = toType;
-    fetchWeatherData();
+    outputData();
 }
 
 function convert(data) {
@@ -42,6 +42,9 @@ function currentPosition(position) {
     console.log(lat, lon);
     refetchLocationButton.innerHTML = "Refetch location";
     refetchLocationButton.disabled = false;
+    if (document.getElementById('todayCondition').textContent === "Loading...") {
+        fetchWeatherData();
+    }
 }
 
 let lastFetchedData = {
@@ -64,6 +67,8 @@ let lastFetchedData = {
         precipitation: 0,
     },
 };
+
+let weatherLocation;
 
 let fetchedWeatherTimes = 0;
 
@@ -92,6 +97,9 @@ function fetchWeatherData() {
             .then(response => response.json())
             .then(data => {
                 const url = data.properties.forecast;
+                weatherLocation = data.properties.relativeLocation.properties.city + ", " + data.properties.relativeLocation.properties.state;
+                document.getElementById('locationDisplay').textContent = weatherLocation;
+                document.getElementById('smallLocation').textContent = weatherLocation;
                 fetch(url)
                     .then(response => response.json())
                     .then(data2 => {
@@ -155,16 +163,12 @@ function outputData() {
     document.getElementById('TodayTemp').textContent = Math.round(convert(lastFetchedData.today.temp)) + " " + temperatureType.toUpperCase();
     document.getElementById('TomorrowTemp').textContent = Math.round(convert(lastFetchedData.tomorrow.temp)) + " " + temperatureType.toUpperCase();
     document.getElementById('DayAfterTemp').textContent = Math.round(convert(lastFetchedData.dayAfterTomorrow.temp)) + " " + temperatureType.toUpperCase();
-
-    // for (let i = 0; i < lastFetchedData.length; i++) {
-    //     if (lastFetchedData[i].precipitation == null) {
-    //         lastFetchedData[i].precipitation = 0;
-    //     }
-    // }
+    document.getElementById('smallTemp').textContent = Math.round(convert(lastFetchedData.today.temp)) + " " + temperatureType.toUpperCase();
 
     document.getElementById('todayCondition').textContent = lastFetchedData.today.condition;
     document.getElementById('tomorrowCondition').textContent = lastFetchedData.tomorrow.condition;
     document.getElementById('dayAfterCondition').textContent = lastFetchedData.dayAfterTomorrow.condition;
+    document.getElementById('smallForecast').textContent = lastFetchedData.today.condition;
 
     document.getElementById('todayWind').textContent = lastFetchedData.today.wind;
     document.getElementById('tomorrowWind').textContent = lastFetchedData.tomorrow.wind;
