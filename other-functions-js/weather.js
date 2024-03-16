@@ -76,6 +76,12 @@ setInterval(() => {
     fetchedWeatherTimes = 0;
 }, 10000);
 
+// function validateDateOfWeek(input) {
+//     if (input > 6) {
+//         return input - 7;
+//     }
+// }
+
 function fetchWeatherData() {
     if (fetchedWeatherTimes <= 4) {
         refetchWeatherButton.disabled = true;
@@ -84,6 +90,7 @@ function fetchWeatherData() {
             if (refetchWeatherButton.disabled === true) {
                 refetchWeatherButton.innerHTML = "Refetch weather failed. Try again.";
                 refetchWeatherButton.disabled = false;
+                outputData();
                 setTimeout(() => {
                     refetchWeatherButton.innerHTML = "Refetch weather";
                 }, 1000);
@@ -107,7 +114,7 @@ function fetchWeatherData() {
                         //find the day
                         const date = new Date();
                         const day = date.getDay();
-                        const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                        const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
                         document.getElementById('today').textContent = weekdays[day];
                         //today/now
                         const todayData = data2.properties.periods[0].temperature;
@@ -119,13 +126,14 @@ function fetchWeatherData() {
                         //find where the other data is
                         let dataLocation = [];
                         for (let i = 0; i < data2.properties.periods.length; i++) {
-                            if (data2.properties.periods[i].name === weekdays[day + 1]) {
+                            if (data2.properties.periods[i].name === weekdays[day+1]) {
                                 dataLocation.push(i);
                             }
-                            if (data2.properties.periods[i].name === weekdays[day + 2]) {
+                            if (data2.properties.periods[i].name === weekdays[day+2]) {
                                 dataLocation.push(i);
                             }
                         }
+                        console.log(dataLocation);
                         //tomorrow
                         document.getElementById('tomorrow').textContent = weekdays[day + 1];
                         const tomorrowData = data2.properties.periods[dataLocation[0]].temperature;
@@ -135,6 +143,7 @@ function fetchWeatherData() {
                         lastFetchedData.tomorrow.precipitation = Number(data2.properties.periods[dataLocation[0]].probabilityOfPrecipitation.value);
                         //day after
                         document.getElementById('dayAfter').textContent = weekdays[day + 2];
+                        console.log(dataLocation[1]);
                         const dayAfterData = data2.properties.periods[dataLocation[1]].temperature;
                         lastFetchedData.dayAfterTomorrow.temp = Math.round(dayAfterData);
                         lastFetchedData.dayAfterTomorrow.condition = data2.properties.periods[dataLocation[1]].shortForecast;
