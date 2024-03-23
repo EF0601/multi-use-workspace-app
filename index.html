@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi Usage Workspace Application</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 </head>
 
@@ -18,7 +16,10 @@
                 <h1>Multi Usage Workspace Application</h1>
                 <p>Proudly created and maintained by EF0601 studios. You are using: <code>v1.3.1</code> release</p>
             </div>
-            <div id="clock2"></div>
+            <div class="container">
+                <div id="clock2"></div>
+                <p id="smallWeatherDisplay"><span id="smallLocation"></span>: <span id="smallTemp"></span> <br><span id="smallForecast"></span></p>
+            </div>
         </div>
         <div id="main">
             <div id="tabs">
@@ -46,6 +47,46 @@
                     <h2 id="clock"></h2>
                     <h1>Welcome to Multi Usage Workspace Application!</h1>
                     <p>The home screen displays the current time and describes the usage of each tab.</p>
+                    <div id="weatherContainer">
+                        <h2>Weather</h2>
+                        <p style="font-size: 12px;">Weather is a tab that allows you to see the current weather in your
+                            area. It may
+                            not work properly.) <b>Locational services must be enabled for it to work. Data will take
+                                time to load. <u>For use in the US and Canada only.</u></b></p>
+                        <div id="weatherFlexContainer">
+                            <div class="weatherPart">
+                                <h3 id="today">Today</h3>
+                                <p>Forecast: <span id="todayCondition">Loading...</span></p>
+                                <p>Temp: <span id="TodayTemp">Loading...</span></p>
+                                <p>Wind speed: <span id="todayWind">Loading...</span></p>
+                                <p>Precipitation: <span id="todayPrecipitation">Loading...</span></p>
+                            </div>
+                            <div class="weatherPart">
+                                <h3 id="tomorrow">Tomorrow</h3>
+                                <p>Forecast: <span id="tomorrowCondition">Loading...</span></p>
+                                <p>Temp: <span id="TomorrowTemp">Loading...</span></p>
+                                <p>Wind speed: <span id="tomorrowWind">Loading...</span></p>
+                                <p>Precipitation: <span id="tomorrowPrecipitation">Loading...</span></p>
+                            </div>
+                            <div class="weatherPart">
+                                <h3 id="dayAfter">Day After</h3>
+                                <p>Forecast: <span id="dayAfterCondition">Loading...</span></p>
+                                <p>Temp: <span id="DayAfterTemp">Loading...</span></p>
+                                <p>Wind speed: <span id="dayAfterWind">Loading...</span></p>
+                                <p>Precipitation: <span id="dayAfterPrecipitation">Loading...</span></p>
+                            </div>
+                            <div class="weatherPart">
+                                <h3>Settings</h3>
+                                <button onclick="fetchWeatherData()" id="refetchWeatherButton">Refetch weather</button>
+                                <button onclick="getLocation()" id="refetchLocationButton">Refetch location</button>
+                                <div class="weatherPart">
+                                    <button onclick="changeTemp('c')">C</button>
+                                    <button onclick="changeTemp('f')">F</button>
+                                </div>
+                                <p>Location: <span id="locationDisplay">Loading...</span></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="timerTab">
                     <h2>Timer Lite</h2>
@@ -108,12 +149,22 @@
             Visit the github page here: <a href="https://github.com/EF0601/multi-use-workspace-app"
                 target="_blank">https://github.com/EF0601/multi-use-workspace-app</a>
         </footer>
+        <div id="loadingScreen">
+            <div id="loadingScreenContent">
+                <h1 id="loadingScreenStatus">Loading</h1>
+                <p>Loading content and preparing application; please stand by. <br><u>Disabling locational services will
+                        disable the weather app.</u></p>
+                <button id="loadingScreenBTN">Start exploring</button>
+            </div>
+        </div>
     </div>
 </body>
 <script src="./misc-js/resizer.js"></script>
 <script src="./misc-js/tab-manager.js"></script>
+<script src="./misc-js/loadingScreen.js"></script>
 <script src="./other-functions-js/clock.js"></script>
 <script src="./other-functions-js/searcher.js"></script>
+<script src="./other-functions-js/weather.js"></script>
 <script src="./timer/checker.js"></script>
 <script src="./timer/timer.js"></script>
 

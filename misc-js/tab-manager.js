@@ -48,3 +48,15 @@ tabBtn.timerTabBtn.addEventListener('click', () => {
     tabs.searchTab.style.display = 'none';
     tabs.timerTab.style.display = 'block';
 });
+
+tabBtn.canvasTabBtn.click();
+setTimeout(() => {
+    tabBtn.homeTabBtn.click();
+}, 15);
+
+setTimeout(() => {
+    tabBtn.canvasTabBtn.click();
+    setTimeout(() => {
+        tabBtn.homeTabBtn.click();
+    }, 15);
+}, 5000);
