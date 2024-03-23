@@ -154,10 +154,18 @@ function fetchWeatherData() {
                         refetchWeatherButton.disabled = false;
                         outputData();
                         fetchedWeatherTimes++;
+                    })
+                    .catch((error) => {
+                        console.error(`Could not process forecast [layer 2]: ${error}`);
                     });
+
                 // const name = data.properties.forecast;
                 // console.log("Extracted Name:", name);
+            })
+            .catch((error) => {
+                console.error(`Could not process forecast [layer 1]: ${error}`);
             });
+
     }
     else {
         console.warn("Too many requests in 10 seconds.");
