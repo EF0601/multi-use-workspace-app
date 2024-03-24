@@ -233,3 +233,10 @@ footer a:hover {
   text-decoration: underline;
   margin: 10px;
 }
+#newsContainer{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 100%;
+  overflow: scroll;
+  height: 200px;
+}
