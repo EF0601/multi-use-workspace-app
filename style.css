@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+@font-face {
+  font-family: 'Montserrat';
+  src: url(./Montserrat-Light.ttf);
+}
 body {
   background-color: goldenrod;
   font-family: 'Montserrat', sans-serif;
