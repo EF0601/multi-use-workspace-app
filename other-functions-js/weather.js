@@ -100,6 +100,7 @@ function fetchWeatherData() {
         if (lat === undefined || lon === undefined) {
             getLocation();
         }
+        console.log(`Fetching weather data from 'https://api.weather.gov/points/${lat},${lon}'`);
         fetch("https://api.weather.gov/points/" + lat + "," + lon)
             .then(response => response.json())
             .then(data => {
