@@ -66,25 +66,6 @@ body {
   text-align: center;
   padding: 40px;
 }
-#timerTab {
-  text-align: center;
-  padding: 20px;
-}
-#timerTab input,
-#timerTab button,
-#timerTab span {
-  text-align: center;
-  background: none;
-  border: none;
-  font-size: 48px;
-  width: 120px;
-  outline: none;
-  font-family: 'Montserrat', sans-serif;
-}
-#timerTab button {
-  background-color: green;
-  color: white;
-}
 .searcher {
   padding: 20px;
   background-color: goldenrod;
@@ -275,7 +256,7 @@ footer a:hover {
   border: none;
   padding: 10px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 15px;
   margin: 10px;
   text-align: center;
 }
@@ -284,23 +265,23 @@ footer a:hover {
 .colons,
 .timerButtons {
   background-color: #f1f1f1;
-  padding: 20px;
+  padding: 10px;
   text-align: center;
   align-items: center;
   margin: 5px;
 }
 
 .timerContainer h1 {
-  font-size: 50px;
+  font-size: 15px;
   text-align: center;
 }
 
 .timerContainer button {
   background-color: #d3c3c3;
   border: none;
-  padding: 10px 24px;
+  padding: 5px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 15px;
   width: 100%;
   margin: 10px;
   text-align: center;
@@ -309,4 +290,10 @@ footer a:hover {
 .colons {
   text-align: center;
   font-size: 5vh;
+}
+
+/* making timer tab a bit better */
+#timerTab {
+  overflow: scroll;
+  height: 400px;
 }

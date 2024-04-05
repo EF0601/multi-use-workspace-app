@@ -90,8 +90,9 @@ function endTimer() {
      document.getElementById("startTimerButton").disabled = false;
      document.getElementById("pauseTimerButton").disabled = true;
      document.getElementById("endTimerButton").disabled = true;
-     // const sound = new Audio("/alarmRingtone.mp3");
-     // sound.play();
+
+     let sound = new Audio("./other-functions-js/alarmRingtone.mp3");
+     sound.play();
 
      setTimeout(() => {
           timerBackground.style.backgroundColor = "red";
