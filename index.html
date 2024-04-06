@@ -16,7 +16,7 @@
                 <h1>Multi Usage Workspace Application</h1>
                 <p>
                     Proudly created and maintained by EF0601 studios. You are using:
-                    <code>v1.3.1</code> release
+                    <code>v1.5.0</code> release
                 </p>
             </div>
             <div class="container">
@@ -114,10 +114,9 @@
                     </div>
                 </div>
                 <div id="timerTab">
-                    <h2>Small Tools</h2>
-                    <h3>Timer Pro</h3>
-                    <div id="timer">
-                        <div id="threeColumns">
+                    <h2 class="timerTabHeaders">Timer Pro</h2>
+                    <div class="timer" id="uniqueTimer">
+                        <div class="threeColumns">
                             <div class="timerContainer">
                                 <button onclick="changeTimer('hour', 10)">++</button>
                                 <button onclick="changeTimer('hour', 1)">+</button>
@@ -142,7 +141,7 @@
                                 <button onclick="changeTimer('second', -10)">--</button>
                             </div>
                         </div>
-                        <div id="threeButtonColumns">
+                        <div class="threeButtonColumns">
                             <button onclick="startTimer()" class="timerButtons" id="startTimerButton">
                                 Start Timer
                             </button>
@@ -154,6 +153,33 @@
                             </button>
                             <p>
                                 Click the header or the background to acknowledge the alarm.
+                            </p>
+                        </div>
+                    </div>
+                    <h2 class="timerTabHeaders">Stopwatch</h2>
+                    <div class="timer" id="stopwatch">
+                        <div class="threeColumns">
+                            <div class="timerContainer">
+                                <h1 id="stopwatchHour">00</h1>
+                            </div>
+                            <div class="colons">:</div>
+                            <div class="timerContainer">
+                                <h1 id="stopwatchMinute">00</h1>
+                            </div>
+                            <div class="colons">:</div>
+                            <div class="timerContainer">
+                                <h1 id="stopwatchSecond">00</h1>
+                            </div>
+                        </div>
+                        <div class="threeButtonColumns">
+                            <button onclick="startStopwatch()" class="timerButtons" id="startStopwatchButton">
+                                Start Stopwatch
+                            </button>
+                            <button onclick="endStopwatch()" class="timerButtons" id="endStopwatchButton" disabled>
+                                Stop Stopwatch
+                            </button>
+                            <p>
+                                Updates every 10ms.
                             </p>
                         </div>
                     </div>

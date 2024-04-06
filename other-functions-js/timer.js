@@ -1,14 +1,18 @@
 let hourDisplay =
-     document.querySelector("#threeColumns").children[0].children[2];
+     document.querySelector(".threeColumns").children[0].children[2];
 let minuteDisplay =
-     document.querySelector("#threeColumns").children[2].children[2];
+     document.querySelector(".threeColumns").children[2].children[2];
 let secondDisplay =
-     document.querySelector("#threeColumns").children[4].children[2];
+     document.querySelector(".threeColumns").children[4].children[2];
 
 let inputs = {
      hour: 0,
      minute: 0,
      second: 0,
+
+     stopwatchHour: 0,
+     stopwatchMinute: 0,
+     stopwatchSecond: 0,
 };
 
 function changeTimer(type, number) {
@@ -45,6 +49,10 @@ function updateDisplay() {
      hourDisplay.innerHTML = addZeroes(inputs.hour);
      minuteDisplay.innerHTML = addZeroes(inputs.minute);
      secondDisplay.innerHTML = addZeroes(inputs.second);
+
+     document.getElementById("stopwatchHour").textContent = addZeroes(inputs.stopwatchHour);
+     document.getElementById("stopwatchMinute").textContent = addZeroes(inputs.stopwatchMinute);
+     document.getElementById("stopwatchSecond").textContent = addZeroes(inputs.stopwatchSecond);
 }
 
 let continueRunning;
@@ -76,7 +84,7 @@ function startTimer() {
      }, 1000);
 }
 
-const timerBackground = document.getElementById("timer");
+const timerBackground = document.getElementById("uniqueTimer");
 const banner = document.getElementById("banner");
 
 timerBackground.style.backgroundColor = "white";
@@ -152,3 +160,41 @@ banner.addEventListener("click", () => {
           document.title = "Multi Usage Workspace Application";
      }
 });
+
+let stopwatchOn = false;
+function startStopwatch() {
+     updateDisplay();
+     stopwatchOn = true;
+     document.getElementById("startStopwatchButton").disabled = true;
+     document.getElementById("endStopwatchButton").disabled = false;
+     let interval = setInterval(() => {
+          if (stopwatchOn == false) {
+               clearInterval(interval);
+          }
+          else {
+               inputs.stopwatchSecond++;
+               if (inputs.stopwatchSecond === 60) {
+                    inputs.stopwatchSecond = 0;
+                    inputs.stopwatchMinute++;
+               }
+               if (inputs.stopwatchMinute === 60) {
+                    inputs.stopwatchMinute = 0;
+                    inputs.stopwatchHour++;
+               }
+               if (stopwatchOn == false) {
+                    clearInterval(interval);
+               }
+               updateDisplay();
+          }
+     }, 1000);
+}
+
+function endStopwatch() {
+     inputs.stopwatchHour = 0;
+     inputs.stopwatchMinute = 0;
+     inputs.stopwatchSecond = 0;
+     // updateDisplay();
+     stopwatchOn = false;
+     document.getElementById("startStopwatchButton").disabled = false;
+     document.getElementById("endStopwatchButton").disabled = true;
+}

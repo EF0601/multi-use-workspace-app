@@ -220,38 +220,38 @@ footer a:hover {
 }
 
 /* timer */
-#timer {
-  background-color: green;
+.timer {
+  background-color: white;
 }
-#threeButtonColumns button:hover,
+.threeButtonColumns button:hover,
 .timerContainer button:hover {
   background-color: #afafaf;
 }
 
-#threeButtonColumns button:disabled,
+.threeButtonColumns button:disabled,
 .timerContainer button:disabled {
   background-color: #afafaf;
   cursor: wait;
 }
 
-#threeColumns,
+.threeColumns,
 .timerButtons,
-#threeButtonColumns {
+.threeButtonColumns {
   width: auto;
   margin: 20px;
 }
 
-#threeColumns {
+.threeColumns {
   display: grid;
   grid-template-columns: 30% 5% 30% 5% 30%;
 }
 
-#threeButtonColumns {
+.threeButtonColumns {
   display: grid;
   grid-template-columns: repeat(4, 25%);
 }
 
-#threeButtonColumns button {
+.threeButtonColumns button {
   background-color: #d3c3c3;
   border: none;
   padding: 10px;
@@ -282,7 +282,7 @@ footer a:hover {
   padding: 5px;
   cursor: pointer;
   font-size: 15px;
-  width: 100%;
+  width: 90%;
   margin: 10px;
   text-align: center;
 }
@@ -295,5 +295,12 @@ footer a:hover {
 /* making timer tab a bit better */
 #timerTab {
   overflow: scroll;
-  height: 400px;
+  height: 515px;
+  background-color: #fff;
+}
+
+.timerTabHeaders {
+  text-align: center;
+  font-size: 20px;
+  margin: 15px;
 }
