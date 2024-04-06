@@ -32,7 +32,7 @@ We are in no way partnered with Google INC or its parent company Alphabet INC. W
 
 Multi Usage Workspace Application by EF0601 is licensed under CC BY-NC-SA 4.0 Visit the github page here: https://github.com/EF0601/multi-use-workspace-app
 ## FAQ
-#### Can I contribute to the project?
+### Can I contribute to the project?
 We know that many people have great ideas they want to share with us and want to work with us. However, our team is comprised of mostly people we know and are not in a lack of staff. 
 
 You may however fork the project or duplicate it and work off of it on the condition that credit is given:
