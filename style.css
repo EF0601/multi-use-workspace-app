@@ -3,6 +3,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+button,
+input {
+  border-radius: 0;
+  border: none;
+  background-color: rgb(239, 239, 239);
+  color: black;
+}
 @font-face {
   font-family: 'Montserrat';
   src: url(./Montserrat-Light.ttf);
@@ -89,6 +96,7 @@ form input {
   padding: 10px;
   font-family: 'Montserrat', sans-serif;
   outline: none;
+  background-color: white;
 }
 form button {
   width: 20%;
@@ -97,6 +105,7 @@ form button {
   font-family: 'Montserrat', sans-serif;
   cursor: pointer;
   outline: none;
+  background-color: rgb(239, 239, 239);
 }
 #weatherFlexContainer {
   display: grid;
