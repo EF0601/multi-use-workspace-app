@@ -99,7 +99,7 @@ function endTimer() {
      document.getElementById("pauseTimerButton").disabled = true;
      document.getElementById("endTimerButton").disabled = true;
 
-     let sound = new Audio("./other-functions-js/alarmRingtone.mp3");
+     let sound = new Audio("./alarmRingtone.mp3");
      sound.play();
 
      setTimeout(() => {
