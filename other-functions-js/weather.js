@@ -28,10 +28,12 @@ const refetchLocationButton = document.getElementById('refetchLocationButton');
 const refetchWeatherButton = document.getElementById('refetchWeatherButton');
 
 function getLocation() {
-    refetchLocationButton.disabled = true;
-    refetchLocationButton.innerHTML = "Working...";
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(currentPosition);
+    if (navigator.onLine) {
+        refetchLocationButton.disabled = true;
+        refetchLocationButton.innerHTML = "Working...";
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(currentPosition);
+        }
     }
 }
 let lat;
@@ -83,7 +85,7 @@ setInterval(() => {
 // }
 
 function fetchWeatherData() {
-    if (fetchedWeatherTimes <= 4) {
+    if (fetchedWeatherTimes <= 4 && navigator.onLine) {
         refetchWeatherButton.disabled = true;
         refetchWeatherButton.innerHTML = "Working...";
         setTimeout(() => {
@@ -169,11 +171,13 @@ function fetchWeatherData() {
 
     }
     else {
-        console.warn("Too many requests in 10 seconds.");
-        refetchWeatherButton.innerHTML = "Too many requests. Try again in 10 seconds.";
-        setTimeout(() => {
-            refetchWeatherButton.innerHTML = "Refetch weather";
-        }, 1500);
+        if (fetchedWeatherTimes >= 4) {
+            console.warn("Too many requests in 10 seconds.");
+            refetchWeatherButton.innerHTML = "Too many requests. Try again in 10 seconds.";
+            setTimeout(() => {
+                refetchWeatherButton.innerHTML = "Refetch weather";
+            }, 1500);
+        }
     }
 }
 

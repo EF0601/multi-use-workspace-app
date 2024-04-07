@@ -10,6 +10,9 @@ input {
   background-color: rgb(239, 239, 239);
   color: black;
 }
+input {
+  background-color: white;
+}
 @font-face {
   font-family: 'Montserrat';
   src: url(./Montserrat-Light.ttf);
@@ -134,6 +137,18 @@ form button {
   }
   #weatherFlexContainer {
     display: block;
+  }
+  h1 {
+    font-size: 22px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  .weatherPart p {
+    font-size: 14px;
   }
 }
 #canvasIframe {
