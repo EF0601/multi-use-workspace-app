@@ -191,7 +191,6 @@ footer a:hover {
 }
 
 #loadingScreenBTN {
-  display: none;
   background-color: green;
   color: white;
   padding: 10px;
@@ -204,9 +203,24 @@ footer a:hover {
   transition: all 0.5s ease-in-out;
 }
 
+#loadingScreenEnd{
+  display: none;
+}
+
 #loadingScreenBTN:hover {
   background-color: white;
   color: black;
+}
+
+#loadingScreenTwoColumns{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+#loadingScreenTwoColumns input{
+  padding: 10px;
+  background-color: rgb(239, 239, 239);
+  font-family: 'Montserrat', sans-serif;
 }
 
 #weatherContainer {

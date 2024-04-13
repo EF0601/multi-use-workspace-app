@@ -5,7 +5,7 @@ modal.style.display = "block";
 
 setTimeout(() => {
     document.getElementById("loadingScreenStatus").innerHTML = "Loaded! Welcome!";
-    document.getElementById("loadingScreenBTN").style.display = "inline";
+    document.getElementById("loadingScreenEnd").style.display = "inline";
 }, 6000);
 
 document.getElementById("loadingScreenBTN").addEventListener("click", () => {

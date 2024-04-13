@@ -38,10 +38,10 @@ function getLocation() {
 }
 let lat;
 let lon;
-function currentPosition(position) {
+async function currentPosition(position) {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
-    console.log(lat, lon);
+    console.log(`Location found successfully: latitude: ${lat}, longitude: ${lon}`);
     refetchLocationButton.innerHTML = "Refetch location";
     refetchLocationButton.disabled = false;
     if (document.getElementById('todayCondition').textContent === "Loading...") {
@@ -84,7 +84,7 @@ setInterval(() => {
 //     }
 // }
 
-function fetchWeatherData() {
+async function fetchWeatherData() {
     if (fetchedWeatherTimes <= 4 && navigator.onLine) {
         refetchWeatherButton.disabled = true;
         refetchWeatherButton.innerHTML = "Working...";
@@ -103,7 +103,7 @@ function fetchWeatherData() {
             getLocation();
         }
         console.log(`Fetching weather data from 'https://api.weather.gov/points/${lat},${lon}'`);
-        fetch("https://api.weather.gov/points/" + lat + "," + lon)
+        await fetch("https://api.weather.gov/points/" + lat + "," + lon)
             .then(response => response.json())
             .then(data => {
                 const url = data.properties.forecast;
@@ -136,7 +136,7 @@ function fetchWeatherData() {
                                 dataLocation.push(i);
                             }
                         }
-                        console.log(dataLocation);
+                        // console.log(dataLocation);
                         //tomorrow
                         document.getElementById('tomorrow').textContent = weekdays[day + 1];
                         const tomorrowData = data2.properties.periods[dataLocation[0]].temperature;
@@ -146,7 +146,7 @@ function fetchWeatherData() {
                         lastFetchedData.tomorrow.precipitation = Number(data2.properties.periods[dataLocation[0]].probabilityOfPrecipitation.value);
                         //day after
                         document.getElementById('dayAfter').textContent = weekdays[day + 2];
-                        console.log(dataLocation[1]);
+                        // console.log(dataLocation[1]);
                         const dayAfterData = data2.properties.periods[dataLocation[1]].temperature;
                         lastFetchedData.dayAfterTomorrow.temp = Math.round(dayAfterData);
                         lastFetchedData.dayAfterTomorrow.condition = data2.properties.periods[dataLocation[1]].shortForecast;

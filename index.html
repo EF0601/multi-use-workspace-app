@@ -13,8 +13,8 @@
     <div id="bodyObject">
         <div id="banner">
             <div class="container">
-                <h1>Multi Usage Workspace Application</h1>
-                <p>
+                <h1>Welcome, <span id="titleName">Guest</span></h1>
+                <p id="splashText">
                     Proudly created and maintained by EF0601 studios. You are using:
                     <code>v1.5.0</code> release
                 </p>
@@ -245,13 +245,27 @@
         </footer>
         <div id="loadingScreen">
             <div id="loadingScreenContent">
-                <h1 id="loadingScreenStatus">Loading</h1>
-                <p>
-                    Loading content and preparing application; please stand by. <br /><u>Disabling locational services
-                        will disable the weather app.</u>
-                </p>
-                <h2>You are currently <span id="wifiDetector">-</span></h2>
-                <button id="loadingScreenBTN">Start exploring</button>
+                <div id="loadingScreenTwoColumns">
+                    <div id="container">
+                        <h2 id="loadingScreenStatus">Loading</h2>
+                        <p>
+                            Loading content and preparing application; please stand by. <br /><u>Disabling locational services
+                                will disable the weather app.</u>
+                        </p>
+                        <h2>You are currently <span id="wifiDetector">-</span></h2>
+                    </div>
+                    <div id="container">
+                        <h2>Customization</h2>
+                        <p>While waiting, customize your experience a little.</p>
+                        Display name: <input type="text" value="Guest" placeholder="Display Name" id="nameInput"><br>
+                        Theme selection: <i>Coming soon!</i>
+                    </div>
+                </div>
+                <div id="loadingScreenEnd">
+                    <button id="loadingScreenBTN">Start exploring</button><br>
+                    <i>By hitting "Start exploring," you are inputting your data (display name.) Your theme can be edited but your display
+                        name will be permanent until you next visit.</i>
+                </div>
             </div>
         </div>
     </div>
@@ -263,5 +277,6 @@
 <script src="./other-functions-js/searcher.js"></script>
 <script src="./other-functions-js/weather.js"></script>
 <script src="./other-functions-js/timer.js"></script>
+<script src="./misc-js/interfaceOptimization.js"></script>
 
 </html>
