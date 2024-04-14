@@ -2,6 +2,8 @@ let name;
 let temperatureType = 'f';
 let fetchedType;
 
+import {alertBox} from './interfaceOptimization.js';
+
 function changeTemp(toType) {
     temperatureType = toType;
     outputData();
@@ -32,7 +34,7 @@ function getLocation() {
         refetchLocationButton.disabled = true;
         refetchLocationButton.innerHTML = "Working...";
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(currentPosition);
+            navigator.geolocation.getCurrentPosition(currentPosition, showError);
         }
     }
 }
@@ -46,6 +48,24 @@ async function currentPosition(position) {
     refetchLocationButton.disabled = false;
     if (document.getElementById('todayCondition').textContent === "Loading...") {
         fetchWeatherData();
+    }
+}
+
+// Error handling
+function showError(error) {
+    switch (error.code) {
+        case error.PERMISSION_DENIED:
+            console.error("User denied the request for Geolocation.");
+            break;
+        case error.POSITION_UNAVAILABLE:
+            console.error("Location information is unavailable.");
+            break;
+        case error.TIMEOUT:
+            console.error("The request to get user location timed out.");
+            break;
+        case error.UNKNOWN_ERROR:
+            console.error("An unknown error occurred.");
+            break;
     }
 }
 
@@ -106,10 +126,11 @@ async function fetchWeatherData() {
         await fetch("https://api.weather.gov/points/" + lat + "," + lon)
             .then(response => response.json())
             .then(data => {
-                const url = data.properties.forecast;
-                weatherLocation = data.properties.relativeLocation.properties.city + ", " + data.properties.relativeLocation.properties.state;
-                document.getElementById('locationDisplay').textContent = weatherLocation;
-                document.getElementById('smallLocation').textContent = weatherLocation;
+                if (data.properties.forecast) {
+                    const url = data.properties.forecast;
+                    weatherLocation = data.properties.relativeLocation.properties.city + ", " + data.properties.relativeLocation.properties.state;
+                    document.getElementById('locationDisplay').textContent = weatherLocation;
+                    document.getElementById('smallLocation').textContent = weatherLocation;
                 fetch(url)
                     .then(response => response.json())
                     .then(data2 => {
@@ -164,9 +185,16 @@ async function fetchWeatherData() {
 
                 // const name = data.properties.forecast;
                 // console.log("Extracted Name:", name);
+                }
+                else {
+                    //no such point
+                    console.error("No such point. Are you outside of the US? L109 in weather.js");
+                    refetchWeatherButton.innerHTML = "Refetch weather";
+                }
             })
             .catch((error) => {
-                console.error(`Could not process forecast [layer 1]: ${error}`);
+                console.error(`Could not process forecast [layer 1]: ${error}. The most likely error is that you are outside of the US.`);
+                refetchWeatherButton.innerHTML = "Refetch weather";
             });
 
     }

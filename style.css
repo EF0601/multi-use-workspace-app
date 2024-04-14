@@ -347,3 +347,23 @@ footer a:hover {
 #splashText {
   transition: all 0.5s ease-in-out;
 }
+
+/* footer link */
+#footerLinks{
+  display: flex;
+  justify-content: left;
+}
+
+#footerLinks button{
+  background: none;
+  border: none;
+  color: white;
+  margin: 10px;
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: underline;
+}
+
+#footerLinks button:disabled{
+  color: rgb(239, 239, 239);
+  cursor: not-allowed;
+}

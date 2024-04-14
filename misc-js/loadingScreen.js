@@ -10,7 +10,9 @@ setTimeout(() => {
 
 document.getElementById("loadingScreenBTN").addEventListener("click", () => {
     modal.style.display = "none";
-    console.clear();
+    // console.clear();
+    console.log("HEY THERE! READING THIS? YOU MIGHT BE ON YOUR WAY TO BECOME A TECH DEVELOPER!");
+    console.log("MESSING AROUND HERE CAN POTENTIALLY DESTROY THE APP. YOU DON'T WANT THAT, RIGHT?");
 });
 
 const wifiCheckerSpan = document.getElementById("wifiDetector");
