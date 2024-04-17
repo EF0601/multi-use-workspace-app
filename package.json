@@ -1,0 +1,19 @@
+{
+  "name": "multi-use-workspace-app",
+  "version": "1.5.0",
+  "description": "A multi usage workspace app with all sorts of tools. Read more on our README.md file",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EF0601/multi-use-workspace-app.git"
+  },
+  "author": "EF0601",
+  "license": "Creative Commons CC BY-NC-SA 4.0",
+  "bugs": {
+    "url": "https://github.com/EF0601/multi-use-workspace-app/issues"
+  },
+  "homepage": "https://github.com/EF0601/multi-use-workspace-app"
+}

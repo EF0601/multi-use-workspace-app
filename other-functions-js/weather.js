@@ -2,6 +2,11 @@ let name;
 let temperatureType = 'f';
 let fetchedType;
 
+function showAlert(message) {
+    document.getElementById("alertBox").style.display = "block";
+    document.getElementById("alertBoxText").textContent = message;
+}
+
 function changeTemp(toType) {
     temperatureType = toType;
     outputData();
@@ -28,22 +33,42 @@ const refetchLocationButton = document.getElementById('refetchLocationButton');
 const refetchWeatherButton = document.getElementById('refetchWeatherButton');
 
 function getLocation() {
-    refetchLocationButton.disabled = true;
-    refetchLocationButton.innerHTML = "Working...";
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(currentPosition);
+    if (navigator.onLine) {
+        refetchLocationButton.disabled = true;
+        refetchLocationButton.innerHTML = "Working...";
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(currentPosition, showError);
+        }
     }
 }
 let lat;
 let lon;
-function currentPosition(position) {
+async function currentPosition(position) {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
-    console.log(lat, lon);
+    console.log(`Location found successfully: latitude: ${lat}, longitude: ${lon}`);
     refetchLocationButton.innerHTML = "Refetch location";
     refetchLocationButton.disabled = false;
     if (document.getElementById('todayCondition').textContent === "Loading...") {
         fetchWeatherData();
+    }
+}
+
+// Error handling
+function showError(error) {
+    switch (error.code) {
+        case error.PERMISSION_DENIED:
+            showAlert("User denied the request for Geolocation.");
+            break;
+        case error.POSITION_UNAVAILABLE:
+            showAlert("Location information is unavailable.");
+            break;
+        case error.TIMEOUT:
+            showAlert("The request to get user location timed out.");
+            break;
+        case error.UNKNOWN_ERROR:
+            showAlert("An unknown error occurred.");
+            break;
     }
 }
 
@@ -82,13 +107,14 @@ setInterval(() => {
 //     }
 // }
 
-function fetchWeatherData() {
-    if (fetchedWeatherTimes <= 4) {
+async function fetchWeatherData() {
+    if (fetchedWeatherTimes <= 4 && navigator.onLine) {
         refetchWeatherButton.disabled = true;
         refetchWeatherButton.innerHTML = "Working...";
         setTimeout(() => {
             if (refetchWeatherButton.disabled === true) {
                 refetchWeatherButton.innerHTML = "Refetch weather failed. Try again.";
+                showAlert("Weather fetch timed out. Retry again. Most possible cause: error L117 in weather.js");
                 refetchWeatherButton.disabled = false;
                 outputData();
                 setTimeout(() => {
@@ -100,13 +126,15 @@ function fetchWeatherData() {
         if (lat === undefined || lon === undefined) {
             getLocation();
         }
-        fetch("https://api.weather.gov/points/" + lat + "," + lon)
+        console.log(`Fetching weather data from 'https://api.weather.gov/points/${lat},${lon}'`);
+        await fetch("https://api.weather.gov/points/" + lat + "," + lon)
             .then(response => response.json())
             .then(data => {
-                const url = data.properties.forecast;
-                weatherLocation = data.properties.relativeLocation.properties.city + ", " + data.properties.relativeLocation.properties.state;
-                document.getElementById('locationDisplay').textContent = weatherLocation;
-                document.getElementById('smallLocation').textContent = weatherLocation;
+                if (data.properties.forecast) {
+                    const url = data.properties.forecast;
+                    weatherLocation = data.properties.relativeLocation.properties.city + ", " + data.properties.relativeLocation.properties.state;
+                    document.getElementById('locationDisplay').textContent = weatherLocation;
+                    document.getElementById('smallLocation').textContent = weatherLocation;
                 fetch(url)
                     .then(response => response.json())
                     .then(data2 => {
@@ -133,7 +161,7 @@ function fetchWeatherData() {
                                 dataLocation.push(i);
                             }
                         }
-                        console.log(dataLocation);
+                        // console.log(dataLocation);
                         //tomorrow
                         document.getElementById('tomorrow').textContent = weekdays[day + 1];
                         const tomorrowData = data2.properties.periods[dataLocation[0]].temperature;
@@ -143,7 +171,7 @@ function fetchWeatherData() {
                         lastFetchedData.tomorrow.precipitation = Number(data2.properties.periods[dataLocation[0]].probabilityOfPrecipitation.value);
                         //day after
                         document.getElementById('dayAfter').textContent = weekdays[day + 2];
-                        console.log(dataLocation[1]);
+                        // console.log(dataLocation[1]);
                         const dayAfterData = data2.properties.periods[dataLocation[1]].temperature;
                         lastFetchedData.dayAfterTomorrow.temp = Math.round(dayAfterData);
                         lastFetchedData.dayAfterTomorrow.condition = data2.properties.periods[dataLocation[1]].shortForecast;
@@ -161,18 +189,32 @@ function fetchWeatherData() {
 
                 // const name = data.properties.forecast;
                 // console.log("Extracted Name:", name);
+                }
+                else {
+                    //no such point
+                    console.error("No such point. Are you outside of the US? L109 in weather.js");
+                    refetchWeatherButton.innerHTML = "Refetch weather";
+                    refetchWeatherButton.disabled = false;
+                }
             })
             .catch((error) => {
-                console.error(`Could not process forecast [layer 1]: ${error}`);
+                console.error(`Could not process forecast [layer 1]: ${error}. The most likely error is that you are outside of the US.`);
+                showAlert(`Could not process forecast [layer 1]: ${error}. The most likely error is that you are outside of the US.`);
+                refetchWeatherButton.innerHTML = "Refetch weather";
+                refetchWeatherButton.disabled = false;
             });
 
     }
     else {
-        console.warn("Too many requests in 10 seconds.");
-        refetchWeatherButton.innerHTML = "Too many requests. Try again in 10 seconds.";
-        setTimeout(() => {
-            refetchWeatherButton.innerHTML = "Refetch weather";
-        }, 1500);
+        if (fetchedWeatherTimes >= 4) {
+            console.warn("Too many requests in 10 seconds.");
+            refetchWeatherButton.innerHTML = "Too many requests. Try again in 10 seconds.";
+            showAlert("Too many requests in 10 seconds. Try again in 10 seconds.");
+            setTimeout(() => {
+                refetchWeatherButton.innerHTML = "Refetch weather";
+                refetchWeatherButton.disabled = false;
+            }, 1500);
+        }
     }
 }
 
