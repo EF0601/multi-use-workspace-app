@@ -14,6 +14,7 @@ A workspace for all your needs! Stickies, to-dos, timers, searchers, work from t
  - [readme.so](https://readme.so/editor): Editor for README
  - [pixabay ringtone](https://pixabay.com/sound-effects/analog-timer-74998/): Timer app ringtone
  - [google search](https://www.google.com): Searcher tool built on this
+ - [quotable api](https://github.com/lukePeavey/quotable): quotes API
 
 
 ## Current list of features:
