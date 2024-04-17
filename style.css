@@ -166,7 +166,8 @@ footer a:hover {
   color: yellow;
 }
 
-#loadingScreen {
+#loadingScreen,
+#alertBox {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -179,7 +180,8 @@ footer a:hover {
 }
 
 /* Modal Content/Box */
-#loadingScreenContent {
+#loadingScreenContent,
+#alertBoxContent {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -366,4 +368,22 @@ footer a:hover {
 #footerLinks button:disabled{
   color: rgb(239, 239, 239);
   cursor: not-allowed;
+}
+
+#alertBox {
+  display: none;
+}
+
+#alertBoxButton{
+  padding: 7px;
+  border: none;
+  font-size: 14px;
+  margin: 10px;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#alertBoxButton:hover {
+  background-color: black;
+  color: white;
 }

@@ -1,3 +1,54 @@
+let continueRunning = false;
+//now includes clock
+function updateClock() {
+     const now = new Date();
+     const hours = now.getHours();
+     const minutes = now.getMinutes();
+     const seconds = now.getSeconds();
+
+     // Format the time as HH:MM:SS
+     const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+     // Update the clock's content
+     document.getElementById('clock').innerText = timeString;
+     document.getElementById('clock2').innerText = timeString;
+     if (document.getElementById('clock2').style.textDecoration == "underline") {
+          document.getElementById('clock2').style.textDecoration = "none";
+     }
+     else {
+          document.getElementById('clock2').style.textDecoration = "underline";
+     }
+
+     //timer stuff
+     if (continueRunning) {
+          let currentTime = new Date().getTime();
+          if (currentTime >= stopTime) {
+               endTimer();
+               clearTimer();
+          }
+          inputs.second--;
+          if (inputs.second < 0) {
+               inputs.second = 59;
+               inputs.minute--;
+          }
+          if (inputs.minute < 0) {
+               inputs.minute = 59;
+               inputs.hour--;
+          }
+          updateDisplay();
+     }
+}
+
+// Update the clock every second (1000 milliseconds)
+setInterval(updateClock, 1000);
+
+// Initialize the clock immediately
+updateClock();
+
+
+//Thank you ChatGPT :)
+
+//timer
 let hourDisplay =
      document.querySelector(".threeColumns").children[0].children[2];
 let minuteDisplay =
@@ -14,6 +65,16 @@ let inputs = {
      stopwatchMinute: 0,
      stopwatchSecond: 0,
 };
+
+let startTime = 0;
+let stopTime = 0;
+
+function clearTimer() {
+     inputs.hour = 0;
+     inputs.minute = 0;
+     inputs.second = 0;
+     updateDisplay();
+}
 
 function changeTimer(type, number) {
      if (type === "hour") {
@@ -55,33 +116,14 @@ function updateDisplay() {
      document.getElementById("stopwatchSecond").textContent = addZeroes(inputs.stopwatchSecond);
 }
 
-let continueRunning;
 function startTimer() {
      document.getElementById("startTimerButton").disabled = true;
      document.getElementById("pauseTimerButton").disabled = false;
      document.getElementById("endTimerButton").disabled = false;
      continueRunning = true;
-     let interval = setInterval(() => {
-          if (continueRunning == false) {
-               clearInterval(interval);
-          }
-          else {
-               if (inputs.second > 0) {
-                    inputs.second--;
-               } else if (inputs.minute > 0) {
-                    inputs.minute--;
-                    inputs.second = 59;
-               } else if (inputs.hour > 0) {
-                    inputs.hour--;
-                    inputs.minute = 59;
-                    inputs.second = 59;
-               } else {
-                    clearInterval(interval);
-                    endTimer();
-               }
-               updateDisplay();
-          }
-     }, 1000);
+     startTime = new Date().getTime();
+     stopTime = startTime + (inputs.hour * 3600000) + (inputs.minute * 60000) + (inputs.second * 1000);
+     console.log(`Timer will end at ${stopTime}`);
 }
 
 const timerBackground = document.getElementById("uniqueTimer");
@@ -106,6 +148,7 @@ function endTimer() {
           timerBackground.style.backgroundColor = "red";
           banner.style.backgroundColor = "red";
           document.title = "Timer Ended!";
+          clearTimer();
      }, 500);
      setTimeout(() => {
           timerBackground.style.backgroundColor = "white";

@@ -6,7 +6,7 @@
 */
 
 //exporting
-export {alertBox};
+// export {showAlert};
 
 // Customization inputs
 
@@ -51,8 +51,12 @@ for (let i = 0; i < 20; i++) {
 }
 
 //alert box
-function alertBox(message){
-    // document.getElementById("alertBox").style.display = "block";
-    // document.getElementById("alertBoxMessage").textContent = message;
-    console.log(message);
+function showAlert(message){
+    document.getElementById("alertBox").style.display = "block";
+    document.getElementById("alertBoxText").textContent = message;
 }
+
+document.getElementById("alertBoxButton").addEventListener("click", () => {
+    document.getElementById("alertBox").style.display = "none";
+}
+);
