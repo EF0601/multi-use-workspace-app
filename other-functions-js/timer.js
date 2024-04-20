@@ -26,15 +26,10 @@ function updateClock() {
                endTimer();
                clearTimer();
           }
-          inputs.second--;
-          if (inputs.second < 0) {
-               inputs.second = 59;
-               inputs.minute--;
-          }
-          if (inputs.minute < 0) {
-               inputs.minute = 59;
-               inputs.hour--;
-          }
+          const timeDifference = stopTime - currentTime;
+          inputs.second = Math.floor((timeDifference % (1000 * 60)) / 1000);
+          inputs.minute = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+          inputs.hour = Math.floor(timeDifference / (1000 * 60 * 60));
           updateDisplay();
      }
 }
