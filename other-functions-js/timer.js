@@ -155,7 +155,7 @@ function endTimer() {
     document.getElementById("endTimerButton").disabled = true;
     array = document.getElementsByClassName("timerChangerBtn");
     for (let i = 0; i < array.length; i++) {
-        array[i].disabled = true;
+        array[i].disabled = false;
     }
 
     let sound = new Audio("./alarmRingtone.mp3");
