@@ -206,7 +206,7 @@ function pauseTimer() {
     document.getElementById("endTimerButton").disabled = true;
     array = document.getElementsByClassName("timerChangerBtn");
     for (let i = 0; i < array.length; i++) {
-        array[i].disabled = true;
+        array[i].disabled = false;
     }
     startTime = 0;
     stopTime = 0;
