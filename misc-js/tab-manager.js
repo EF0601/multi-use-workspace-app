@@ -31,7 +31,6 @@ tabBtn.calculatorTabBtn.addEventListener('click', () => {
     tabs.canvasTab.style.display = 'none';
     tabs.searchTab.style.display = 'none';
     tabs.timerTab.style.display = 'none';
-    showAlert("Notice: The calculator app will be deprecated and will be removed soon. A new version will come in the update following. The transition will take place on 4/22/2024. You have until then to migrate. The old project will be privated and archived, and its GitHub page taken down. \n More info here: https://github.com/EF0601/multi-use-workspace-app/discussions/15. \n GitHub page here: https://github.com/EF0601/multi-use-workspace-app. \n \n You can still use the app until then.");
 });
 tabBtn.canvasTabBtn.addEventListener('click', () => {
     tabs.homeTab.style.display = 'none';
