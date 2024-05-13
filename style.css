@@ -32,6 +32,10 @@ body {
 #bodyObject {
   margin: auto;
 }
+#toggleFormatButton {
+    background-color: yellowgreen;
+    padding: 3px;
+}
 #clock2 {
   text-decoration: underline;
 }
