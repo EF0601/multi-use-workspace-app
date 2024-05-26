@@ -50,7 +50,6 @@ setTimeout(() => {
     updateClock();
 }, 5000);
 
-
 //Thank you ChatGPT :)
 
 //timer
