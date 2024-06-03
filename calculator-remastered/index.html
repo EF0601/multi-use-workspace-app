@@ -1,61 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculator</title>
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div id="topBar">
-      <div id="twoMemory">
-        <div id="previousCalc2">1+1=2</div>
-        <div id="previousCalc1">1+1=2</div>
-      </div>
-      <div id="output">123</div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="topBar">
+    <div id="twoMemory">
+      <div id="previousCalc2">1+1=2</div>
+      <div id="previousCalc1">1+1=2</div>
     </div>
-    <div id="mainBody">
-      <div id="extra">
-        <button onclick="operation('pi')">pi</button>
-        <button onclick="operation('factorial')">x!</button>
-        <button onclick="operation('square')">x^2</button>
-        <button onclick="operation('mem-plus')">M+</button>
-        <button onclick="operation('reciprocal')">1/x</button>
-        <button onclick="operation('cube')">x^3</button>
-        <button onclick="operation('mem-minus')">M-</button>
-        <button onclick="operation('abs')">|x|</button>
-        <button onclick="operation('square-root')">sqrt(x)</button>
-        <button onclick="operation('mem-recall')">MR</button>
-        <button onclick="operation('mem-clear')">MC</button>
-        <button onclick="operation('cube-root')">3 sqrt(x)</button>
-      </div>
-      <div id="default">
-        <button onclick="operation('pos/neg')">+/-</button>
-        <button onclick="operation('1')">1</button>
-        <button onclick="operation('2')">2</button>
-        <button onclick="operation('3')">3</button>
-        <button onclick="operation('add')">+</button>
-        <button onclick="operation('*0.01')">%</button>
-        <button onclick="operation('4')">4</button>
-        <button onclick="operation('5')">5</button>
-        <button onclick="operation('6')">6</button>
-        <button onclick="operation('subtract')">-</button>
-        <button onclick="operation('exponent')">x^y</button>
-        <button onclick="operation('7')">7</button>
-        <button onclick="operation('8')">8</button>
-        <button onclick="operation('9')">9</button>
-        <button onclick="operation('multiply')">*</button>
-        <button onclick="operation('root')">y sqrt(x)</button>
-        <button onclick="operation('0')">0</button>
-        <button onclick="operation('clear')">C</button>
-        <button onclick="operation('equal')">=</button>
-        <button onclick="operation('divide')">/</button>
-      </div>
+    <div id="output">0</div>
+  </div>
+  <div id="mainBody">
+    <div id="extra">
+      <button onclick="operation('pi')">pi</button>
+      <button onclick="operation('factorial')">x!</button>
+      <button onclick="operation('square')">x^2</button>
+      <button onclick="operation('mem-plus')">M+</button>
+      <button onclick="operation('reciprocal')">1/x</button>
+      <button onclick="operation('cube')">x^3</button>
+      <button onclick="operation('mem-minus')">M-</button>
+      <button onclick="operation('abs')">|x|</button>
+      <button onclick="operation('square-root')">sqrt(x)</button>
+      <button onclick="operation('mem-recall')">MR</button>
+      <button onclick="operation('mem-clear')">MC</button>
+      <button onclick="operation('cube-root')">3 sqrt(x)</button>
     </div>
-  </body>
-  <script src="./script.js"></script>
+    <div id="default">
+      <button onclick="operation('exponent')">x^y</button>
+      <button onclick="operation('1')">1</button>
+      <button onclick="operation('2')">2</button>
+      <button onclick="operation('3')">3</button>
+      <button onclick="operation('add')">+</button>
+      <button onclick="operation('root')">y sqrt(x)</button>
+      <button onclick="operation('4')">4</button>
+      <button onclick="operation('5')">5</button>
+      <button onclick="operation('6')">6</button>
+      <button onclick="operation('subtract')">-</button>
+      <button onclick="operation('delete')">Del</button>
+      <button onclick="operation('7')">7</button>
+      <button onclick="operation('8')">8</button>
+      <button onclick="operation('9')">9</button>
+      <button onclick="operation('multiply')">*</button>
+      <button onclick="operation('decimal')">.</button>
+      <button onclick="operation('0')">0</button>
+      <button onclick="operation('clear')">C</button>
+      <button onclick="operation('equal')">=</button>
+      <button onclick="operation('divide')">/</button>
+    </div>
+  </div>
+</body>
+<script src="./script.js"></script>
+
 </html>
