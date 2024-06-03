@@ -61,9 +61,6 @@ button:hover{
      #mainBody{
           flex-direction: column;
      }
-     #default{
-          /* display: none; */
-     }
      #extra{
           display: none;
      }
