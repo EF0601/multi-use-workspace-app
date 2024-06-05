@@ -48,6 +48,7 @@ button{
      margin: 5px;
      background-color: rgb(193, 122, 0);
      color: white;
+     font-family: 'Montserrat', sans-serif;
 }
 button:hover{
      background-color: rgb(106, 150, 72);

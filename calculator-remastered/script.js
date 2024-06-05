@@ -12,15 +12,15 @@ function updateDisplay() {
 }
 
 function operation(input) {
+    if (output[0] === '0' && output.length === 1) {
+        output = [];
+    }
     if (input === '1' || input === '2' || input === '3' || input === '4' || input === '5' || input === '6' || input === '7' || input === '8' || input === '9' || input === '0') {
-        if (output[0] === '0' && output.length === 1) {
-            output = [];
-        }
         output.push(input);
         updateDisplay();
     }
     if (input === 'add' || input === 'subtract' || input === 'multiply' || input === 'divide') {
-        if (output.includes('+') === false && output.includes('-') === false && output.includes('*') === false && output.includes('/') === false) {
+        // if (output.includes('+') === false && output.includes('*') === false && output.includes('/') === false) {
             switch (input) {
                 case 'add':
                     output.push('+');
@@ -42,7 +42,7 @@ function operation(input) {
                     break;
             }
             updateDisplay();
-        }
+        // }
     }
     if (input === 'equal') {
         let operation = outputDisplay.textContent.split(' ');
@@ -51,10 +51,17 @@ function operation(input) {
         let secondNumArray = [];
         let operationType;
         for (let i = 0; i < length; i++) {
-            if (operation[0] !== '+' && operation[0] !== '-' && operation[0] !== '*' && operation[0] !== '/') {
+            if (operation[0] !== '+' && operation[0] !== '*' && operation[0] !== '/' && operation[0] !== '-') {
+                    console.log(operation[0]);
+                    console.log(i);
                     firstNumArray.push(operation[0]);
                     operation.shift();
-            } else {
+            }
+            else if (operation[0] === '-' && i === 0) {
+                firstNumArray.push(operation[0]);
+                operation.shift();
+            }
+            else {
                 operationType = operation[0];
                 operation.shift();
                 break;
@@ -67,6 +74,7 @@ function operation(input) {
         }
         let firstNum = firstNumArray.join('');
         let secondNum = secondNumArray.join('');
+
         let result;
         switch (operationType) {
             case '+':
@@ -85,11 +93,22 @@ function operation(input) {
             default:
                 break;
         }
-        result = String(result).split('');
+        if (isNaN(result)) {
+            result = 'Error';
+            result = String(result).split('');
 
-        output.push('= ' + result.join(' '));
-        updateDisplay();
-        output = result;
+            output.push('= ' + result.join(' '));
+            updateDisplay();
+            // output = result;
+        }
+        else{
+            result = String(result).split('');
+
+            output.push('= ' + result.join(' '));
+            updateDisplay();
+            output = result;
+        }
+
     }
     if (input === 'clear') {
         output = ['0'];
