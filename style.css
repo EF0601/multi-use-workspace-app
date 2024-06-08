@@ -29,6 +29,10 @@ body {
   padding: 20px;
   color: white;
 }
+#tabs{
+  height: 500px;
+  overflow: scroll;
+}
 #bodyObject {
   margin: auto;
 }
@@ -73,8 +77,14 @@ body {
 #timerTab,
 #calculatorTab,
 #canvasTab,
-#searchTab {
+#searchTab,
+#weatherTab {
   display: none;
+  height: 500px;
+}
+#homeTab{
+  height: 500px;
+  overflow: scroll;
 }
 #searchTab {
   text-align: center;
@@ -197,11 +207,6 @@ footer a:hover {
   font-family: "Montserrat", sans-serif;
 }
 
-#weatherContainer {
-  overflow: scroll;
-  height: 200px;
-}
-
 .weatherPart button {
   background-color: green;
   color: white;
@@ -229,6 +234,9 @@ footer a:hover {
 .weatherPart span {
   text-decoration: underline;
   margin: 10px;
+}
+#weatherTab{
+  padding: 20px;
 }
 
 /* timer */
@@ -398,4 +406,24 @@ footer a:hover {
   #alertBoxContent {
     height: 75%;
   }
+}
+#nineGrid{
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 100px 100px 100px;
+  overflow: scroll;
+}
+#nineGrid button{
+  font-size: 14px;
+  background-color: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+}
+#nineGrid button:hover{
+  background-color: darkgreen;
 }
