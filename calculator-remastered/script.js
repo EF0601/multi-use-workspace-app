@@ -100,6 +100,7 @@ function operation(input) {
             output.push('= ' + result.join(' '));
             updateDisplay();
             // output = result;
+            output = ['0']; // Reset the output
         }
         else{
             result = String(result).split('');
