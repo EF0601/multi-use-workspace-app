@@ -1,6 +1,7 @@
 const outputDisplay = document.getElementById('output');
 let output = ['0'];
 let negative = false;
+let decimal = false;
 
 function updateDisplay() {
     if (output == []) {
@@ -21,6 +22,7 @@ function operation(input) {
     }
     if (input === 'add' || input === 'subtract' || input === 'multiply' || input === 'divide') {
         // if (output.includes('+') === false && output.includes('*') === false && output.includes('/') === false) {
+            decimal = false;
             switch (input) {
                 case 'add':
                     output.push('+');
@@ -118,5 +120,18 @@ function operation(input) {
     if (input === 'delete') {
         output.pop();
         updateDisplay();
+    }
+    if (input === 'decimal') {
+        if (decimal === false) {
+            if (output.length === 0 || isNaN(output[output.length - 1])) {
+                output.push('0 .');
+                decimal = true;
+            }
+            else if (output.length > 0) {
+                output.push('.');
+                decimal = true;
+            }
+            updateDisplay();
+        }
     }
 }
