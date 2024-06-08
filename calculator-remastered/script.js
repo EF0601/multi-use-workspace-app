@@ -3,12 +3,23 @@ let output = ['0'];
 let negative = false;
 let decimal = false;
 
+function removeSymbols(input) {
+    for (let i = 0; i < input.length; i++) {
+        if (input[i] === ',') {
+            input.splice(i, 1);
+        }
+    }
+    return input.join(' ');
+}
+
 function updateDisplay() {
     if (output == []) {
         output = ['0'];
         outputDisplay.textContent = output.join(' ');
+        outputDisplay.textContent = removeSymbols(outputDisplay.textContent.split(''));
     } else {
         outputDisplay.textContent = output.join(' ');
+        outputDisplay.textContent = removeSymbols(outputDisplay.textContent.split(''));
     }
 }
 
@@ -54,8 +65,8 @@ function operation(input) {
         let operationType;
         for (let i = 0; i < length; i++) {
             if (operation[0] !== '+' && operation[0] !== '*' && operation[0] !== '/' && operation[0] !== '-') {
-                    console.log(operation[0]);
-                    console.log(i);
+                    // console.log(operation[0]);
+                    // console.log(i);
                     firstNumArray.push(operation[0]);
                     operation.shift();
             }
@@ -133,5 +144,17 @@ function operation(input) {
             }
             updateDisplay();
         }
+    }
+    if (input === 'factorial') {
+        let number = output.join('');
+        let result = 1;
+        for (let i = 1; i <= number; i++) {
+            result *= i;
+        }
+        result = String(result).split('');
+
+        output.push('! = ' + result);
+        updateDisplay();
+        output = result;
     }
 }
