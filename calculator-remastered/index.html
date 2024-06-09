@@ -12,8 +12,8 @@
 <body>
   <div id="topBar">
     <div id="twoMemory">
-      <div id="previousCalc2">1+1=2</div>
-      <div id="previousCalc1">1+1=2</div>
+      <div id="previousCalc2" class="previousCalc">-</div>
+      <div id="previousCalc1" class="previousCalc">-</div>
     </div>
     <div id="output">0</div>
   </div>
@@ -50,7 +50,7 @@
       <button onclick="operation('multiply')">*</button>
       <button onclick="operation('decimal')">.</button>
       <button onclick="operation('0')">0</button>
-      <button onclick="operation('clear')">C</button>
+      <button onclick="operation('clear')" id="clearBtn">C</button>
       <button onclick="operation('equal')">=</button>
       <button onclick="operation('divide')">/</button>
     </div>

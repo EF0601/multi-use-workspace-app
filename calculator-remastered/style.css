@@ -66,3 +66,10 @@ button:hover{
           display: none;
      }
 }
+
+.previousCalc{
+     background-color: rgb(193, 122, 0);
+     padding: 5px;
+     margin: 5px;
+     width: 100px;
+}

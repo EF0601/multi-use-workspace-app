@@ -1,6 +1,6 @@
 const outputDisplay = document.getElementById('output');
 let output = ['0'];
-let negative = false;
+let allClear = false;
 let decimal = false;
 
 let previousOperations = {
@@ -22,44 +22,64 @@ function updateDisplay() {
         output = ['0'];
         outputDisplay.textContent = output.join(' ');
         outputDisplay.textContent = removeSymbols(outputDisplay.textContent.split(''));
+        allClear = true;
+        document.getElementById('clearBtn').textContent = 'AC';
     } else {
         outputDisplay.textContent = output.join(' ');
         outputDisplay.textContent = removeSymbols(outputDisplay.textContent.split(''));
     }
 }
 
+function updatePreviousOperations() {
+    if (previousOperations.operation1 != '') {
+        previousOperations.operation2 = previousOperations.operation1;
+        document.getElementById('previousCalc2').textContent = previousOperations.operation2;
+    }
+    previousOperations.operation1 = outputDisplay.textContent;
+    document.getElementById('previousCalc1').textContent = previousOperations.operation1;
+}
+/*
+* NOTE: updatePreviousOperations() is called after the updateDisplay() function.
+Otherwise, it will not work!
+*/
+
 function operation(input) {
     if (output[0] === '0' && output.length === 1) {
         output = [];
     }
     if (input === '1' || input === '2' || input === '3' || input === '4' || input === '5' || input === '6' || input === '7' || input === '8' || input === '9' || input === '0') {
+        allClear = false;
+        document.getElementById('clearBtn').textContent = 'C';
         output.push(input);
         updateDisplay();
     }
     if (input === 'add' || input === 'subtract' || input === 'multiply' || input === 'divide') {
         // if (output.includes('+') === false && output.includes('*') === false && output.includes('/') === false) {
-            decimal = false;
-            switch (input) {
-                case 'add':
-                    output.push('+');
-                    break;
+        decimal = false;
+        allClear = false;
+        document.getElementById('clearBtn').textContent = 'C';
 
-                case 'subtract':
-                    output.push('-');
-                    break;
+        switch (input) {
+            case 'add':
+                output.push('+');
+                break;
 
-                case 'multiply':
-                    output.push('*');
-                    break;
+            case 'subtract':
+                output.push('-');
+                break;
 
-                case 'divide':
-                    output.push('/');
-                    break;
+            case 'multiply':
+                output.push('*');
+                break;
 
-                default:
-                    break;
-            }
-            updateDisplay();
+            case 'divide':
+                output.push('/');
+                break;
+
+            default:
+                break;
+        }
+        updateDisplay();
         // }
     }
     if (input === 'equal') {
@@ -70,10 +90,10 @@ function operation(input) {
         let operationType;
         for (let i = 0; i < length; i++) {
             if (operation[0] !== '+' && operation[0] !== '*' && operation[0] !== '/' && operation[0] !== '-') {
-                    // console.log(operation[0]);
-                    // console.log(i);
-                    firstNumArray.push(operation[0]);
-                    operation.shift();
+                // console.log(operation[0]);
+                // console.log(i);
+                firstNumArray.push(operation[0]);
+                operation.shift();
             }
             else if (operation[0] === '-' && i === 0) {
                 firstNumArray.push(operation[0]);
@@ -120,24 +140,31 @@ function operation(input) {
             // output = result;
             output = ['0']; // Reset the output
         }
-        else{
+        else {
             result = String(result).split('');
 
             output.push('= ' + result.join(' '));
             updateDisplay();
-            if (previousOperations.operation1 != '') {
-                previousOperations.operation2 = previousOperations.operation1;
-                document.getElementById('previousCalc2').textContent = previousOperations.operation2;
-            }
-            previousOperations.operation1 = outputDisplay.textContent;
-            document.getElementById('previousCalc1').textContent = previousOperations.operation1;
+            updatePreviousOperations();
             output = result;
         }
 
     }
     if (input === 'clear') {
-        output = ['0'];
-        updateDisplay();
+        if (allClear) {
+            previousOperations.operation1 = '';
+            previousOperations.operation2 = '';
+            document.getElementById('previousCalc1').textContent = '-';
+            document.getElementById('previousCalc2').textContent = '-';
+            allClear = false;
+            document.getElementById('clearBtn').textContent = 'C';
+        }
+        else {
+            output = ['0'];
+            updateDisplay();
+            allClear = true;
+            document.getElementById('clearBtn').textContent = 'AC';
+        }
     }
     if (input === 'delete') {
         output.pop();
@@ -166,6 +193,22 @@ function operation(input) {
 
         output.push('! = ' + result);
         updateDisplay();
+        updatePreviousOperations();
+        output = result;
+    }
+    if (input === 'abs') {
+        let number = output.join('');
+        let result = Math.abs(number);
+        result = String(result).split('');
+        output = [];
+        output.push('| ' + number + ' | = ' + result);
+        updateDisplay();
+        updatePreviousOperations();
         output = result;
     }
 }
+
+updateDisplay();
+
+allClear = true;
+document.getElementById('clearBtn').textContent = 'AC';
