@@ -414,16 +414,19 @@ footer a:hover {
   overflow: scroll;
 }
 #nineGrid button{
-  font-size: 14px;
-  background-color: green;
-  color: white;
+  font-size: 18px;
+  /* background-color: green; */
+  background: none;
+  color: black;
   border: none;
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
   width: 100px;
   height: 100px;
   margin: auto;
+  margin-bottom: 10px;
 }
 #nineGrid button:hover{
-  background-color: darkgreen;
+  /* background-color: darkgreen; */
+  text-decoration: underline;
 }
