@@ -3,6 +3,11 @@ let output = ['0'];
 let negative = false;
 let decimal = false;
 
+let previousOperations = {
+    operation1: "",
+    operation2: "",
+};
+
 function removeSymbols(input) {
     for (let i = 0; i < input.length; i++) {
         if (input[i] === ',') {
@@ -120,6 +125,12 @@ function operation(input) {
 
             output.push('= ' + result.join(' '));
             updateDisplay();
+            if (previousOperations.operation1 != '') {
+                previousOperations.operation2 = previousOperations.operation1;
+                document.getElementById('previousCalc2').textContent = previousOperations.operation2;
+            }
+            previousOperations.operation1 = outputDisplay.textContent;
+            document.getElementById('previousCalc1').textContent = previousOperations.operation1;
             output = result;
         }
 
