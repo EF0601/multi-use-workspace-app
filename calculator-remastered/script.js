@@ -206,6 +206,26 @@ function operation(input) {
         updatePreviousOperations();
         output = result;
     }
+    if (input === "square-root") {
+        let number = output.join('');
+        let result = Math.sqrt(number);
+        result = String(result).split('');
+        output = [];
+        output.push('sqrt(' + number + ') = ' + result);
+        updateDisplay();
+        updatePreviousOperations();
+        output = result;
+    }
+    if (input === 'cube-root') {
+        let number = output.join('');
+        let result = Math.cbrt(number);
+        result = String(result).split('');
+        output = [];
+        output.push('cbrt(' + number + ') = ' + result);
+        updateDisplay();
+        updatePreviousOperations();
+        output = result;
+    }
 }
 
 updateDisplay();
