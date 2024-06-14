@@ -226,6 +226,26 @@ function operation(input) {
         updatePreviousOperations();
         output = result;
     }
+    if (input === 'square') {
+        let number = output.join('');
+        let result = Math.pow(number, 2);
+        result = String(result).split('');
+        output = [];
+        output.push(number + '^2 = ' + result);
+        updateDisplay();
+        updatePreviousOperations();
+        output = result;
+    }
+    if (input === 'cube') {
+        let number = output.join('');
+        let result = Math.pow(number, 3);
+        result = String(result).split('');
+        output = [];
+        output.push(number + '^3 = ' + result);
+        updateDisplay();
+        updatePreviousOperations();
+        output = result;
+    }
 }
 
 updateDisplay();
