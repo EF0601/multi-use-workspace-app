@@ -3,6 +3,7 @@ let output = ['0'];
 let allClear = false;
 let decimal = false;
 let roundingPlace = 6;
+let mem = 0;
 
 let previousOperations = {
     operation1: "",
@@ -129,7 +130,7 @@ function operation(input) {
         // let secondNum = roundValue(secondNumArray.join(''));
         let firstNum = firstNumArray.join('');
         let secondNum = secondNumArray.join('');
-        
+
 
         let result;
         switch (operationType) {
@@ -283,6 +284,21 @@ function operation(input) {
         updateDisplay();
         updatePreviousOperations();
         output = result;
+    }
+    if (input === 'mem-plus') {
+        let number = output.join('');
+        mem += parseFloat(number);
+    }
+    if (input === 'mem-minus') {
+        let number = output.join('');
+        mem -= parseFloat(number);
+    }
+    if (input === 'mem-recall') {
+        output = String(mem).split('');
+        updateDisplay();
+    }
+    if (input === 'mem-clear') {
+        mem = 0;
     }
 }
 
