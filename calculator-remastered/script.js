@@ -53,7 +53,8 @@ function operation(input) {
         output.push(input);
         updateDisplay();
     }
-    if (input === 'add' || input === 'subtract' || input === 'multiply' || input === 'divide') {
+    if (input === 'add' || input === 'subtract' || input === 'multiply' || input === 'divide' || input === 'exponent' || input === 'root'
+    ) {
         // if (output.includes('+') === false && output.includes('*') === false && output.includes('/') === false) {
         decimal = false;
         allClear = false;
@@ -76,6 +77,14 @@ function operation(input) {
                 output.push('/');
                 break;
 
+            case 'exponent':
+                output.push('^');
+                break;
+
+            case 'root':
+                output.push('r');
+                break;
+
             default:
                 break;
         }
@@ -89,9 +98,7 @@ function operation(input) {
         let secondNumArray = [];
         let operationType;
         for (let i = 0; i < length; i++) {
-            if (operation[0] !== '+' && operation[0] !== '*' && operation[0] !== '/' && operation[0] !== '-') {
-                // console.log(operation[0]);
-                // console.log(i);
+            if (operation[0] !== '+' && operation[0] !== '*' && operation[0] !== '/' && operation[0] !== '-' && operation[0] !== '^' && operation[0] !== 'r') {
                 firstNumArray.push(operation[0]);
                 operation.shift();
             }
@@ -127,7 +134,12 @@ function operation(input) {
             case '/':
                 result = parseFloat(firstNum) / parseFloat(secondNum);
                 break;
-
+            case '^':
+                result = Math.pow(parseFloat(firstNum), parseFloat(secondNum));
+                break;
+            case 'r':
+                result = Math.pow(parseFloat(firstNum), 1 / parseFloat(secondNum));
+                break;
             default:
                 break;
         }
@@ -242,6 +254,20 @@ function operation(input) {
         result = String(result).split('');
         output = [];
         output.push(number + '^3 = ' + result);
+        updateDisplay();
+        updatePreviousOperations();
+        output = result;
+    }
+    if (input === 'pi') {
+        output.push(Math.PI);
+        updateDisplay();
+    }
+    if (input === 'reciprocal') {
+        let number = output.join('');
+        let result = 1 / number;
+        result = String(result).split('');
+        output = [];
+        output.push('1 / ' + number + ' = ' + result);
         updateDisplay();
         updatePreviousOperations();
         output = result;

@@ -73,3 +73,17 @@ button:hover{
      margin: 5px;
      width: 100px;
 }
+
+footer{
+     display: grid;
+     grid-template-columns: repeat(2, 50%);
+     padding: 5px;
+     background-color: rgb(130, 0, 0);
+}
+
+footer button{
+     border-radius: 0%;
+     width: 90%;
+     height: 25px;
+     margin: auto;
+}
