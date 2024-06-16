@@ -2,6 +2,7 @@ const outputDisplay = document.getElementById('output');
 let output = ['0'];
 let allClear = false;
 let decimal = false;
+let roundingPlace = 6;
 
 let previousOperations = {
     operation1: "",
@@ -42,6 +43,13 @@ function updatePreviousOperations() {
 * NOTE: updatePreviousOperations() is called after the updateDisplay() function.
 Otherwise, it will not work!
 */
+
+function roundValue(input) {
+    let result = parseFloat(input).toFixed(roundingPlace);
+    result = Number(result);
+    result = String(result).split('');
+    return result;
+}
 
 function operation(input) {
     if (output[0] === '0' && output.length === 1) {
@@ -117,8 +125,11 @@ function operation(input) {
             secondNumArray.push(operation[0]);
             operation.shift();
         }
+        // let firstNum = roundValue(firstNumArray.join(''));
+        // let secondNum = roundValue(secondNumArray.join(''));
         let firstNum = firstNumArray.join('');
         let secondNum = secondNumArray.join('');
+        
 
         let result;
         switch (operationType) {
@@ -153,7 +164,8 @@ function operation(input) {
             output = ['0']; // Reset the output
         }
         else {
-            result = String(result).split('');
+            // result = String(result).split('');
+            result = roundValue(result);
 
             output.push('= ' + result.join(' '));
             updateDisplay();
