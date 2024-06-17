@@ -306,3 +306,14 @@ updateDisplay();
 
 allClear = true;
 document.getElementById('clearBtn').textContent = 'AC';
+const help = document.getElementById("help");
+const helpBTN = document.getElementById("HelpBTN");
+const HelpClose = document.getElementById("HelpClose");
+helpBTN.onclick = function () {
+    help.style.display = "block";
+};
+HelpClose.onclick = function () {
+    help.style.display = "none";
+};
+
+help.style.display = "none";

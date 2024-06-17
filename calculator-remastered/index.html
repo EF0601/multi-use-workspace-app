@@ -56,10 +56,66 @@
         </div>
     </div>
     <footer>
-        <button>Settings</button>
-        <button>Help</button>
+        <!-- <button id="SettingsBTN">Settings</button> -->
+        <button id="HelpBTN">Help</button>
+        <button style="font-size: 10px;">Calculator; EF0601 Studios: developed March 2024 for Multi Usage Business Application. More on the GitHub Repo</button>
     </footer>
 </body>
+<!--Help Modal here-->
+<div id="help" class="modal">
+
+    <div class="modal-content">
+        <span id="HelpClose">&times;</span> <br />
+        <h1>Help</h1>
+        <div id="helpGrid">
+            <div>
+                <h2>Basic Operations</h2>
+                <p>
+                    <ul>
+                        <li>Use the buttons to input numbers and operators</li>
+                        <li>Use the C button to clear the screen</li>
+                        <li>Use the Del button to delete the last character</li>
+                        <li>Use the = button to calculate the result</li>
+                    </ul>
+                </p>
+            </div>
+            <div>
+                <h2>Memory Operations</h2>
+                <p>
+                    <ul>
+                        <li>Use the M+ button to add the current value to memory</li>
+                        <li>Use the M- button to subtract the current value from memory</li>
+                        <li>Use the MR button to recall the value stored in memory</li>
+                        <li>Use the MC button to clear the value stored in memory</li>
+                    </ul>
+                </p>
+            </div>
+            <div>
+                <h2>Advanced Operations</h2>
+                <p>
+                    <ul>
+                        <li>Use the pi button to input the value of pi</li>
+                        <li>Use the x! button to calculate the factorial of a number</li>
+                        <li>Use the x^2 button to calculate the square of a number</li>
+                        <li>Use the 1/x button to calculate the reciprocal of a number</li>
+                        <li>Use the x^3 button to calculate the cube of a number</li>
+                        <li>Use the |x| button to calculate the absolute value of a number</li>
+                        <li>Use the sqrt(x) button to calculate the square root of a number</li>
+                        <li>Use the y sqrt(x) button to calculate the y-th root of a number</li>
+                        <li>Use the x^y button to calculate the exponentiation of a number</li>
+                        <li>Use the 3 sqrt(x) button to calculate the cube root of a number</li>
+                    </ul>
+                </p>
+            </div>
+
+            <h1>Settings</h1>
+            <div>
+                <h2>Round to xth decimal place</h2>
+                <input type="number" id="roundTo" min="0" max="40" value="6" />
+            </div>
+    </div>
+</div>
+
 <script src="./script.js"></script>
 
 </html>
