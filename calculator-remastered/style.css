@@ -125,3 +125,13 @@ footer button{
   text-decoration: none;
   cursor: pointer;
 }
+
+#settings button{
+     border-radius: 0%;
+     height: 20px;
+     width: auto;
+     background-color: lightgray;
+     color: black;
+     font-family: 'Montserrat', sans-serif;
+     border: 1px solid black;
+}

@@ -109,9 +109,11 @@
             </div>
 
             <h1>Settings</h1>
-            <div>
+            <div id="settings">
                 <h2>Round to xth decimal place</h2>
+                <p>Sets the place to round to. <u>Javascript has a maximum place it can round to, depending on the hardware and browser used.</u></p>
                 <input type="number" id="roundTo" min="0" max="40" value="6" />
+                <button onclick="settings('roundToXthDecimal')">Set</button>
             </div>
     </div>
 </div>

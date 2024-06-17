@@ -317,3 +317,15 @@ HelpClose.onclick = function () {
 };
 
 help.style.display = "none";
+
+function settings(input) {
+    switch (input) {
+        case 'roundToXthDecimal':
+            roundingPlace = document.getElementById('roundTo').value;
+            alert('New setting for "roundToXthDecimal" is a success! New value: ' + roundingPlace);
+            break;
+
+        default:
+            break;
+    }
+}
