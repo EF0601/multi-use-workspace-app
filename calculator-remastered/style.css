@@ -71,7 +71,9 @@ button:hover{
      background-color: rgb(193, 122, 0);
      padding: 5px;
      margin: 5px;
-     width: 100px;
+     width: 200px;
+     height: 30px;
+     overflow: scroll;
 }
 
 footer{

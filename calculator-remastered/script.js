@@ -329,3 +329,49 @@ function settings(input) {
             break;
     }
 }
+
+//keyboard input
+document.addEventListener('keydown', function (event) {
+    //numbers
+    if (!isNaN(Number(event.key))) {
+        operation(String(event.key));
+    }
+    //operators
+    if (event.key === '+') {
+        operation('add');
+    }
+    if (event.key === '-') {
+        operation('subtract');
+    }
+    if (event.key === '*') {
+        operation('multiply');
+    }
+    if (event.key === '/') {
+        operation('divide');
+    }
+    if (event.key === '^') {
+        operation('exponent');
+    }
+    if (event.key === 'r') {
+        operation('root');
+    }
+    //equal
+    if (event.key === 'Enter' || event.key === '=') {
+        operation('equal');
+    }
+    //clear
+    if (event.key === 'c') {
+        operation('clear');
+    }
+    //delete
+    if (event.key === 'Backspace') {
+        operation('delete');
+    }
+    //random functions
+    if (event.key === '|') {
+        operation('abs');
+    }
+    if (event.key === '!') {
+        operation('factorial');
+    }
+});
