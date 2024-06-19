@@ -93,52 +93,58 @@ function currentPosition(position) {
     fetchData('hourly');
 }
 function fetchData(type) {
-    if (type === 'hourly') {
-        console.log(`Fetching hourly data from URL: "https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,,precipitation_probability,weather_code,uv_index&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}&start_hour=${startDate}&end_hour=${endDate}"`);
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,,precipitation_probability,weather_code,uv_index&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}&start_hour=${startDate}&end_hour=${endDate}`)
-            .then(response => response.json())
-            .then(data => {
-                let dataArray = [];
-
-                /*
-                *Data is stored as: time, temperature, weather code, UV index, precipitation probability
-                *WMO codes: https://www.nodc.noaa.gov/archive/arc0021/0002199/1.1/data/0-data/HTML/WMO-CODE/WMO4677.HTM
-                */
-
-                for (let i = 0; i < data.hourly.time.length; i++) {
-                    dataArray.push([data.hourly.time[i], data.hourly.temperature_2m[i], convertWeatherCode(data.hourly.weather_code[i]), data.hourly.uv_index[i], data.hourly.precipitation_probability[i]]);
-                }
-                console.log(dataArray);
-                hourlyData = dataArray;
-                outputData();
-            })
-            .catch(error => {
-                console.log('Error fetching data:', error);
-            });
+    if (fetchTimes > 3) {
+        showAlert('Please wait a few seconds before fetching data again.');
     }
-    else if (type === 'daily') {
-        console.log(`Fetching daily data from URL: "https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`);
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`)
-            .then(response => response.json())
-            .then(data => {
-                let dataArray = [];
+    else{
+        fetchTimes++;
+        if (type === 'hourly') {
+            console.log(`Fetching hourly data from URL: "https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,,precipitation_probability,weather_code,uv_index&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}&start_hour=${startDate}&end_hour=${endDate}"`);
+            fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,,precipitation_probability,weather_code,uv_index&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}&start_hour=${startDate}&end_hour=${endDate}`)
+                .then(response => response.json())
+                .then(data => {
+                    let dataArray = [];
 
-                /*
-                *Data is stored as: day, max temperature, min temperature, weather code, precipitation sum, precipitation probability max
-                *WMO codes: https://www.nodc.noaa.gov/archive/arc0021/0002199/1.1/data/0-data/HTML/WMO-CODE/WMO4677.HTM
-                */
+                    /*
+                    *Data is stored as: time, temperature, weather code, UV index, precipitation probability
+                    *WMO codes: https://www.nodc.noaa.gov/archive/arc0021/0002199/1.1/data/0-data/HTML/WMO-CODE/WMO4677.HTM
+                    */
 
-                for (let i = 0; i < data.daily.time.length; i++) {
+                    for (let i = 0; i < data.hourly.time.length; i++) {
+                        dataArray.push([data.hourly.time[i], data.hourly.temperature_2m[i], convertWeatherCode(data.hourly.weather_code[i]), data.hourly.uv_index[i], data.hourly.precipitation_probability[i]]);
+                    }
+                    console.log(dataArray);
+                    hourlyData = dataArray;
+                    outputData();
+                })
+                .catch(error => {
+                    console.log('Error fetching data:', error);
+                });
+        }
+        else if (type === 'daily') {
+            console.log(`Fetching daily data from URL: "https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`);
+            fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`)
+                .then(response => response.json())
+                .then(data => {
+                    let dataArray = [];
 
-                    dataArray.push([data.daily.time[i], data.daily.temperature_2m_max[i], data.daily.temperature_2m_min[i], convertWeatherCode(data.daily.weather_code[i]), data.daily.precipitation_sum[i], data.daily.precipitation_probability_max[i]]);
-                }
-                console.log(dataArray);
-                dailyData = dataArray;
-                outputData();
-            })
-            .catch(error => {
-                console.log('Error fetching data:', error);
-            });
+                    /*
+                    *Data is stored as: day, max temperature, min temperature, weather code, precipitation sum, precipitation probability max
+                    *WMO codes: https://www.nodc.noaa.gov/archive/arc0021/0002199/1.1/data/0-data/HTML/WMO-CODE/WMO4677.HTM
+                    */
+
+                    for (let i = 0; i < data.daily.time.length; i++) {
+
+                        dataArray.push([data.daily.time[i], data.daily.temperature_2m_max[i], data.daily.temperature_2m_min[i], convertWeatherCode(data.daily.weather_code[i]), data.daily.precipitation_sum[i], data.daily.precipitation_probability_max[i]]);
+                    }
+                    console.log(dataArray);
+                    dailyData = dataArray;
+                    outputData();
+                })
+                .catch(error => {
+                    console.log('Error fetching data:', error);
+                });
+        }
     }
 }
 
@@ -413,41 +419,47 @@ function outputData() {
 //geocoding service
 
 function inputGeocode(query){
-    fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${query}&count=100&language=en&format=json`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            let table = document.getElementById("geocodeResult");
-            // Clear previous results except the first row
-            while (table.rows.length > 1) {
-                table.deleteRow(1);
-            }
+    if (geocodeTimes > 3) {
+        showAlert('Please wait a few seconds before using Geocode again.');
+    }
+    else{
+        geocodeTimes++;
+        fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${query}&count=100&language=en&format=json`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                let table = document.getElementById("geocodeResult");
+                // Clear previous results except the first row
+                while (table.rows.length > 1) {
+                    table.deleteRow(1);
+                }
 
-            data.results.forEach(result => {
-                let row = table.insertRow();
-                let countryCell = row.insertCell();
-                let stateCell = row.insertCell();
-                let nameCell = row.insertCell();
-                let longCell = row.insertCell();
-                let latCell = row.insertCell();
+                data.results.forEach(result => {
+                    let row = table.insertRow();
+                    let countryCell = row.insertCell();
+                    let stateCell = row.insertCell();
+                    let nameCell = row.insertCell();
+                    let longCell = row.insertCell();
+                    let latCell = row.insertCell();
 
-                countryCell.textContent = result.country;
-                nameCell.textContent = result.name;
-                stateCell.textContent = result.admin1;
-                longCell.textContent = result.longitude;
-                latCell.textContent = result.latitude;
+                    countryCell.textContent = result.country;
+                    nameCell.textContent = result.name;
+                    stateCell.textContent = result.admin1;
+                    longCell.textContent = result.longitude;
+                    latCell.textContent = result.latitude;
 
-                row.onclick = () => {
-                    lat = result.latitude;
-                    lon = result.longitude;
-                    fetchData('daily');
-                    fetchData('hourly');
-                };
+                    row.onclick = () => {
+                        lat = result.latitude;
+                        lon = result.longitude;
+                        fetchData('daily');
+                        fetchData('hourly');
+                    };
+                });
+            })
+            .catch(error => {
+                console.log('Error fetching data:', error);
             });
-        })
-        .catch(error => {
-            console.log('Error fetching data:', error);
-        });
+    }
 }
 
 //reverse geocoding service by geoapify
@@ -463,4 +475,10 @@ function reverseGeocode(latIn, lonIn){
     });
 }
 
-
+//cool down
+let fetchTimes = 0;
+let geocodeTimes = 0;
+setInterval(() => {
+    fetchTimes = 0;
+    geocodeTimes = 0;
+}, 10000);
