@@ -233,12 +233,20 @@
                         </div>
                         <div id="weatherBottomBar">
                             <p>
-                                <button>Refetch Data</button>
+                                <button onclick="fetchData('daily'), fetchData('hourly')">Refetch Data</button>
+                                <button onclick="getLocation()">Use my location</button>
                                 <input type="text" name="" id="geocodeInput" placeholder="Geocoding (Enter ZIP or town)">
                                 <button onclick="inputGeocode(document.getElementById('geocodeInput').value)">Search</button>
                             </p>
                             <h3>Results (Click each row to select)</h3>
-                            <table id="geocodeResult" style="height: 200px;">
+                            <table id="geocodeResult">
+                                <tr>
+                                    <th>Country</th>
+                                    <th>Province</th>
+                                    <th>Name</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                </tr>
                             </table>
                         </div>
 

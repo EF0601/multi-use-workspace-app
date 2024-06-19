@@ -89,6 +89,8 @@ function currentPosition(position) {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
     console.log(`Location found successfully: latitude: ${lat}, longitude: ${lon}`);
+    fetchData('daily');
+    fetchData('hourly');
 }
 function fetchData(type) {
     if (type === 'hourly') {
@@ -96,7 +98,6 @@ function fetchData(type) {
         fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,,precipitation_probability,weather_code,uv_index&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}&start_hour=${startDate}&end_hour=${endDate}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 let dataArray = [];
 
                 /*
@@ -105,9 +106,7 @@ function fetchData(type) {
                 */
 
                 for (let i = 0; i < data.hourly.time.length; i++) {
-                    console.log(`Time: ${data.hourly.time[i]}, Temperature: ${data.hourly.temperature_2m[i]}, Weather Code: ${data.hourly.weather_code[i]}, UV Index: ${data.hourly.uv_index[i]}, Precipitation Probability: ${data.hourly.precipitation_probability[i]}`);
-
-                    dataArray.push([data.hourly.time[i], data.hourly.temperature_2m[i], data.hourly.weather_code[i], data.hourly.uv_index[i], data.hourly.precipitation_probability[i]]);
+                    dataArray.push([data.hourly.time[i], data.hourly.temperature_2m[i], convertWeatherCode(data.hourly.weather_code[i]), data.hourly.uv_index[i], data.hourly.precipitation_probability[i]]);
                 }
                 console.log(dataArray);
                 hourlyData = dataArray;
@@ -122,7 +121,6 @@ function fetchData(type) {
         fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 let dataArray = [];
 
                 /*
@@ -131,9 +129,8 @@ function fetchData(type) {
                 */
 
                 for (let i = 0; i < data.daily.time.length; i++) {
-                    console.log(`Time: ${data.daily.time[i]}, Max Temperature: ${data.daily.temperature_2m_max[i]}, Min Temperature: ${data.daily.temperature_2m_min[i]}, Weather Code: ${data.daily.weather_code[i]}, Precipitation Sum: ${data.daily.precipitation_sum[i]}, Precipitation Probability: ${data.daily.precipitation_probability_max[i]}`);
 
-                    dataArray.push([data.daily.time[i], data.daily.temperature_2m_max[i], data.daily.temperature_2m_min[i], data.daily.weather_code[i], data.daily.precipitation_sum[i], data.daily.precipitation_probability_max[i]]);
+                    dataArray.push([data.daily.time[i], data.daily.temperature_2m_max[i], data.daily.temperature_2m_min[i], convertWeatherCode(data.daily.weather_code[i]), data.daily.precipitation_sum[i], data.daily.precipitation_probability_max[i]]);
                 }
                 console.log(dataArray);
                 dailyData = dataArray;
@@ -145,7 +142,215 @@ function fetchData(type) {
     }
 }
 
-getLocation();
+function convertWeatherCode(input) {
+    let weatherCondition;
+    switch (input) {
+        case 0:
+            weatherCondition = 'Clear sky';
+            break;
+        case 1:
+            weatherCondition = 'Scattered clouds';
+            break;
+        case 2:
+            weatherCondition = 'Similar sky';
+            break;
+        case 3:
+            weatherCondition = 'Forming clouds';
+            break;
+        case 4:
+        case 5:
+            weatherCondition = 'Reduced visibility';
+            break;
+        case 6:
+        case 7:
+        case 8:
+            weatherCondition = 'Airborne dust';
+            break;
+        case 9:
+            weatherCondition = 'Sandstorm';
+            break;
+        case 10:
+            weatherCondition = 'Mist';
+            break;
+        case 11:
+        case 12:
+            weatherCondition = 'Shallow fog';
+            break;
+        case 13:
+            weatherCondition = 'Lighting with no thunder';
+            break;
+        case 14:
+        case 15:
+        case 16:
+            weatherCondition = 'Precipitation sighted';
+            break;
+        case 17:
+            weatherCondition = 'Thunderstorm but no precipitation.';
+            break;
+        case 18:
+        case 19:
+            weatherCondition = 'Squalls';
+            break;
+        case 20:
+        case 21:
+            weatherCondition = 'Drizzle/rain';
+            break;
+        case 22:
+        case 23:
+            weatherCondition = 'Snow/rain';
+            break;
+        case 24:
+            weatherCondition = 'Freezing rain';
+            break;
+        case 25:
+            weatherCondition = 'Rain showers';
+            break;
+        case 26:
+            weatherCondition = 'Snow showers';
+            break;
+        case 27:
+            weatherCondition = 'Hail';
+            break;
+        case 28:
+            weatherCondition = 'Fog';
+            break;
+        case 29:
+            weatherCondition = 'Thunderstorm';
+            break;
+        case 30:
+        case 31:
+        case 32:
+            weatherCondition = 'Slight Dust/sand storm';
+            break;
+        case 33:
+        case 34:
+        case 35:
+            weatherCondition = 'Severe Dust/sand storm';
+            break;
+        case 36:
+        case 37:
+        case 38:
+        case 39:
+            weatherCondition = 'Drifting snow';
+            break;
+        case 40:
+            weatherCondition = 'Fog at a distance';
+            break;
+        case 41:
+        case 42:
+        case 43:
+        case 44:
+        case 45:
+        case 46:
+        case 47:
+            weatherCondition = 'Patchy fog';
+            break;
+        case 48:
+        case 49:
+            weatherCondition = 'Fog with rime';
+            break;
+        case 50:
+        case 51:
+        case 52:
+        case 53:
+        case 54:
+        case 55:
+            weatherCondition = 'Drizzle';
+            break;
+        case 56:
+        case 57:
+            weatherCondition = 'Freezing drizzle';
+            break;
+        case 58:
+        case 59:
+            weatherCondition = 'Rain & Drizzle';
+            break;
+        case 60:
+        case 61:
+        case 62:
+        case 63:
+        case 64:
+        case 65:
+            weatherCondition = 'Rain';
+            break;
+        case 66:
+        case 67:
+            weatherCondition = 'Freezing rain';
+            break;
+        case 68:
+        case 69:
+            weatherCondition = 'Rain & Drizzle';
+            break;
+        case 70:
+        case 71:
+        case 72:
+        case 73:
+        case 74:
+        case 75:
+        case 76:
+        case 77:
+        case 78:
+        case 79:
+            weatherCondition = 'Snow';
+            break;
+        case 80:
+            weatherCondition = 'Slight rain showers';
+            break;
+        case 81:
+            weatherCondition = 'Rain showers';
+            break;
+        case 82:
+            weatherCondition = 'Heavy rain showers';
+            break;
+        case 83:
+        case 84:
+            weatherCondition = 'Rain & snow showers';
+            break;
+        case 85:
+            weatherCondition = 'Slight snow showers';
+            break;
+        case 86:
+            weatherCondition = 'Snow showers';
+            break;
+        case 87:
+        case 88:
+        case 89:
+        case 90:
+            weatherCondition = 'Hail';
+            break;
+        case 91:
+            weatherCondition = 'Slight rain';
+            break;
+        case 92:
+            weatherCondition = 'Rain';
+            break;
+        case 93:
+            weatherCondition = 'Slight snow';
+            break;
+        case 94:
+            weatherCondition = 'Snow';
+            break;
+        case 95:
+            weatherCondition = 'Slight thunderstorms';
+            break;
+        case 96:
+            weatherCondition = 'Thunderstorms';
+            break;
+        case 97:
+            weatherCondition = 'Heavy thunderstorms';
+            break;
+        case 98:
+            weatherCondition = 'Thunderstorms & dust storms';
+            break;
+        case 99:
+            weatherCondition = 'Thunderstorms & hail';
+            break;
+        default:
+            showAlert('Unknown weather code');
+            break;
+    }
+    return weatherCondition;
+}
 
 let outputLocations = {
     todayWeatherText: document.getElementById('todayWeatherText'),
@@ -163,15 +368,15 @@ function outputData() {
     outputLocations.todayMaxPrecipitationRate.textContent = dailyData[0][5];
 }
 
-setTimeout(() => {
-    if (lon === undefined || lat === undefined) {
-        showAlert(`Please enable location services to view weather data. When you're ready, hit the "Refetch data" button`);
-    }
-    else {
-        fetchData('daily');
-        fetchData('hourly');
-    }
-}, 6000);
+// setTimeout(() => {
+//     if (lon === undefined || lat === undefined) {
+//         showAlert(`Please enable location services to view weather data. When you're ready, hit the "Refetch data" button`);
+//     }
+//     else {
+//         fetchData('daily');
+//         fetchData('hourly');
+//     }
+// }, 6000);
 
 //geocoding service
 
@@ -181,7 +386,10 @@ function inputGeocode(query){
         .then(data => {
             console.log(data);
             let table = document.getElementById("geocodeResult");
-            table.innerHTML = ""; // Clear previous results
+            // Clear previous results except the first row
+            while (table.rows.length > 1) {
+                table.deleteRow(1);
+            }
 
             data.results.forEach(result => {
                 let row = table.insertRow();

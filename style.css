@@ -443,7 +443,6 @@ footer a:hover {
 #geocodeResult{
     border: 1px solid white;
     overflow: scroll;
-    height: 200px;
 }
 
 #geocodeResult tr:hover{
