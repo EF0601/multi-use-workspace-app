@@ -199,21 +199,23 @@
                 <div id="weatherTab">
                     <div id="weatherContainer">
                         <h2>Weather</h2>
-                        <p style="font-size: 12px">
+                        <p style="font-size: 16px">
                             Weather is a tab that allows you to see the current weather in
                             your area. It may not work properly.)
                             <b>Locational services must be enabled for it to work. Data will
                                 take time to load.
                                 For use everywhere, thanks to the open-meteo API. <a href="https://open-meteo.com/"
                                     target="_blank">More at https://open-meteo.com/</a></b>
+                            Weather units are in <span id="weatherUnit">celsius</span>
                         </p>
                         <div class="weatherMainContainer">
                             <div id="todayWeather">
-                                <h2>Today</h2>
+                                <h6>Weather for <span id="weatherLocation">Choose a location first</span></h6>
+                                <h3>Today</h3>
                                 <p id="todayWeatherText">-</p>
                                 <div class="twoColumnTemp">
-                                    <span id="todayLow">-</span> ->
-                                    <span id="todayHigh">-</span>
+                                    <span id="todayLow" style="color: blue;">-</span> ->
+                                    <span id="todayHigh" style="color: red;">-</span>
                                 </div>
                                 <div class="twoColumn">
                                     <span id="todayTotalRain">-</span>"
@@ -222,21 +224,36 @@
                             </div>
                             <div id="mainWeatherDisplay">
                                 <h2>Hourly</h2>
-                                <div id="hourlyWeatherDisplay">
-
-                                </div>
+                                <table id="hourlyWeatherDisplay">
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Temperature</th>
+                                        <th>Weather</th>
+                                        <th>UV Index</th>
+                                        <th>Precipitation</th>
+                                    </tr>
+                                </table>
                                 <h2>Daily</h2>
-                                <div id="dailyWeatherDisplay">
-
-                                </div>
+                                <table id="dailyWeatherDisplay">
+                                    <tr>
+                                        <th>Day</th>
+                                        <th>Min temp</th>
+                                        <th>Max temp</th>
+                                        <th>Weather</th>
+                                        <th>Precipitation</th>
+                                        <th>Precipitation total</th>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                         <div id="weatherBottomBar">
                             <p>
                                 <button onclick="fetchData('daily'), fetchData('hourly')">Refetch Data</button>
                                 <button onclick="getLocation()">Use my location</button>
-                                <input type="text" name="" id="geocodeInput" placeholder="Geocoding (Enter ZIP or town)">
-                                <button onclick="inputGeocode(document.getElementById('geocodeInput').value)">Search</button>
+                                <input type="text" name="" id="geocodeInput"
+                                    placeholder="Geocoding (Enter ZIP or town)">
+                                <button
+                                    onclick="inputGeocode(document.getElementById('geocodeInput').value)">Search</button>
                             </p>
                             <h3>Results (Click each row to select)</h3>
                             <table id="geocodeResult">

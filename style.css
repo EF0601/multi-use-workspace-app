@@ -421,6 +421,7 @@ footer a:hover {
     padding: 10px;
     height: 300px;
     margin: 10px;
+    overflow: scroll;
 }
 #weatherBottomBar{
     background-color: darkgreen;
@@ -440,12 +441,29 @@ footer a:hover {
 #weatherTab{
     overflow: scroll;
 }
-#geocodeResult{
+#geocodeResult,
+#hourlyWeatherDisplay,
+#dailyWeatherDisplay,
+#geocodeResult th,
+#hourlyWeatherDisplay th,
+#dailyWeatherDisplay th,
+#geocodeResult td,
+#hourlyWeatherDisplay td,
+#dailyWeatherDisplay td{
     border: 1px solid white;
     overflow: scroll;
 }
 
-#geocodeResult tr:hover{
+#geocodeResult,
+#hourlyWeatherDisplay,
+#dailyWeatherDisplay{
+    height: 25px;
+    overflow: scroll;
+}
+
+#geocodeResult tr:hover,
+#hourlyWeatherDisplay tr:hover,
+#dailyWeatherDisplay tr:hover{
     background-color: yellowgreen;
     color: black;
 }

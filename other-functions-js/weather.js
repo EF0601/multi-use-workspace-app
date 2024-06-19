@@ -361,22 +361,54 @@ let outputLocations = {
 };
 
 function outputData() {
+    reverseGeocode(lat, lon);
     outputLocations.todayWeatherText.textContent = dailyData[0][3];
     outputLocations.todayLow.textContent = dailyData[0][2];
     outputLocations.todayHigh.textContent = dailyData[0][1];
     outputLocations.todayTotalRain.textContent = dailyData[0][4];
     outputLocations.todayMaxPrecipitationRate.textContent = dailyData[0][5];
-}
 
-// setTimeout(() => {
-//     if (lon === undefined || lat === undefined) {
-//         showAlert(`Please enable location services to view weather data. When you're ready, hit the "Refetch data" button`);
-//     }
-//     else {
-//         fetchData('daily');
-//         fetchData('hourly');
-//     }
-// }, 6000);
+    let table = document.getElementById('hourlyWeatherDisplay');
+    // Clear previous results except the first row
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+    hourlyData.slice(0, 24).forEach(data => {
+        let row = table.insertRow();
+        let timeCell = row.insertCell();
+        let temperatureCell = row.insertCell();
+        let weatherCell = row.insertCell();
+        let uvCell = row.insertCell();
+        let precipitationCell = row.insertCell();
+
+        timeCell.textContent = new Date(data[0]).toLocaleTimeString();
+        temperatureCell.textContent = data[1];
+        weatherCell.textContent = data[2];
+        uvCell.textContent = data[3];
+        precipitationCell.textContent = data[4] + "%";
+    });
+    table = document.getElementById('dailyWeatherDisplay');
+    // Clear previous results except the first row
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+    dailyData.forEach(data => {
+        let row = table.insertRow();
+        let timeCell = row.insertCell();
+        let temperatureCell = row.insertCell();
+        let maxTemperatureCell = row.insertCell();
+        let weatherCell = row.insertCell();
+        let precipitationTotal = row.insertCell();
+        let precipitationCell = row.insertCell();
+
+        timeCell.textContent = data[0];
+        temperatureCell.textContent = data[2];
+        maxTemperatureCell.textContent = data[1];
+        weatherCell.textContent = data[3];
+        precipitationTotal.textContent = data[4] + 'mm';
+        precipitationCell.textContent = data[5] + "%";
+    });
+}
 
 //geocoding service
 
@@ -417,3 +449,18 @@ function inputGeocode(query){
             console.log('Error fetching data:', error);
         });
 }
+
+//reverse geocoding service by geoapify
+function reverseGeocode(latIn, lonIn){
+    let location;
+    console.log(`Reverse geocoding. URL: "https://api.geoapify.com/v1/geocode/reverse?lat=${latIn}&lon=${lonIn}&apiKey=b40743d4c3074f02af86d14034780457"`);
+    fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${latIn}&lon=${lonIn}&apiKey=b40743d4c3074f02af86d14034780457`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(`Reverse geocoding result: ${data.features[0].properties.city + ", " + data.features[0].properties.country}`);
+        location = data.features[0].properties.city + ", " + data.features[0].properties.country;
+        document.getElementById('weatherLocation').textContent = location;
+    });
+}
+
+
