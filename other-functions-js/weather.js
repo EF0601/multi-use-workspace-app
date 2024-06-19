@@ -1,6 +1,7 @@
 let name;
-let temperatureType = 'f';
+let temperatureType = 'celsius';
 let fetchedType;
+let timezone;
 
 let dailyData;
 let hourlyData;
@@ -89,6 +90,7 @@ function currentPosition(position) {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
     console.log(`Location found successfully: latitude: ${lat}, longitude: ${lon}`);
+    timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     fetchData('daily');
     fetchData('hourly');
 }
@@ -99,8 +101,8 @@ function fetchData(type) {
     else{
         fetchTimes++;
         if (type === 'hourly') {
-            console.log(`Fetching hourly data from URL: "https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,,precipitation_probability,weather_code,uv_index&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}&start_hour=${startDate}&end_hour=${endDate}"`);
-            fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,,precipitation_probability,weather_code,uv_index&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}&start_hour=${startDate}&end_hour=${endDate}`)
+            console.log(`Fetching hourly data from URL: "https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,,precipitation_probability,weather_code,uv_index&timezone=${timezone}&start_hour=${startDate}&end_hour=${endDate}"`);
+            fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,,precipitation_probability,weather_code,uv_index&timezone=${timezone}&start_hour=${startDate}&end_hour=${endDate}`)
                 .then(response => response.json())
                 .then(data => {
                     let dataArray = [];
@@ -122,8 +124,8 @@ function fetchData(type) {
                 });
         }
         else if (type === 'daily') {
-            console.log(`Fetching daily data from URL: "https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`);
-            fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`)
+            console.log(`Fetching daily data from URL: "https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=${timezone}`);
+            fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=${timezone}`)
                 .then(response => response.json())
                 .then(data => {
                     let dataArray = [];
@@ -451,6 +453,7 @@ function inputGeocode(query){
                     row.onclick = () => {
                         lat = result.latitude;
                         lon = result.longitude;
+                        timezone = result.timezone;
                         fetchData('daily');
                         fetchData('hourly');
                     };
