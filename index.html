@@ -22,10 +22,6 @@
             <div class="container">
                 <button id="toggleFormatButton" onclick="toggleTimeFormat()">Change format</button>
                 <div id="clock2"></div>
-                <p id="smallWeatherDisplay">
-                    <span id="smallLocation"></span>: <span id="smallTemp"></span>
-                    <br /><span id="smallForecast"></span>
-                </p>
             </div>
         </div>
         <div id="main">
@@ -208,66 +204,48 @@
                             your area. It may not work properly.)
                             <b>Locational services must be enabled for it to work. Data will
                                 take time to load.
-                                <u>For use in the US and Canada only.</u></b>
+                                For use everywhere, thanks to the open-meteo API. <a href="https://open-meteo.com/"
+                                    target="_blank">More at https://open-meteo.com/</a></b>
                         </p>
-                        <div id="weatherFlexContainer">
-                            <div class="weatherPart">
-                                <h3 id="today">Today</h3>
-                                <p>Forecast: <span id="todayCondition">Loading...</span></p>
-                                <p>Temp: <span id="TodayTemp">Loading...</span></p>
-                                <p>Wind speed: <span id="todayWind">Loading...</span></p>
-                                <p>
-                                    Precipitation:
-                                    <span id="todayPrecipitation">Loading...</span>
-                                </p>
-                            </div>
-                            <div class="weatherPart">
-                                <h3 id="tomorrow">Tomorrow</h3>
-                                <p>
-                                    Forecast: <span id="tomorrowCondition">Loading...</span>
-                                </p>
-                                <p>Temp: <span id="TomorrowTemp">Loading...</span></p>
-                                <p>Wind speed: <span id="tomorrowWind">Loading...</span></p>
-                                <p>
-                                    Precipitation:
-                                    <span id="tomorrowPrecipitation">Loading...</span>
-                                </p>
-                            </div>
-                            <div class="weatherPart">
-                                <h3 id="dayAfter">Day After</h3>
-                                <p>
-                                    Forecast: <span id="dayAfterCondition">Loading...</span>
-                                </p>
-                                <p>Temp: <span id="DayAfterTemp">Loading...</span></p>
-                                <p>Wind speed: <span id="dayAfterWind">Loading...</span></p>
-                                <p>
-                                    Precipitation:
-                                    <span id="dayAfterPrecipitation">Loading...</span>
-                                </p>
-                            </div>
-                            <div class="weatherPart">
-                                <h3>Settings</h3>
-                                <button onclick="fetchWeatherData()" id="refetchWeatherButton">
-                                    Refetch weather
-                                </button>
-                                <button onclick="getLocation()" id="refetchLocationButton">
-                                    Refetch location
-                                </button>
-                                <div class="weatherPart">
-                                    <button onclick="changeTemp('c')">C</button>
-                                    <button onclick="changeTemp('f')">F</button>
+                        <div class="weatherMainContainer">
+                            <div id="todayWeather">
+                                <h2>Today</h2>
+                                <p id="todayWeatherText">-</p>
+                                <div class="twoColumnTemp">
+                                    <span id="todayLow">-</span> ->
+                                    <span id="todayHigh">-</span>
                                 </div>
-                                <p>Location: <span id="locationDisplay">Loading...</span></p>
+                                <div class="twoColumn">
+                                    <span id="todayTotalRain">-</span>"
+                                    <span id="todayMaxPrecipitationRate">-</span>%
+                                </div>
+                            </div>
+                            <div id="mainWeatherDisplay">
+                                <h2>Hourly</h2>
+                                <div id="hourlyWeatherDisplay">
+
+                                </div>
+                                <h2>Daily</h2>
+                                <div id="dailyWeatherDisplay">
+
+                                </div>
                             </div>
                         </div>
+                        <div id="weatherBottomBar">
+                            <p>
+                                <button>Refetch Data</button>
+                                <input type="text" name="" id="geocodeInput" placeholder="Geocoding (Enter ZIP or town)">
+                                <button onclick="inputGeocode(document.getElementById('geocodeInput').value)">Search</button>
+                            </p>
+                            <h3>Results (Click each row to select)</h3>
+                            <table id="geocodeResult" style="height: 200px;">
+                            </table>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-        <form netlify action="./success.html">
-            <input type="text" name="feedback" placeholder="Feedback (COLLECTED!)" />
-            <button type="submit">Submit</button>
-        </form>
         <footer>
             <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
                 <a property="dct:title" rel="cc:attributionURL" href="https://github.com/EF0601/multi-use-workspace-app"
@@ -346,7 +324,8 @@
 </body>
 <script src="./misc-js/resizer.js"></script>
 <script src="./misc-js/tab-manager.js"></script>
-<script src="./misc-js/loadingScreen.js"></script>
+<!-- <script src="./misc-js/loadingScreen.js"></script> -->
+<!--! when publishing, uncomment loadingScreen.js  -->
 <script src="./other-functions-js/searcher.js"></script>
 <script src="./other-functions-js/weather.js"></script>
 <script src="./other-functions-js/timer.js"></script>

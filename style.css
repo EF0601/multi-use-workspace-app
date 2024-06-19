@@ -159,6 +159,7 @@ footer a:hover {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 1); /* Black w/ opacity */
+  display: none;
 }
 
 /* Modal Content/Box */
@@ -205,38 +206,6 @@ footer a:hover {
   padding: 10px;
   background-color: rgb(239, 239, 239);
   font-family: "Montserrat", sans-serif;
-}
-
-.weatherPart button {
-  background-color: green;
-  color: white;
-  padding: 5px;
-  border: none;
-  font-size: 14px;
-  outline: none;
-  font-family: "Montserrat", sans-serif;
-}
-
-.weatherPart button:hover {
-  background-color: darkgreen;
-}
-
-.weatherPart button:disabled {
-  background-color: yellow;
-  color: black;
-  cursor: not-allowed;
-}
-
-.weatherPart p {
-  font-size: 18px;
-  text-align: left;
-}
-.weatherPart span {
-  text-decoration: underline;
-  margin: 10px;
-}
-#weatherTab{
-  padding: 20px;
 }
 
 /* timer */
@@ -384,9 +353,6 @@ footer a:hover {
   .searcher input {
     width: 100%;
   }
-  #weatherFlexContainer {
-    display: block;
-  }
   h1 {
     font-size: 22px;
   }
@@ -395,9 +361,6 @@ footer a:hover {
   }
   h3 {
     font-size: 16px;
-  }
-  .weatherPart p {
-    font-size: 14px;
   }
   #loadingScreenTwoColumns {
     display: block;
@@ -429,4 +392,61 @@ footer a:hover {
 #nineGrid button:hover{
   /* background-color: darkgreen; */
   text-decoration: underline;
+}
+
+#todayWeather{
+  text-align: center;
+  width: 25%;
+  background-color: darkgreen;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  height: 300px;
+  font-size: larger;
+}
+
+#weatherContainer{
+    font-size: larger;
+    padding: 20px;
+}
+
+.weatherMainContainer{
+    display: flex;
+    justify-content: space-between;
+}
+#mainWeatherDisplay{
+    width: 70%;
+    background-color: darkgreen;
+    color: white;
+    padding: 10px;
+    height: 300px;
+    margin: 10px;
+}
+#weatherBottomBar{
+    background-color: darkgreen;
+    margin: 10px;
+    padding: 10px;
+    width: 98%;
+    color: white;
+}
+#weatherBottomBar button, input{
+    background-color: yellowgreen;
+    padding: 10px;
+    border: none;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    margin: 10px;
+}
+#weatherTab{
+    overflow: scroll;
+}
+#geocodeResult{
+    border: 1px solid white;
+    overflow: scroll;
+    height: 200px;
+}
+
+#geocodeResult tr:hover{
+    background-color: yellowgreen;
+    color: black;
 }

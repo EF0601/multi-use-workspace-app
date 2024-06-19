@@ -2,6 +2,9 @@ let name;
 let temperatureType = 'f';
 let fetchedType;
 
+let dailyData;
+let hourlyData;
+
 function showAlert(message) {
     document.getElementById("alertBox").style.display = "block";
     document.getElementById("alertBoxText").textContent = message;
@@ -12,230 +15,197 @@ function changeTemp(toType) {
     outputData();
 }
 
-function convert(data) {
-    if (temperatureType === 'f') {
-        if (fetchedType === 'f') {
-            return data;
-        } else {
-            return (data * 9 / 5) + 32;
-        }
-    } else {
-        if (fetchedType === 'c') {
-            return data;
-        } else {
-            return (data - 32) * 5 / 9;
-        }
+function convertToISOFormat(input) {
+    input = String(input).slice(4, 24);
+    let array = input.split(' ');
+    let month;
+    let date = array[1];
+    let year = array[2];
+    switch (array[0]) {
+        case 'Jan':
+            month = '01';
+            break;
+        case 'Feb':
+            month = '02';
+            break;
+        case 'Mar':
+            month = '03';
+            break;
+        case 'Apr':
+            month = '04';
+            break;
+        case 'May':
+            month = '05';
+            break;
+        case 'Jun':
+            month = '06';
+            break;
+        case 'Jul':
+            month = '07';
+            break;
+        case 'Aug':
+            month = '08';
+            break;
+        case 'Sep':
+            month = '09';
+            break;
+        case 'Oct':
+            month = '10';
+            break;
+        case 'Nov':
+            month = '11';
+            break;
+        case 'Dec':
+            month = '12';
+            break;
+        default:
+            break;
     }
+    let array2 = array[3].split(':');
+    array2.pop();
 
+    return `${year}-${month}-${date}T${array2.join(':')}`;
 }
-
-const refetchLocationButton = document.getElementById('refetchLocationButton');
-const refetchWeatherButton = document.getElementById('refetchWeatherButton');
+let date = new Date();
+date.setMinutes(0, 0, 0); // Round minutes, seconds, and milliseconds to 0
+let startDate = convertToISOFormat(date);
+console.log(`Start Date: ${startDate}`);
+let date2 = new Date();
+date2.setMinutes(0, 0, 0); // Round minutes, seconds, and milliseconds to 0
+date2.setHours(date.getHours() + 72);
+let endDate = convertToISOFormat(date2);
+console.log(`End Date: ${endDate}`);
 
 function getLocation() {
     if (navigator.onLine) {
-        refetchLocationButton.disabled = true;
-        refetchLocationButton.innerHTML = "Working...";
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(currentPosition, showError);
+            navigator.geolocation.getCurrentPosition(currentPosition);
         }
     }
 }
 let lat;
 let lon;
-async function currentPosition(position) {
+function currentPosition(position) {
     lat = position.coords.latitude;
     lon = position.coords.longitude;
     console.log(`Location found successfully: latitude: ${lat}, longitude: ${lon}`);
-    refetchLocationButton.innerHTML = "Refetch location";
-    refetchLocationButton.disabled = false;
-    if (document.getElementById('todayCondition').textContent === "Loading...") {
-        fetchWeatherData();
-    }
 }
-
-// Error handling
-function showError(error) {
-    switch (error.code) {
-        case error.PERMISSION_DENIED:
-            showAlert("User denied the request for Geolocation.");
-            break;
-        case error.POSITION_UNAVAILABLE:
-            showAlert("Location information is unavailable.");
-            break;
-        case error.TIMEOUT:
-            showAlert("The request to get user location timed out.");
-            break;
-        case error.UNKNOWN_ERROR:
-            showAlert("An unknown error occurred.");
-            break;
-    }
-}
-
-let lastFetchedData = {
-    today: {
-        temp: 0,
-        condition: "",
-        wind: "",
-        precipitation: 0,
-    },
-    tomorrow: {
-        temp: 0,
-        condition: "",
-        wind: "",
-        precipitation: 0,
-    },
-    dayAfterTomorrow: {
-        temp: 0,
-        condition: "",
-        wind: "",
-        precipitation: 0,
-    },
-};
-
-let weatherLocation;
-
-let fetchedWeatherTimes = 0;
-
-setInterval(() => {
-    fetchedWeatherTimes = 0;
-}, 10000);
-
-// function validateDateOfWeek(input) {
-//     if (input > 6) {
-//         return input - 7;
-//     }
-// }
-
-async function fetchWeatherData() {
-    if (fetchedWeatherTimes <= 4 && navigator.onLine) {
-        refetchWeatherButton.disabled = true;
-        refetchWeatherButton.innerHTML = "Working...";
-        setTimeout(() => {
-            if (refetchWeatherButton.disabled === true) {
-                refetchWeatherButton.innerHTML = "Refetch weather failed. Try again.";
-                showAlert("Weather fetch timed out. Retry again. Most possible cause: error L117 in weather.js");
-                refetchWeatherButton.disabled = false;
-                outputData();
-                setTimeout(() => {
-                    refetchWeatherButton.innerHTML = "Refetch weather";
-                }, 1000);
-                console.warn("Weather fetch timed out. Retry again.");
-            }
-        }, 20000);
-        if (lat === undefined || lon === undefined) {
-            getLocation();
-        }
-        console.log(`Fetching weather data from 'https://api.weather.gov/points/${lat},${lon}'`);
-        await fetch("https://api.weather.gov/points/" + lat + "," + lon)
+function fetchData(type) {
+    if (type === 'hourly') {
+        console.log(`Fetching hourly data from URL: "https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,,precipitation_probability,weather_code,uv_index&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}&start_hour=${startDate}&end_hour=${endDate}"`);
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,,precipitation_probability,weather_code,uv_index&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}&start_hour=${startDate}&end_hour=${endDate}`)
             .then(response => response.json())
             .then(data => {
-                if (data.properties.forecast) {
-                    const url = data.properties.forecast;
-                    weatherLocation = data.properties.relativeLocation.properties.city + ", " + data.properties.relativeLocation.properties.state;
-                    document.getElementById('locationDisplay').textContent = weatherLocation;
-                    document.getElementById('smallLocation').textContent = weatherLocation;
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data2 => {
-                        fetchedType = (data2.properties.periods[0].temperatureUnit).toLowerCase();
-                        //find the day
-                        const date = new Date();
-                        const day = date.getDay();
-                        const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-                        document.getElementById('today').textContent = weekdays[day];
-                        //today/now
-                        const todayData = data2.properties.periods[0].temperature;
-                        lastFetchedData.today.temp = Math.round(todayData);
-                        lastFetchedData.today.condition = data2.properties.periods[0].shortForecast;
-                        lastFetchedData.today.wind = data2.properties.periods[0].windSpeed;
-                        lastFetchedData.today.precipitation = Number(data2.properties.periods[0].probabilityOfPrecipitation.value);
+                console.log(data);
+                let dataArray = [];
 
-                        //find where the other data is
-                        let dataLocation = [];
-                        for (let i = 0; i < data2.properties.periods.length; i++) {
-                            if (data2.properties.periods[i].name === weekdays[day+1]) {
-                                dataLocation.push(i);
-                            }
-                            if (data2.properties.periods[i].name === weekdays[day+2]) {
-                                dataLocation.push(i);
-                            }
-                        }
-                        // console.log(dataLocation);
-                        //tomorrow
-                        document.getElementById('tomorrow').textContent = weekdays[day + 1];
-                        const tomorrowData = data2.properties.periods[dataLocation[0]].temperature;
-                        lastFetchedData.tomorrow.temp = Math.round(tomorrowData);
-                        lastFetchedData.tomorrow.condition = data2.properties.periods[dataLocation[0]].shortForecast;
-                        lastFetchedData.tomorrow.wind = data2.properties.periods[dataLocation[0]].windSpeed;
-                        lastFetchedData.tomorrow.precipitation = Number(data2.properties.periods[dataLocation[0]].probabilityOfPrecipitation.value);
-                        //day after
-                        document.getElementById('dayAfter').textContent = weekdays[day + 2];
-                        // console.log(dataLocation[1]);
-                        const dayAfterData = data2.properties.periods[dataLocation[1]].temperature;
-                        lastFetchedData.dayAfterTomorrow.temp = Math.round(dayAfterData);
-                        lastFetchedData.dayAfterTomorrow.condition = data2.properties.periods[dataLocation[1]].shortForecast;
-                        lastFetchedData.dayAfterTomorrow.wind = data2.properties.periods[dataLocation[1]].windSpeed;
-                        lastFetchedData.dayAfterTomorrow.precipitation = Number(data2.properties.periods[dataLocation[1]].probabilityOfPrecipitation.value);
-                        //reset button
-                        refetchWeatherButton.innerHTML = "Refetch weather";
-                        refetchWeatherButton.disabled = false;
-                        outputData();
-                        fetchedWeatherTimes++;
-                    })
-                    .catch((error) => {
-                        console.error(`Could not process forecast [layer 2]: ${error}`);
-                    });
+                /*
+                *Data is stored as: time, temperature, weather code, UV index, precipitation probability
+                *WMO codes: https://www.nodc.noaa.gov/archive/arc0021/0002199/1.1/data/0-data/HTML/WMO-CODE/WMO4677.HTM
+                */
 
-                // const name = data.properties.forecast;
-                // console.log("Extracted Name:", name);
+                for (let i = 0; i < data.hourly.time.length; i++) {
+                    console.log(`Time: ${data.hourly.time[i]}, Temperature: ${data.hourly.temperature_2m[i]}, Weather Code: ${data.hourly.weather_code[i]}, UV Index: ${data.hourly.uv_index[i]}, Precipitation Probability: ${data.hourly.precipitation_probability[i]}`);
+
+                    dataArray.push([data.hourly.time[i], data.hourly.temperature_2m[i], data.hourly.weather_code[i], data.hourly.uv_index[i], data.hourly.precipitation_probability[i]]);
                 }
-                else {
-                    //no such point
-                    console.error("No such point. Are you outside of the US? L109 in weather.js");
-                    refetchWeatherButton.innerHTML = "Refetch weather";
-                    refetchWeatherButton.disabled = false;
-                }
+                console.log(dataArray);
+                hourlyData = dataArray;
+                outputData();
             })
-            .catch((error) => {
-                console.error(`Could not process forecast [layer 1]: ${error}. The most likely error is that you are outside of the US.`);
-                showAlert(`Could not process forecast [layer 1]: ${error}. The most likely error is that you are outside of the US.`);
-                refetchWeatherButton.innerHTML = "Refetch weather";
-                refetchWeatherButton.disabled = false;
+            .catch(error => {
+                console.log('Error fetching data:', error);
             });
-
     }
-    else {
-        if (fetchedWeatherTimes >= 4) {
-            console.warn("Too many requests in 10 seconds.");
-            refetchWeatherButton.innerHTML = "Too many requests. Try again in 10 seconds.";
-            showAlert("Too many requests in 10 seconds. Try again in 10 seconds.");
-            setTimeout(() => {
-                refetchWeatherButton.innerHTML = "Refetch weather";
-                refetchWeatherButton.disabled = false;
-            }, 1500);
-        }
+    else if (type === 'daily') {
+        console.log(`Fetching daily data from URL: "https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`);
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                let dataArray = [];
+
+                /*
+                *Data is stored as: day, max temperature, min temperature, weather code, precipitation sum, precipitation probability max
+                *WMO codes: https://www.nodc.noaa.gov/archive/arc0021/0002199/1.1/data/0-data/HTML/WMO-CODE/WMO4677.HTM
+                */
+
+                for (let i = 0; i < data.daily.time.length; i++) {
+                    console.log(`Time: ${data.daily.time[i]}, Max Temperature: ${data.daily.temperature_2m_max[i]}, Min Temperature: ${data.daily.temperature_2m_min[i]}, Weather Code: ${data.daily.weather_code[i]}, Precipitation Sum: ${data.daily.precipitation_sum[i]}, Precipitation Probability: ${data.daily.precipitation_probability_max[i]}`);
+
+                    dataArray.push([data.daily.time[i], data.daily.temperature_2m_max[i], data.daily.temperature_2m_min[i], data.daily.weather_code[i], data.daily.precipitation_sum[i], data.daily.precipitation_probability_max[i]]);
+                }
+                console.log(dataArray);
+                dailyData = dataArray;
+                outputData();
+            })
+            .catch(error => {
+                console.log('Error fetching data:', error);
+            });
     }
-}
-
-function outputData() {
-    document.getElementById('TodayTemp').textContent = Math.round(convert(lastFetchedData.today.temp)) + " " + temperatureType.toUpperCase();
-    document.getElementById('TomorrowTemp').textContent = Math.round(convert(lastFetchedData.tomorrow.temp)) + " " + temperatureType.toUpperCase();
-    document.getElementById('DayAfterTemp').textContent = Math.round(convert(lastFetchedData.dayAfterTomorrow.temp)) + " " + temperatureType.toUpperCase();
-    document.getElementById('smallTemp').textContent = Math.round(convert(lastFetchedData.today.temp)) + " " + temperatureType.toUpperCase();
-
-    document.getElementById('todayCondition').textContent = lastFetchedData.today.condition;
-    document.getElementById('tomorrowCondition').textContent = lastFetchedData.tomorrow.condition;
-    document.getElementById('dayAfterCondition').textContent = lastFetchedData.dayAfterTomorrow.condition;
-    document.getElementById('smallForecast').textContent = lastFetchedData.today.condition;
-
-    document.getElementById('todayWind').textContent = lastFetchedData.today.wind;
-    document.getElementById('tomorrowWind').textContent = lastFetchedData.tomorrow.wind;
-    document.getElementById('dayAfterWind').textContent = lastFetchedData.dayAfterTomorrow.wind;
-
-    document.getElementById('todayPrecipitation').textContent = lastFetchedData.today.precipitation + "%";
-    document.getElementById('tomorrowPrecipitation').textContent = lastFetchedData.tomorrow.precipitation + "%";
-    document.getElementById('dayAfterPrecipitation').textContent = lastFetchedData.dayAfterTomorrow.precipitation + "%";
 }
 
 getLocation();
+
+let outputLocations = {
+    todayWeatherText: document.getElementById('todayWeatherText'),
+    todayLow: document.getElementById('todayLow'),
+    todayHigh: document.getElementById('todayHigh'),
+    todayTotalRain: document.getElementById('todayTotalRain'),
+    todayMaxPrecipitationRate: document.getElementById('todayMaxPrecipitationRate'),
+};
+
+function outputData() {
+    outputLocations.todayWeatherText.textContent = dailyData[0][3];
+    outputLocations.todayLow.textContent = dailyData[0][2];
+    outputLocations.todayHigh.textContent = dailyData[0][1];
+    outputLocations.todayTotalRain.textContent = dailyData[0][4];
+    outputLocations.todayMaxPrecipitationRate.textContent = dailyData[0][5];
+}
+
+setTimeout(() => {
+    if (lon === undefined || lat === undefined) {
+        showAlert(`Please enable location services to view weather data. When you're ready, hit the "Refetch data" button`);
+    }
+    else {
+        fetchData('daily');
+        fetchData('hourly');
+    }
+}, 6000);
+
+//geocoding service
+
+function inputGeocode(query){
+    fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${query}&count=100&language=en&format=json`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            let table = document.getElementById("geocodeResult");
+            table.innerHTML = ""; // Clear previous results
+
+            data.results.forEach(result => {
+                let row = table.insertRow();
+                let countryCell = row.insertCell();
+                let stateCell = row.insertCell();
+                let nameCell = row.insertCell();
+                let longCell = row.insertCell();
+                let latCell = row.insertCell();
+
+                countryCell.textContent = result.country;
+                nameCell.textContent = result.name;
+                stateCell.textContent = result.admin1;
+                longCell.textContent = result.longitude;
+                latCell.textContent = result.latitude;
+
+                row.onclick = () => {
+                    lat = result.latitude;
+                    lon = result.longitude;
+                    fetchData('daily');
+                    fetchData('hourly');
+                };
+            });
+        })
+        .catch(error => {
+            console.log('Error fetching data:', error);
+        });
+}
