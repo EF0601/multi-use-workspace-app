@@ -201,12 +201,12 @@
                         <h2>Weather</h2>
                         <p style="font-size: 16px">
                             Weather is a tab that allows you to see the current weather in
-                            your area. It may not work properly.)
+                            your area or anywhere!)
                             <b>Locational services must be enabled for it to work. Data will
                                 take time to load.
                                 For use everywhere, thanks to the open-meteo API. <a href="https://open-meteo.com/"
                                     target="_blank">More at https://open-meteo.com/</a></b>
-                            Weather units are in <span id="weatherUnit">celsius</span>
+                            Weather units are in <a onclick="changeWeatherUnit()" style="text-decoration: underline; cursor: pointer;"><span id="weatherUnit">celsius</span> (click to change)</a>
                         </p>
                         <div class="weatherMainContainer">
                             <div id="todayWeather">

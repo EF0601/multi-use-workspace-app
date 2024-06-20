@@ -452,6 +452,7 @@ footer a:hover {
 #dailyWeatherDisplay td{
     border: 1px solid white;
     overflow: scroll;
+    padding: 1px;
 }
 
 #geocodeResult,
