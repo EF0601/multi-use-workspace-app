@@ -493,9 +493,16 @@ function reverseGeocode(latIn, lonIn){
     fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${latIn}&lon=${lonIn}&apiKey=b40743d4c3074f02af86d14034780457`)
     .then(response => response.json())
     .then(data => {
-        console.log(`Reverse geocoding result: ${data.features[0].properties.city + ", " + data.features[0].properties.country}`);
-        location = data.features[0].properties.city + ", " + data.features[0].properties.country;
+        if (data.features[0].properties.city === undefined || data.features[0].properties.city === null) {
+            console.log(`Reverse geocoding result: ${data.features[0].properties.name + ", " + data.features[0].properties.country}`);
+            location = data.features[0].properties.name + ", " + data.features[0].properties.country;
+        }
+        else{
+            console.log(`Reverse geocoding result: ${data.features[0].properties.city + ", " + data.features[0].properties.country}`);
+            location = data.features[0].properties.city + ", " + data.features[0].properties.country;
+        }
         document.getElementById('weatherLocation').textContent = location;
+
     });
 }
 
