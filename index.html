@@ -16,11 +16,11 @@
                 <h1>Welcome, <span id="titleName">Guest</span></h1>
                 <p id="splashText">
                     Proudly created and maintained by EF0601 studios. You are using:
-                    <code>v1.5.1</code> release
+                    <code>v1.6.1</code> release
                 </p>
             </div>
             <div class="container">
-                <button id="toggleFormatButton" onclick="toggleTimeFormat()">Change format</button>
+
                 <div id="clock2"></div>
             </div>
         </div>
@@ -74,7 +74,7 @@
                         <button>
                             App coming soon
                         </button>
-                        <button onclick="settings()">
+                        <button onclick="settingsModal()">
                             Settings
                         </button>
                         <button>
@@ -177,9 +177,9 @@
                     </div>
                 </div>
                 <div id="canvasTab">
+                    <a href="./canvas-max/max.html" target="_blank">Open in new tab (best experience)</a>
                     <iframe src="./canvas-max/max.html" frameborder="0" width="100%" height="515"
                         id="canvasIframe"></iframe>
-                    <a href="./canvas-max/max.html" target="_blank">Open in new tab</a>
                 </div>
                 <div id="calculatorTab">
                     <iframe src="./calculator-remastered/index.html" frameborder="0" width="100%" height="515"></iframe>
@@ -345,11 +345,22 @@
                 <button id="alertBoxButton">OK!</button>
             </div>
         </div>
+        <div id="settingsBox">
+            <div id="settingsBoxContent">
+                <h2 id="settingsBoxTitle">Settings</h2>
+                <p id="settingsBoxText">
+                    12h/24h clock format<button id="toggleFormatButton" onclick="toggleTimeFormat()">Change</button><br>
+                    Username<input type="text" id="settingsNameInput" placeholder="Display Name" style="background: none;"><button
+                        onclick="changeName()">Change</button>
+                </p>
+                <button id="settingsBoxButton">Close</button>
+            </div>
+        </div>
     </div>
 </body>
 <script src="./misc-js/resizer.js"></script>
 <script src="./misc-js/tab-manager.js"></script>
-<!-- <script src="./misc-js/loadingScreen.js"></script> -->
+<script src="./misc-js/loadingScreen.js"></script>
 <!--! when publishing, uncomment loadingScreen.js  -->
 <script src="./other-functions-js/searcher.js"></script>
 <script src="./other-functions-js/weather.js"></script>

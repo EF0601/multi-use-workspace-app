@@ -32,3 +32,12 @@ function checkConnection() {
 }
 
 checkConnection();
+
+//settings modal
+function settingsModal() {
+    document.getElementById("settingsBox").style.display = "block";
+}
+
+document.getElementById("settingsBoxButton").addEventListener("click", () => {
+    document.getElementById("settingsBox").style.display = "none";
+});

@@ -149,7 +149,8 @@ footer a:hover {
 }
 
 #loadingScreen,
-#alertBox {
+#alertBox,
+#settingsBox {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -164,7 +165,8 @@ footer a:hover {
 
 /* Modal Content/Box */
 #loadingScreenContent,
-#alertBoxContent {
+#alertBoxContent,
+#settingsBoxContent {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
