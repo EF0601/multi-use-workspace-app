@@ -286,7 +286,7 @@ footer a:hover {
 /* making timer tab a bit better */
 #timerTab {
   overflow: scroll;
-  height: 515px;
+  height: 500px;
   background-color: #fff;
 }
 
