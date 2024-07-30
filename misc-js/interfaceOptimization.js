@@ -23,32 +23,29 @@ let possibleTexts = ["Proudly created and maintained by EF0601 studios. You are 
 
 // Splash text
 function changeSplashText() {
-    if (Math.random() < 0.5) {
-        document.getElementById("splashText").textContent = possibleTexts[Math.floor(Math.random() * possibleTexts.length)];
-    }
-    else {
-        document.getElementById("splashText").textContent = quotes[0];
-        quotes.shift();
-        getQuotes();
-    }
+    // if (Math.random() < 0.5) {
+    document.getElementById("splashText").textContent = possibleTexts[Math.floor(Math.random() * possibleTexts.length)];
+    // }
+    // else {
+    //     document.getElementById("splashText").textContent = quotes[0];
+    //     quotes.shift();
+    // }
 }
 
 setInterval(() => {
     changeSplashText();
 }, 5000);
 
-let quotes = [];
-// Get quotes
-async function getQuotes() {
-    const response = await
-        fetch("https://api.quotable.io/random?limit=20");
-    const data = await response.json();
-    quotes.push(`${data.content} - ${data.author}`);
-}
-
-for (let i = 0; i < 20; i++) {
-    getQuotes();
-}
+// let quotes = [];
+// // Get quotes
+// async function getQuotes() {
+//     const response = await fetch("https://zenquotes.io/?api=quotes");
+//     const data = await response.json();
+//     for (let i = 0; i < data; i++) {
+//         console.log(data[i]);
+//     }
+//     quotes.push(`${data.content} - ${data.author}`);
+// }
 
 //alert box
 function showAlert(message) {
