@@ -6,15 +6,16 @@ A workspace for all your needs! Stickies, to-dos, timers, searchers, work from t
 
 - [@EF0601](https://www.github.com/octokatherine)
 - [@Guuuuest0001](https://github.com/Guuuuest0001)
+- [@Sebastián Agüero](https://github.com/Seba-Aguero)
 
 
 ## Acknowledgements
 
- - [weather.gov api](https://awesomeopensource.com/project/elangosundar/awesome-README-templates): Weather app API
+ - [Open Meteo Weather API](https://open-meteo.com/en/docs): Weather app API
  - [readme.so](https://readme.so/editor): Editor for README
  - [pixabay ringtone](https://pixabay.com/sound-effects/analog-timer-74998/): Timer app ringtone
  - [google search](https://www.google.com): Searcher tool built on this
- - [quotable api](https://github.com/lukePeavey/quotable): quotes API
+ - ~~[quotable api](https://github.com/lukePeavey/quotable): quotes API~~ (DEPRECATED)
 
 
 ## Current list of features:
@@ -24,7 +25,7 @@ A workspace for all your needs! Stickies, to-dos, timers, searchers, work from t
 - Clock
 - Calculator (Pulled from previous project; Requires Internet connection to work)
 - Timer & Stopwatch
-- Weather app (Uses `weather.gov` API for areas in the US only.)
+- Weather app (Uses `open-meteo.com` to source its data, allowing pulls to data from all over the world.)
 ## Notice (searcher)
 We are in no way partnered with Google INC or its parent company Alphabet INC. We do not, in anyway, collect cookies or data related to your searches. All data from searches is collected and stored by the search engine parent, Google INC, or its parent company, Alphabet INC. We also do not, in anyway, profit off of advertisements from searchs OR your action of searching.
 ## License
