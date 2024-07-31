@@ -16,15 +16,12 @@
                 <h1>Welcome, <span id="titleName">Guest</span></h1>
                 <p id="splashText">
                     Proudly created and maintained by EF0601 studios. You are using:
-                    <code>v1.5.1</code> release
+                    <code>v1.6.0</code> release
                 </p>
             </div>
             <div class="container">
+
                 <div id="clock2"></div>
-                <p id="smallWeatherDisplay">
-                    <span id="smallLocation"></span>: <span id="smallTemp"></span>
-                    <br /><span id="smallForecast"></span>
-                </p>
             </div>
         </div>
         <div id="main">
@@ -47,70 +44,42 @@
                 <div class="tab" id="search_tab">
                     <h2>Web Explorer</h2>
                 </div>
+                <div class="tab" id="weather_tab">
+                    <h2>Weather</h2>
+                </div>
             </div>
             <div id="mainSide">
                 <div id="homeTab">
                     <h2 id="clock"></h2>
                     <h1>Welcome to Multi Usage Workspace Application!</h1>
-                    <div id="weatherContainer">
-                        <h2>Weather</h2>
-                        <p style="font-size: 12px">
-                            Weather is a tab that allows you to see the current weather in
-                            your area. It may not work properly.)
-                            <b>Locational services must be enabled for it to work. Data will
-                                take time to load.
-                                <u>For use in the US and Canada only.</u></b>
-                        </p>
-                        <div id="weatherFlexContainer">
-                            <div class="weatherPart">
-                                <h3 id="today">Today</h3>
-                                <p>Forecast: <span id="todayCondition">Loading...</span></p>
-                                <p>Temp: <span id="TodayTemp">Loading...</span></p>
-                                <p>Wind speed: <span id="todayWind">Loading...</span></p>
-                                <p>
-                                    Precipitation:
-                                    <span id="todayPrecipitation">Loading...</span>
-                                </p>
-                            </div>
-                            <div class="weatherPart">
-                                <h3 id="tomorrow">Tomorrow</h3>
-                                <p>
-                                    Forecast: <span id="tomorrowCondition">Loading...</span>
-                                </p>
-                                <p>Temp: <span id="TomorrowTemp">Loading...</span></p>
-                                <p>Wind speed: <span id="tomorrowWind">Loading...</span></p>
-                                <p>
-                                    Precipitation:
-                                    <span id="tomorrowPrecipitation">Loading...</span>
-                                </p>
-                            </div>
-                            <div class="weatherPart">
-                                <h3 id="dayAfter">Day After</h3>
-                                <p>
-                                    Forecast: <span id="dayAfterCondition">Loading...</span>
-                                </p>
-                                <p>Temp: <span id="DayAfterTemp">Loading...</span></p>
-                                <p>Wind speed: <span id="dayAfterWind">Loading...</span></p>
-                                <p>
-                                    Precipitation:
-                                    <span id="dayAfterPrecipitation">Loading...</span>
-                                </p>
-                            </div>
-                            <div class="weatherPart">
-                                <h3>Settings</h3>
-                                <button onclick="fetchWeatherData()" id="refetchWeatherButton">
-                                    Refetch weather
-                                </button>
-                                <button onclick="getLocation()" id="refetchLocationButton">
-                                    Refetch location
-                                </button>
-                                <div class="weatherPart">
-                                    <button onclick="changeTemp('c')">C</button>
-                                    <button onclick="changeTemp('f')">F</button>
-                                </div>
-                                <p>Location: <span id="locationDisplay">Loading...</span></p>
-                            </div>
-                        </div>
+                    <div id="nineGrid">
+                        <button>
+                            Stickies
+                        </button>
+                        <button onclick="openTab('timer')">
+                            Time Apps
+                        </button>
+                        <button onclick="openTab('calculator')">
+                            Calculator
+                        </button>
+                        <button onclick="openTab('canvas')">
+                            Canvas Max
+                        </button>
+                        <button onclick="openTab('web explorer')">
+                            Web Explorer
+                        </button>
+                        <button onclick="openTab('weather')">
+                            Weather
+                        </button>
+                        <button>
+                            App coming soon
+                        </button>
+                        <button onclick="settingsModal()">
+                            Settings
+                        </button>
+                        <button>
+                            README.md
+                        </button>
                     </div>
                 </div>
                 <div id="timerTab">
@@ -118,27 +87,51 @@
                     <div class="timer" id="uniqueTimer">
                         <div class="threeColumns">
                             <div class="timerContainer">
-                                <button onclick="changeTimer('hour', 10)" class="timerChangerBtn">++</button>
-                                <button onclick="changeTimer('hour', 1)" class="timerChangerBtn">+</button>
+                                <button onclick="changeTimer('hour', 10)" class="timerChangerBtn">
+                                    ++
+                                </button>
+                                <button onclick="changeTimer('hour', 1)" class="timerChangerBtn">
+                                    +
+                                </button>
                                 <h1>00</h1>
-                                <button onclick="changeTimer('hour', -1)" class="timerChangerBtn">-</button>
-                                <button onclick="changeTimer('hour', -10)" class="timerChangerBtn">--</button>
+                                <button onclick="changeTimer('hour', -1)" class="timerChangerBtn">
+                                    -
+                                </button>
+                                <button onclick="changeTimer('hour', -10)" class="timerChangerBtn">
+                                    --
+                                </button>
                             </div>
                             <div class="colons">:</div>
                             <div class="timerContainer">
-                                <button onclick="changeTimer('minute', 10)" class="timerChangerBtn">++</button>
-                                <button onclick="changeTimer('minute', 1)" class="timerChangerBtn">+</button>
+                                <button onclick="changeTimer('minute', 10)" class="timerChangerBtn">
+                                    ++
+                                </button>
+                                <button onclick="changeTimer('minute', 1)" class="timerChangerBtn">
+                                    +
+                                </button>
                                 <h1>00</h1>
-                                <button onclick="changeTimer('minute', -1)" class="timerChangerBtn">-</button>
-                                <button onclick="changeTimer('minute', -10)" class="timerChangerBtn">--</button>
+                                <button onclick="changeTimer('minute', -1)" class="timerChangerBtn">
+                                    -
+                                </button>
+                                <button onclick="changeTimer('minute', -10)" class="timerChangerBtn">
+                                    --
+                                </button>
                             </div>
                             <div class="colons">:</div>
                             <div class="timerContainer">
-                                <button onclick="changeTimer('second', 10)" class="timerChangerBtn">++</button>
-                                <button onclick="changeTimer('second', 1)" class="timerChangerBtn">+</button>
+                                <button onclick="changeTimer('second', 10)" class="timerChangerBtn">
+                                    ++
+                                </button>
+                                <button onclick="changeTimer('second', 1)" class="timerChangerBtn">
+                                    +
+                                </button>
                                 <h1>00</h1>
-                                <button onclick="changeTimer('second', -1)" class="timerChangerBtn">-</button>
-                                <button onclick="changeTimer('second', -10)" class="timerChangerBtn">--</button>
+                                <button onclick="changeTimer('second', -1)" class="timerChangerBtn">
+                                    -
+                                </button>
+                                <button onclick="changeTimer('second', -10)" class="timerChangerBtn">
+                                    --
+                                </button>
                             </div>
                         </div>
                         <div class="threeButtonColumns">
@@ -179,20 +172,17 @@
                                 Stop
                             </button>
                             <div class=""></div>
-                            <p>
-                                Updates every 1000ms.
-                            </p>
+                            <p>Updates every 1000ms.</p>
                         </div>
                     </div>
                 </div>
                 <div id="canvasTab">
-                    <iframe src="./canvas-max/max.html" frameborder="0" width="100%" height="515"
+                    <a href="./canvas-max/max.html" target="_blank">Open in new tab (best experience)</a>
+                    <iframe src="./canvas-max/max.html" frameborder="0" width="100%" height="490"
                         id="canvasIframe"></iframe>
-                    <a href="./canvas-max/max.html" target="_blank">Open in new tab</a>
                 </div>
                 <div id="calculatorTab">
-                    <iframe src="https://ef0601.github.io/Basic-Calculator-App/home.html" frameborder="0" width="100%"
-                        height="515"></iframe>
+                    <iframe src="./calculator-remastered/index.html" frameborder="0" width="100%" height="515"></iframe>
                 </div>
                 <div id="searchTab">
                     <h2>Open a new tab with url</h2>
@@ -206,12 +196,81 @@
                             id="GoogleSearchInput" /><button onclick="search()">Go</button>
                     </div>
                 </div>
+                <div id="weatherTab">
+                    <div id="weatherContainer">
+                        <h2>Weather</h2>
+                        <p style="font-size: 16px">
+                            Weather is a tab that allows you to see the current weather in
+                            your area or anywhere!)
+                            <b>Locational services must be enabled for it to work. Data will
+                                take time to load.
+                                For use everywhere, thanks to the open-meteo API. <a href="https://open-meteo.com/"
+                                    target="_blank">More at https://open-meteo.com/</a></b>
+                            Weather units are in <a onclick="changeWeatherUnit()" style="text-decoration: underline; cursor: pointer;"><span id="weatherUnit">celsius</span> (click to change)</a>
+                        </p>
+                        <div class="weatherMainContainer">
+                            <div id="todayWeather">
+                                <h6>Weather for <span id="weatherLocation">Choose a location first</span></h6>
+                                <h3>Today</h3>
+                                <p id="todayWeatherText">-</p>
+                                <div class="twoColumnTemp">
+                                    <span id="todayLow" style="color: blue;">-</span> ->
+                                    <span id="todayHigh" style="color: red;">-</span>
+                                </div>
+                                <div class="twoColumn">
+                                    <span id="todayTotalRain">-</span>mm
+                                    <span id="todayMaxPrecipitationRate">-</span>%
+                                </div>
+                            </div>
+                            <div id="mainWeatherDisplay">
+                                <h2>Hourly</h2>
+                                <table id="hourlyWeatherDisplay">
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Temperature</th>
+                                        <th>Weather</th>
+                                        <th>UV Index</th>
+                                        <th>Precipitation</th>
+                                    </tr>
+                                </table>
+                                <h2>Daily</h2>
+                                <table id="dailyWeatherDisplay">
+                                    <tr>
+                                        <th>Day</th>
+                                        <th>Min temp</th>
+                                        <th>Max temp</th>
+                                        <th>Weather</th>
+                                        <th>Precipitation</th>
+                                        <th>Precipitation total</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="weatherBottomBar">
+                            <p>
+                                <button onclick="fetchData('daily'), fetchData('hourly')">Refetch Data</button>
+                                <button onclick="getLocation()">Use my location</button>
+                                <input type="text" name="" id="geocodeInput"
+                                    placeholder="Geocoding (Enter ZIP or town)">
+                                <button
+                                    onclick="inputGeocode(document.getElementById('geocodeInput').value)">Search</button>
+                            </p>
+                            <h3>Results (Click each row to select)</h3>
+                            <table id="geocodeResult">
+                                <tr>
+                                    <th>Country</th>
+                                    <th>Province</th>
+                                    <th>Name</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
-        <form netlify action="./success.html">
-            <input type="text" name="feedback" placeholder="Feedback (COLLECTED!)" />
-            <button type="submit">Submit</button>
-        </form>
         <footer>
             <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
                 <a property="dct:title" rel="cc:attributionURL" href="https://github.com/EF0601/multi-use-workspace-app"
@@ -242,7 +301,7 @@
             Visit the github page here:
             <a href="https://github.com/EF0601/multi-use-workspace-app"
                 target="_blank">https://github.com/EF0601/multi-use-workspace-app</a>
-                <br>
+            <br />
             <div id="footerLinks">
                 <button disabled>README.md (doc viewer) (coming soon)</button>
                 <button disabled>Settings (coming soon)</button>
@@ -254,30 +313,47 @@
                     <div id="container">
                         <h2 id="loadingScreenStatus">Loading</h2>
                         <p>
-                            Loading content and preparing application; please stand by. <br /><u>Disabling locational services
-                                will disable the weather app.</u>
+                            Loading content and preparing application; please stand by.
+                            <br /><u>Disabling locational services will disable the weather
+                                app.</u>
                         </p>
-                        <h2>You are currently <span id="wifiDetector">-</span></h2><br><br>
+                        <h2>You are currently <span id="wifiDetector">-</span></h2>
+                        <br /><br />
                     </div>
                     <div id="container">
                         <h2>Customization</h2>
                         <p>While waiting, customize your experience a little.</p>
-                        Display name: <input type="text" value="Guest" placeholder="Display Name" id="nameInput"><br>
+                        Display name:
+                        <input type="text" value="Guest" placeholder="Display Name" id="nameInput" /><br />
                         Theme selection: <i>Coming soon!</i>
                     </div>
                 </div>
                 <div id="loadingScreenEnd">
-                    <button id="loadingScreenBTN">Start exploring</button><br>
-                    <i>By hitting "Start exploring," you are inputting your data (display name.) Your theme can be edited but your display
-                        name will be permanent until you next visit.</i>
+                    <button id="loadingScreenBTN">Start exploring</button><br />
+                    <i>By hitting "Start exploring," you are inputting your data
+                        (display name.) Your theme can be edited but your display name
+                        will be permanent until you next visit.</i>
                 </div>
             </div>
         </div>
         <div id="alertBox">
             <div id="alertBoxContent">
                 <h2 id="alertBoxTitle">Alert!</h2>
-                <p id="alertBoxText">This is an alert box. It is used to alert the user of something.</p>
+                <p id="alertBoxText">
+                    This is an alert box. It is used to alert the user of something.
+                </p>
                 <button id="alertBoxButton">OK!</button>
+            </div>
+        </div>
+        <div id="settingsBox">
+            <div id="settingsBoxContent">
+                <h2 id="settingsBoxTitle">Settings</h2>
+                <p id="settingsBoxText">
+                    12h/24h clock format<button id="toggleFormatButton" onclick="toggleTimeFormat()">Change</button><br>
+                    Username<input type="text" id="settingsNameInput" placeholder="Display Name" style="background: none;"><button
+                        onclick="changeName()">Change</button>
+                </p>
+                <button id="settingsBoxButton">Close</button>
             </div>
         </div>
     </div>
@@ -285,6 +361,7 @@
 <script src="./misc-js/resizer.js"></script>
 <script src="./misc-js/tab-manager.js"></script>
 <script src="./misc-js/loadingScreen.js"></script>
+<!--! when publishing, uncomment loadingScreen.js  -->
 <script src="./other-functions-js/searcher.js"></script>
 <script src="./other-functions-js/weather.js"></script>
 <script src="./other-functions-js/timer.js"></script>

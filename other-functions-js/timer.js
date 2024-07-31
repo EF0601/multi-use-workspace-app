@@ -1,4 +1,13 @@
 let continueRunning = false;
+let use12HourFormat = false;
+
+function toggleTimeFormat() {
+    // Change between 12 and 24
+    use12HourFormat = !use12HourFormat;
+
+    updateClock();
+}
+
 //now includes clock
 function updateClock() {
     const now = new Date();
@@ -6,8 +15,22 @@ function updateClock() {
     const minutes = now.getMinutes();
     const seconds = now.getSeconds();
 
+    let formattedHours;
+    if (use12HourFormat) {
+        //Convert 24-hour format to 12-hour format
+        if (hours > 12) {
+            formattedHours = hours - 12;
+        } else if (hours === 0) {
+            formattedHours = 12;
+        } else {
+            formattedHours = hours;
+        }
+    } else {
+        formattedHours = hours;
+    }
+
     // Format the time as HH:MM:SS
-    const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    const timeString = `${String(formattedHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
     // Update the clock's content
     document.getElementById('clock').innerText = timeString;
@@ -155,7 +178,7 @@ function endTimer() {
     document.getElementById("endTimerButton").disabled = true;
     array = document.getElementsByClassName("timerChangerBtn");
     for (let i = 0; i < array.length; i++) {
-        array[i].disabled = true;
+        array[i].disabled = false;
     }
 
     let sound = new Audio("./alarmRingtone.mp3");
@@ -206,7 +229,7 @@ function pauseTimer() {
     document.getElementById("endTimerButton").disabled = true;
     array = document.getElementsByClassName("timerChangerBtn");
     for (let i = 0; i < array.length; i++) {
-        array[i].disabled = true;
+        array[i].disabled = false;
     }
     startTime = 0;
     stopTime = 0;

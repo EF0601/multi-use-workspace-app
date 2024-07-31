@@ -1,7 +1,7 @@
 // Get the modal
 const modal = document.getElementById("loadingScreen");
 
-// modal.style.display = "block";
+modal.style.display = "block";
 
 setTimeout(() => {
     document.getElementById("loadingScreenStatus").innerHTML = "Loaded! Welcome!";
@@ -32,3 +32,12 @@ function checkConnection() {
 }
 
 checkConnection();
+
+//settings modal
+function settingsModal() {
+    document.getElementById("settingsBox").style.display = "block";
+}
+
+document.getElementById("settingsBoxButton").addEventListener("click", () => {
+    document.getElementById("settingsBox").style.display = "none";
+});

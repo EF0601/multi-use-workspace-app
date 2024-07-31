@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="topBar">
+        <div id="twoMemory">
+            <div id="previousCalc2" class="previousCalc">-</div>
+            <div id="previousCalc1" class="previousCalc">-</div>
+        </div>
+        <div id="output">0</div>
+    </div>
+    <div id="mainBody">
+        <div id="extra">
+            <button onclick="operation('pi')">pi</button>
+            <button onclick="operation('factorial')">x!</button>
+            <button onclick="operation('square')">x^2</button>
+            <button onclick="operation('mem-plus')">M+</button>
+            <button onclick="operation('reciprocal')">1/x</button>
+            <button onclick="operation('cube')">x^3</button>
+            <button onclick="operation('mem-minus')">M-</button>
+            <button onclick="operation('abs')">|x|</button>
+            <button onclick="operation('square-root')">sqrt(x)</button>
+            <button onclick="operation('mem-recall')">MR</button>
+            <button onclick="operation('mem-clear')">MC</button>
+            <button onclick="operation('cube-root')">3 sqrt(x)</button>
+        </div>
+        <div id="default">
+            <button onclick="operation('exponent')">x^y</button>
+            <button onclick="operation('1')">1</button>
+            <button onclick="operation('2')">2</button>
+            <button onclick="operation('3')">3</button>
+            <button onclick="operation('add')">+</button>
+            <button onclick="operation('root')">y sqrt(x)</button>
+            <button onclick="operation('4')">4</button>
+            <button onclick="operation('5')">5</button>
+            <button onclick="operation('6')">6</button>
+            <button onclick="operation('subtract')">-</button>
+            <button onclick="operation('delete')">Del</button>
+            <button onclick="operation('7')">7</button>
+            <button onclick="operation('8')">8</button>
+            <button onclick="operation('9')">9</button>
+            <button onclick="operation('multiply')">*</button>
+            <button onclick="operation('decimal')">.</button>
+            <button onclick="operation('0')">0</button>
+            <button onclick="operation('clear')" id="clearBtn">C</button>
+            <button onclick="operation('equal')">=</button>
+            <button onclick="operation('divide')">/</button>
+        </div>
+    </div>
+    <footer>
+        <!-- <button id="SettingsBTN">Settings</button> -->
+        <button id="HelpBTN">Help</button>
+        <button style="font-size: 10px;">Calculator; EF0601 Studios: developed March 2024 for Multi Usage Business Application. More on the GitHub Repo</button>
+    </footer>
+</body>
+<!--Help Modal here-->
+<div id="help" class="modal">
+
+    <div class="modal-content">
+        <span id="HelpClose">&times;</span> <br />
+        <h1>Help</h1>
+        <div id="helpGrid">
+            <div>
+                <h2>Basic Operations</h2>
+                <p>
+                    <ul>
+                        <li>Use the buttons to input numbers and operators</li>
+                        <li>Use the C button to clear the screen</li>
+                        <li>Use the Del button to delete the last character</li>
+                        <li>Use the = button to calculate the result</li>
+                    </ul>
+                </p>
+            </div>
+            <div>
+                <h2>Memory Operations</h2>
+                <p>
+                    <ul>
+                        <li>Use the M+ button to add the current value to memory</li>
+                        <li>Use the M- button to subtract the current value from memory</li>
+                        <li>Use the MR button to recall the value stored in memory</li>
+                        <li>Use the MC button to clear the value stored in memory</li>
+                    </ul>
+                </p>
+            </div>
+            <div>
+                <h2>Advanced Operations</h2>
+                <p>
+                    <ul>
+                        <li>Use the pi button to input the value of pi</li>
+                        <li>Use the x! button to calculate the factorial of a number</li>
+                        <li>Use the x^2 button to calculate the square of a number</li>
+                        <li>Use the 1/x button to calculate the reciprocal of a number</li>
+                        <li>Use the x^3 button to calculate the cube of a number</li>
+                        <li>Use the |x| button to calculate the absolute value of a number</li>
+                        <li>Use the sqrt(x) button to calculate the square root of a number</li>
+                        <li>Use the y sqrt(x) button to calculate the y-th root of a number</li>
+                        <li>Use the x^y button to calculate the exponentiation of a number</li>
+                        <li>Use the 3 sqrt(x) button to calculate the cube root of a number</li>
+                    </ul>
+                </p>
+            </div>
+
+            <h1>Settings</h1>
+            <div id="settings">
+                <h2>Round to xth decimal place</h2>
+                <p>Sets the place to round to. <u>Javascript has a maximum place it can round to, depending on the hardware and browser used.</u></p>
+                <input type="number" id="roundTo" min="0" max="40" value="6" />
+                <button onclick="settings('roundToXthDecimal')">Set</button>
+            </div>
+    </div>
+</div>
+
+<script src="./script.js"></script>
+
+</html>

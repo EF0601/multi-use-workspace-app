@@ -29,8 +29,16 @@ body {
   padding: 20px;
   color: white;
 }
+#tabs{
+  height: 500px;
+  overflow: scroll;
+}
 #bodyObject {
   margin: auto;
+}
+#toggleFormatButton {
+    background-color: yellowgreen;
+    padding: 3px;
 }
 #clock2 {
   text-decoration: underline;
@@ -69,8 +77,14 @@ body {
 #timerTab,
 #calculatorTab,
 #canvasTab,
-#searchTab {
+#searchTab,
+#weatherTab {
   display: none;
+  height: 500px;
+}
+#homeTab{
+  height: 500px;
+  overflow: scroll;
 }
 #searchTab {
   text-align: center;
@@ -135,7 +149,8 @@ footer a:hover {
 }
 
 #loadingScreen,
-#alertBox {
+#alertBox,
+#settingsBox {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -145,11 +160,13 @@ footer a:hover {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 1); /* Black w/ opacity */
+  display: none;
 }
 
 /* Modal Content/Box */
 #loadingScreenContent,
-#alertBoxContent {
+#alertBoxContent,
+#settingsBoxContent {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -191,40 +208,6 @@ footer a:hover {
   padding: 10px;
   background-color: rgb(239, 239, 239);
   font-family: "Montserrat", sans-serif;
-}
-
-#weatherContainer {
-  overflow: scroll;
-  height: 200px;
-}
-
-.weatherPart button {
-  background-color: green;
-  color: white;
-  padding: 5px;
-  border: none;
-  font-size: 14px;
-  outline: none;
-  font-family: "Montserrat", sans-serif;
-}
-
-.weatherPart button:hover {
-  background-color: darkgreen;
-}
-
-.weatherPart button:disabled {
-  background-color: yellow;
-  color: black;
-  cursor: not-allowed;
-}
-
-.weatherPart p {
-  font-size: 18px;
-  text-align: left;
-}
-.weatherPart span {
-  text-decoration: underline;
-  margin: 10px;
 }
 
 /* timer */
@@ -303,7 +286,7 @@ footer a:hover {
 /* making timer tab a bit better */
 #timerTab {
   overflow: scroll;
-  height: 515px;
+  height: 500px;
   background-color: #fff;
 }
 
@@ -372,9 +355,6 @@ footer a:hover {
   .searcher input {
     width: 100%;
   }
-  #weatherFlexContainer {
-    display: block;
-  }
   h1 {
     font-size: 22px;
   }
@@ -384,9 +364,6 @@ footer a:hover {
   h3 {
     font-size: 16px;
   }
-  .weatherPart p {
-    font-size: 14px;
-  }
   #loadingScreenTwoColumns {
     display: block;
   }
@@ -394,4 +371,102 @@ footer a:hover {
   #alertBoxContent {
     height: 75%;
   }
+}
+#nineGrid{
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 100px 100px 100px;
+  overflow: scroll;
+}
+#nineGrid button{
+  font-size: 18px;
+  /* background-color: green; */
+  background: none;
+  color: black;
+  border: none;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+#nineGrid button:hover{
+  /* background-color: darkgreen; */
+  text-decoration: underline;
+}
+
+#todayWeather{
+  text-align: center;
+  width: 25%;
+  background-color: darkgreen;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  height: 300px;
+  font-size: larger;
+}
+
+#weatherContainer{
+    font-size: larger;
+    padding: 20px;
+}
+
+.weatherMainContainer{
+    display: flex;
+    justify-content: space-between;
+}
+#mainWeatherDisplay{
+    width: 70%;
+    background-color: darkgreen;
+    color: white;
+    padding: 10px;
+    height: 300px;
+    margin: 10px;
+    overflow: scroll;
+}
+#weatherBottomBar{
+    background-color: darkgreen;
+    margin: 10px;
+    padding: 10px;
+    width: 98%;
+    color: white;
+}
+#weatherBottomBar button, input{
+    background-color: yellowgreen;
+    padding: 10px;
+    border: none;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    margin: 10px;
+}
+#weatherTab{
+    overflow: scroll;
+}
+#geocodeResult,
+#hourlyWeatherDisplay,
+#dailyWeatherDisplay,
+#geocodeResult th,
+#hourlyWeatherDisplay th,
+#dailyWeatherDisplay th,
+#geocodeResult td,
+#hourlyWeatherDisplay td,
+#dailyWeatherDisplay td{
+    border: 1px solid white;
+    overflow: scroll;
+    padding: 1px;
+}
+
+#geocodeResult,
+#hourlyWeatherDisplay,
+#dailyWeatherDisplay{
+    height: 25px;
+    overflow: scroll;
+}
+
+#geocodeResult tr:hover,
+#hourlyWeatherDisplay tr:hover,
+#dailyWeatherDisplay tr:hover{
+    background-color: yellowgreen;
+    color: black;
 }

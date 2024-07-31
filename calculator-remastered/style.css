@@ -1,0 +1,139 @@
+*{
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+
+}
+html{
+     background-color: black;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+body{
+     background-color: #f5f5f5;
+     font-family: 'Montserrat', sans-serif;
+     width: 720px;
+}
+#topBar{
+     display: flex;
+     justify-content: space-between;
+     background-color: rgb(130, 0, 0);
+     color: white;
+     padding: 20px;
+
+}
+#mainBody{
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     /* width: 820px; */
+     background-color: rgb(206, 160, 82);
+}
+#default{
+     display: grid;
+     grid-template-columns: repeat(5, 20%);
+     grid-template-rows: repeat(4, 25%);
+}
+#extra{
+     display: grid;
+     grid-template-columns: repeat(3, 33.333%);
+     grid-template-rows: repeat(4, 25%);
+}
+button{
+     border-radius: 50%;
+     border: none;
+     width: 80px;
+     height: 80px;
+     margin: 5px;
+     background-color: rgb(193, 122, 0);
+     color: white;
+     font-family: 'Montserrat', sans-serif;
+}
+button:hover{
+     background-color: rgb(106, 150, 72);
+     color: black;
+}
+
+@media screen and (max-width: 720px){
+     body{
+          width: 480px;
+     }
+     #mainBody{
+          flex-direction: column;
+     }
+     #extra{
+          display: none;
+     }
+}
+
+.previousCalc{
+     background-color: rgb(193, 122, 0);
+     padding: 5px;
+     margin: 5px;
+     width: 200px;
+     height: 30px;
+     overflow: scroll;
+}
+
+footer{
+     display: grid;
+     grid-template-columns: repeat(2, 50%);
+     padding: 5px;
+     background-color: rgb(130, 0, 0);
+}
+
+footer button{
+     border-radius: 0%;
+     width: 90%;
+     height: 25px;
+     margin: auto;
+}
+
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 30px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  height: 40vh;
+  overflow: scroll;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#settings button{
+     border-radius: 0%;
+     height: 20px;
+     width: auto;
+     background-color: lightgray;
+     color: black;
+     font-family: 'Montserrat', sans-serif;
+     border: 1px solid black;
+}
