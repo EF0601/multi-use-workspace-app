@@ -1,19 +1,37 @@
 {
   "name": "multi-use-workspace-app",
-  "version": "1.5.0",
+  "version": "1.7.0",
   "description": "A multi usage workspace app with all sorts of tools. Read more on our README.md file",
-  "main": "index.html",
+  "main": "electronApp.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron-forge start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EF0601/multi-use-workspace-app.git"
   },
   "author": "EF0601",
-  "license": "Creative Commons CC BY-NC-SA 4.0",
+  "license": "SEE LICENSE IN README.md",
   "bugs": {
     "url": "https://github.com/EF0601/multi-use-workspace-app/issues"
   },
-  "homepage": "https://github.com/EF0601/multi-use-workspace-app"
+  "homepage": "https://github.com/EF0601/multi-use-workspace-app",
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1",
+    "node.js": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.4.0",
+    "@electron-forge/maker-deb": "^7.4.0",
+    "@electron-forge/maker-rpm": "^7.4.0",
+    "@electron-forge/maker-squirrel": "^7.4.0",
+    "@electron-forge/maker-zip": "^7.4.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
+    "@electron-forge/plugin-fuses": "^7.4.0",
+    "@electron/fuses": "^1.8.0",
+    "electron": "^31.3.1"
+  }
 }
