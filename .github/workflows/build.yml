@@ -1,10 +1,6 @@
 name: MacOS, Windows, Ubuntu Build
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
   workflow_dispatch:  # Allows manual trigger
 
 jobs:
@@ -32,5 +28,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: electron-app-${{ runner.os }}
+          name: Multi-use-workspace-app-${{ runner.os }}
           path: out/
