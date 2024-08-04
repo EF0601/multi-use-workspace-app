@@ -16,7 +16,7 @@
                 <h1>Welcome, <span id="titleName">Guest</span></h1>
                 <p id="splashText">
                     Proudly created and maintained by EF0601 studios. You are using:
-                    <code>v1.6.0</code> release
+                    <code>v1.7.0</code> release
                 </p>
             </div>
             <div class="container">
@@ -249,7 +249,8 @@
                         <div id="weatherBottomBar">
                             <p>
                                 <button onclick="fetchData('daily'), fetchData('hourly')">Refetch Data</button>
-                                <button onclick="getLocation()">Use my location</button>
+                                <!-- <button onclick="getLocation()">Use my location</button> -->
+                                 <!-- ! After the distributable has been generated, uncomment this for netlify. -->
                                 <input type="text" name="" id="geocodeInput"
                                     placeholder="Geocoding (Enter ZIP or town)">
                                 <button
