@@ -1,4 +1,4 @@
-name: MacOS, Windows, Ubuntu Build
+name: Build Electron App
 
 on:
   workflow_dispatch:  # Allows manual trigger
@@ -14,19 +14,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Package Electron App
-        run: npm run make
+      - name: Build and run Docker container
+        run: |
+          docker build -t electron-app-builder .
+          docker run --rm -v ${{ github.workspace }}:/usr/src/app -v /usr/src/app/node_modules electron-app-builder
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Multi-use-workspace-app-${{ runner.os }}
+          name: MUWA-1.7.0-${{ runner.os }}
           path: out/
