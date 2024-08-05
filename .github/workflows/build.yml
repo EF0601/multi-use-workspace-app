@@ -1,26 +1,42 @@
 name: Build Electron App
 
 on:
-  workflow_dispatch:  # Allows manual trigger
+  workflow_dispatch:  # Trigger only on manual dispatch
 
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-latest]
+        os: [macos-latest, windows-latest]  # Specify the OS runners you want to use
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Build and run Docker container
+      - name: Set up Docker
+        uses: docker/setup-docker@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Cache Docker layers
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Build Docker image
+        run: docker build -t electron-app-builder .
+
+      - name: Run Docker container
         run: |
-          docker build -t electron-app-builder .
-          docker run --rm -v ${{ github.workspace }}:/usr/src/app -v /usr/src/app/node_modules electron-app-builder
+          docker run --rm -v ${{ github.workspace }}:/usr/src/app electron-app-builder
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
-          name: MUWA-1.7.0-${{ runner.os }}
+          name: electron-app-${{ runner.os }}
           path: out/
