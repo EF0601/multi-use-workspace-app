@@ -15,7 +15,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v1
+
+      - name: Start Docker service
+        if: runner.os == 'Linux'
+        run: |
+          sudo systemctl start docker
+          sudo systemctl enable docker
 
       - name: Log Docker version
         run: docker --version
