@@ -24,15 +24,16 @@ function changeSize() {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     canvas.width = 0.95 * window.innerWidth;
-    canvas.height = 0.85 * window.innerHeight;
+    canvas.height = 0.70 * window.innerHeight;
     context.fillStyle = "white";
     context.fillRect(0, 0, canvas.width, canvas.height);
     context.drawImage(objects.mainPart, 0, 0);
 
-    objects.mainPart.height = 0.85 * window.innerHeight;
+    objects.mainPart.height = 0.70 * window.innerHeight;
     objects.mainPart.width = 0.95 * window.innerWidth;
     objects.mainPart.getContext("2d").drawImage(canvas, 0, 0);
     objects.bannerPart.style.width = objects.mainPart.width + "px";
+    // objects.bannerPart.style.height = window.innerHeight * 0.2 + "px";
 }
 window.onload = changeSize();
 window.addEventListener('resize', changeSize);
