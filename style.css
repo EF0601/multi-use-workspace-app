@@ -338,40 +338,6 @@ footer a:hover {
   background-color: black;
   color: white;
 }
-
-@media screen and (max-width: 850px) {
-  .tab {
-    margin: auto;
-    text-align: center;
-  }
-  #tabs,
-  #main,
-  #banner {
-    display: block;
-  }
-  #banner {
-    text-align: center;
-  }
-  .searcher input {
-    width: 100%;
-  }
-  h1 {
-    font-size: 22px;
-  }
-  h2 {
-    font-size: 18px;
-  }
-  h3 {
-    font-size: 16px;
-  }
-  #loadingScreenTwoColumns {
-    display: block;
-  }
-  #loadingScreenContent,
-  #alertBoxContent {
-    height: 75%;
-  }
-}
 #nineGrid{
   display: grid;
   grid-template-columns: 33% 33% 33%;
@@ -469,4 +435,52 @@ footer a:hover {
 #dailyWeatherDisplay tr:hover{
     background-color: yellowgreen;
     color: black;
+}
+
+
+@media screen and (max-width: 850px) {
+  .tab {
+    margin: auto;
+    text-align: center;
+  }
+  #tabs,
+  #main,
+  #banner {
+    display: block;
+  }
+  #banner {
+    text-align: center;
+  }
+  .searcher input {
+    width: 100%;
+  }
+  h1 {
+    font-size: 22px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  #loadingScreenTwoColumns {
+    display: block;
+  }
+  #loadingScreenContent,
+  #alertBoxContent {
+    height: 75%;
+  }
+  .responsiveDisappear{
+    display: none;
+  }
+  .weatherMainContainer{
+    display: block;
+  }
+  #todayWeather,
+  #mainWeatherDisplay{
+    width: 100%;
+  }
+  #nineGrid{
+    grid-template-columns: 50% 50%;
+  }
 }
