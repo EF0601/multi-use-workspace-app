@@ -14,9 +14,45 @@ canvas.addEventListener("mouseout", stopDrawing);
 canvas.addEventListener("mousedown", toolUse);
 
 //touchscreen support
-canvas.addEventListener('touchstart', startDrawing);
-canvas.addEventListener('touchmove', draw);
-canvas.addEventListener('touchend', stopDrawing);
+function getTouchCoordinates(e) {
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    const touchX = touch.clientX - rect.left;
+    const touchY = touch.clientY - rect.top;
+    return { x: touchX, y: touchY };
+}
+
+function startDrawingTouch(e) {
+    e.preventDefault();
+    const { x, y } = getTouchCoordinates(e);
+    isDrawing = true;
+    draw({ clientX: x, clientY: y });
+}
+
+function drawTouch(e) {
+    e.preventDefault();
+    if (!isDrawing || currentTool !== "none") {
+        return;
+    }
+    let { x, y } = getTouchCoordinates(e);
+    context.lineCap = "round";
+    context.lineTo(x, y);
+    context.stroke();
+    context.beginPath();
+    context.moveTo(x, y);
+    //update position
+    document.getElementById("xPos").innerHTML = Math.round(x);
+    document.getElementById("yPos").innerHTML = Math.round(y);
+}
+
+function stopDrawingTouch() {
+    isDrawing = false;
+    context.beginPath();
+}
+
+canvas.addEventListener("touchstart", startDrawingTouch);
+canvas.addEventListener("touchmove", drawTouch);
+canvas.addEventListener("touchend", stopDrawingTouch);
 
 canvas.addEventListener("touchstart", toolUse);
 
@@ -26,6 +62,7 @@ function startDrawing(e) {
 }
 
 function draw(e) {
+
     if (!isDrawing || currentTool != "none") {
         //nothing lol
     }
