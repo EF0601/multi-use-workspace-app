@@ -1,0 +1,81 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url(./Montserrat-Light.ttf);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#mainFrame{
+    height: 500px;
+    width: 100%;
+    background-color: white;
+}
+
+body{
+    background-color: black;
+}
+
+dialog{
+    margin: 5% auto;
+    padding: 20px;
+    width: 50%;
+}
+
+dialog button,
+.dropDown{
+    padding: 10px;
+    margin: 5px;
+    background-color: lightgray;
+    border: none;
+}
+dialog button{
+    width: 99%;
+}
+.dropDown{
+    width: 100%;
+}
+
+dialog button:hover,
+.dropDown:hover{
+    text-decoration: underline;
+}
+
+.dropDownContent{
+    background-color: white;
+    display: none;
+}
+
+.twoColumns{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+#contacts{
+    display: flex;
+    justify-content: space-evenly;
+}
+#submitContacts{
+    width: 30%;
+}
+#contactsDisplay{
+    width: 69%;
+}
+
+#submitContacts input,
+#submitContacts button{
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+#submitContacts input:focus{
+    border-bottom: 1px solid black;
+}
