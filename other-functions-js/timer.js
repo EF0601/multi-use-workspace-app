@@ -15,22 +15,27 @@ function updateClock() {
     const minutes = now.getMinutes();
     const seconds = now.getSeconds();
 
+    let AMorPM;
+
     let formattedHours;
     if (use12HourFormat) {
         //Convert 24-hour format to 12-hour format
         if (hours > 12) {
             formattedHours = hours - 12;
+            AMorPM = "PM";
         } else if (hours === 0) {
             formattedHours = 12;
         } else {
             formattedHours = hours;
+            AMorPM = "AM";
         }
     } else {
         formattedHours = hours;
+        AMorPM = "";
     }
 
     // Format the time as HH:MM:SS
-    const timeString = `${String(formattedHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    const timeString = `${String(formattedHours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} ${AMorPM}`;
 
     // Update the clock's content
     document.getElementById('clock').innerText = timeString;
