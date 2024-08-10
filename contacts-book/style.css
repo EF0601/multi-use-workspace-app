@@ -26,7 +26,7 @@ dialog{
     width: 50%;
 }
 
-dialog button,
+button,
 .dropDown{
     padding: 10px;
     margin: 5px;
@@ -40,7 +40,7 @@ dialog button{
     width: 100%;
 }
 
-dialog button:hover,
+button:hover,
 .dropDown:hover{
     text-decoration: underline;
 }
@@ -66,16 +66,39 @@ dialog button:hover,
     width: 69%;
 }
 
-#submitContacts input,
-#submitContacts button{
-    width: 100%;
+#submitContacts input{
+    width: 80%;
     padding: 10px;
     margin: 5px;
     background: none;
     border: none;
     outline: none;
+    border-bottom: 1px solid black;
 }
 
+a{
+    text-decoration: underline;
+    color: black;
+}
+a:hover{
+    font-style: italic;
+}
+
+#submitContacts input:hover,
 #submitContacts input:focus{
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid gray;
+}
+
+#submitContracts button{
+    width: 80%;
+}
+
+#contactsList{
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    height: 400px;
+    overflow: scroll;
+}
+#template{
+    display: none;
 }

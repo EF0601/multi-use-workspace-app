@@ -56,9 +56,40 @@
                 <input type="email" name="" id="emailInput" placeholder="Email">
                 <input type="text" name="" id="addressInput" placeholder="Address">
                 <input type="tel" name="" id="phoneInput" placeholder="Phone">
+                <button onclick="createContact()">Submit</button>
             </div>
             <div id="contactsDisplay">
                 <h1>Contacts list</h1>
+                <div id="contactsList">
+                    <div id="template">
+                        <div class="contractCard">
+                            <div class="contactCardHeader">
+                                <h2 id="contactCardName0">EF0601</h2>
+                                <a onclick="editContact('0')">Edit</a>
+                                <a onclick="deleteContact('0')">Delete</a>
+                            </div>
+                            <div class="contactCardBody">
+                                <a href="mailto:ef.0601.github@gmail.com" id="contactCardEmail0">Email: ef.0601.github@gmail.com</a>
+                                <p id="contactCardAddress0">Address: Taipei, Taiwan</p>
+                                <a href="tel:" id="contactCardTelephone0">Telephone:</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="contactCard1">
+                        <div class="contractCard">
+                            <div class="contactCardHeader">
+                                <h2 id="contactCardName1">EF0601</h2>
+                                <a onclick="editContact('1')">Edit</a>
+                                <a onclick="deleteContact('1')">Delete</a>
+                            </div>
+                            <div class="contactCardBody">
+                                <a href="mailto:ef.0601.github@gmail.com" id="contactCardEmail1">Email: ef.0601.github@gmail.com</a>
+                                <p id="contactCardAddress1">Address: Taipei, Taiwan</p>
+                                <a href="tel:" id="contactCardTelephone1">Telephone:</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

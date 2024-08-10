@@ -13,3 +13,14 @@ dropdownLicense.trigger.addEventListener('click', () => {
     }
 }
 );
+
+//contacts
+let contactCount = 1;
+function createContact(){
+    const clone = document.getElementById('template');
+    const newContact = clone.cloneNode(true);
+    newContact.id = `contactsCard${contactCount}`;
+    contactCount++;
+    // Add the new contact to the DOM
+    clone.parentNode.appendChild(newContact);
+}
