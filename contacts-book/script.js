@@ -52,5 +52,5 @@ function editContact(id){
 }
 
 function deleteContact(id){
-    console.log(`Deleting contact ${id}`);
+    document.getElementById(`contactCard${id}`).remove();
 }
