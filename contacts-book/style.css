@@ -82,6 +82,7 @@ a{
 }
 a:hover{
     font-style: italic;
+    cursor: pointer;
 }
 
 #submitContacts input:hover,
