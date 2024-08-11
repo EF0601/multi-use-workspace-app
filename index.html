@@ -16,7 +16,7 @@
                 <h1>Welcome, <span id="titleName">Guest</span></h1>
                 <p id="splashText">
                     Proudly created and maintained by EF0601 studios. You are using:
-                    <code>v1.7.0</code> release
+                    <code>v1.8.0</code> release
                 </p>
             </div>
             <div class="container">
@@ -47,6 +47,9 @@
                 <div class="tab" id="weather_tab">
                     <h2>Weather</h2>
                 </div>
+                <div class="tab" id="contacts_tab">
+                    <h2>Contacts</h2>
+                </div>
             </div>
             <div id="mainSide">
                 <div id="homeTab">
@@ -71,8 +74,8 @@
                         <button onclick="openTab('weather')">
                             Weather
                         </button>
-                        <button>
-                            App coming soon
+                        <button onclick="openTab('contacts')">
+                            Contacts Book
                         </button>
                         <button onclick="settingsModal()">
                             Settings
@@ -269,6 +272,9 @@
                         </div>
 
                     </div>
+                </div>
+                <div id="contactsTab">
+                    <iframe src="./contacts-book/main.html" frameborder="0" width="100%" height="490" id="contactsIframe"></iframe>
                 </div>
             </div>
         </div>

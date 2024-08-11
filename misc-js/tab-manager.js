@@ -10,6 +10,7 @@ let tabs = {
     canvasTab: document.getElementById('canvasTab'),
     searchTab: document.getElementById('searchTab'),
     weatherTab: document.getElementById('weatherTab'),
+    contactsTab: document.getElementById('contactsTab'),
 };
 let tabBtn = {
     homeTabBtn: document.getElementById('home_tab'),
@@ -18,6 +19,7 @@ let tabBtn = {
     canvasTabBtn: document.getElementById('canvas_tab'),
     searchTabBtn: document.getElementById('search_tab'),
     weatherTabBtn: document.getElementById('weather_tab'),
+    contactsTabBtn: document.getElementById('contacts_tab'),
 };
 
 function closeAll() {
@@ -27,6 +29,15 @@ function closeAll() {
     tabs.searchTab.style.display = 'none';
     tabs.timerTab.style.display = 'none';
     tabs.weatherTab.style.display = 'none';
+    tabs.contactsTab.style.display = 'none';
+
+    tabBtn.homeTabBtn.style.backgroundColor = 'green';
+    tabBtn.timerTabBtn.style.backgroundColor = 'green';
+    tabBtn.calculatorTabBtn.style.backgroundColor = 'green';
+    tabBtn.canvasTabBtn.style.backgroundColor = 'green';
+    tabBtn.searchTabBtn.style.backgroundColor = 'green';
+    tabBtn.weatherTabBtn.style.backgroundColor = 'green';
+    tabBtn.contactsTabBtn.style.backgroundColor = 'green';
 }
 
 function openTab(tab) {
@@ -34,21 +45,31 @@ function openTab(tab) {
     switch (tab) {
         case 'home':
             tabs.homeTab.style.display = 'block';
+            tabBtn.homeTabBtn.style.backgroundColor = 'darkgreen';
             break;
         case 'timer':
             tabs.timerTab.style.display = 'block';
+            tabBtn.timerTabBtn.style.backgroundColor = 'darkgreen';
             break;
         case 'calculator':
             tabs.calculatorTab.style.display = 'block';
+            tabBtn.calculatorTabBtn.style.backgroundColor = 'darkgreen';
             break;
         case 'canvas':
             tabs.canvasTab.style.display = 'block';
+            tabBtn.canvasTabBtn.style.backgroundColor = 'darkgreen';
             break;
         case 'web explorer':
             tabs.searchTab.style.display = 'block';
+            tabBtn.searchTabBtn.style.backgroundColor = 'darkgreen';
             break;
         case 'weather':
             tabs.weatherTab.style.display = 'block';
+            tabBtn.weatherTabBtn.style.backgroundColor = 'darkgreen';
+            break;
+        case 'contacts':
+            tabs.contactsTab.style.display = 'block';
+            tabBtn.contactsTabBtn.style.backgroundColor = 'darkgreen';
             break;
         default:
             break;
@@ -72,6 +93,9 @@ tabBtn.timerTabBtn.addEventListener('click', () => {
 });
 tabBtn.weatherTabBtn.addEventListener('click', () => {
     openTab('weather');
+});
+tabBtn.contactsTabBtn.addEventListener('click', () => {
+    openTab('contacts');
 });
 
 tabBtn.canvasTabBtn.click();

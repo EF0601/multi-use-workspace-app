@@ -60,6 +60,7 @@ body {
   margin-bottom: 20px;
 }
 .tab:hover {
+  text-decoration: underline;
   background-color: darkgreen;
 }
 #mainSide {
@@ -78,7 +79,8 @@ body {
 #calculatorTab,
 #canvasTab,
 #searchTab,
-#weatherTab {
+#weatherTab,
+#contactsTab {
   display: none;
   height: 500px;
 }
