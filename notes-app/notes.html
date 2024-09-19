@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="sidebar">
+        <h1>Notes</h1>
+        <p>For multi-use-workspace-app. Updated Sept 18.</p>
+        <h2>Insert new note</h2>
+        <div id="newNote" class="note">
+            <div id="newNoteHeader" class="noteHeader"></div>
+            <div id="newNoteContent" class="noteContent">
+                <input type="text" id="newNoteInput" placeholder="Note title" class="noteInput">
+                <textarea id="newNoteText" placeholder="Type here..." class="noteText"></textarea>
+                <select id="newNoteColor" onchange="document.getElementById('newNoteHeader').style.backgroundColor = colors[this.value]">
+                    <option value="0">No color</option>
+                    <option value="1">Red</option>
+                    <option value="2">Orange</option>
+                    <option value="3">Yellow</option>
+                    <option value="4">Green</option>
+                    <option value="5">Blue</option>
+                    <option value="6">Purple</option>
+                    <option value="7">Black</option>
+                </select>
+            </div>
+        </div>
+        <button id="addNewNote" class="noteButton" onclick="addNote()">Add note</button>
+        <button id="clearNewNote" class="noteButton" onclick="clearNote()">Clear note</button>
+    </div>
+    <div id="notesArea">
+        <div class="note" id="defaultNote">
+            <div class="noteHeader" id="defaultNoteHeader"></div>
+            <div class="noteContent">
+                <input class="noteInput" id="defaultNoteInput" type="text" value="Welcome to the notes app!">
+                <textarea name="" id="defaultNoteText"
+                    class="noteText">View the left sidebar to create a new note. Use the button below to delete the note.</textarea>
+                <select id="defaultNoteColor">
+                    <option value="0">No color</option>
+                    <option value="1">Red</option>
+                    <option value="2">Orange</option>
+                    <option value="3">Yellow</option>
+                    <option value="4">Green</option>
+                    <option value="5">Blue</option>
+                    <option value="6">Purple</option>
+                    <option value="7">Black</option>
+                </select>
+            </div>
+            <button class="noteButton" onclick="deleteNote('defaultNote')">Delete</button>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>

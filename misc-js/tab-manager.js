@@ -5,6 +5,7 @@ function showAlert(message) {
 
 let tabs = {
     homeTab: document.getElementById('homeTab'),
+    notesTab: document.getElementById('notesTab'),
     timerTab: document.getElementById('timerTab'),
     calculatorTab: document.getElementById('calculatorTab'),
     canvasTab: document.getElementById('canvasTab'),
@@ -14,6 +15,7 @@ let tabs = {
 };
 let tabBtn = {
     homeTabBtn: document.getElementById('home_tab'),
+    notesTabBtn: document.getElementById('notes_tab'),
     timerTabBtn: document.getElementById('timer_tab'),
     calculatorTabBtn: document.getElementById('calculator_tab'),
     canvasTabBtn: document.getElementById('canvas_tab'),
@@ -30,6 +32,7 @@ function closeAll() {
     tabs.timerTab.style.display = 'none';
     tabs.weatherTab.style.display = 'none';
     tabs.contactsTab.style.display = 'none';
+    tabs.notesTab.style.display = 'none';
 
     tabBtn.homeTabBtn.style.backgroundColor = 'green';
     tabBtn.timerTabBtn.style.backgroundColor = 'green';
@@ -38,6 +41,7 @@ function closeAll() {
     tabBtn.searchTabBtn.style.backgroundColor = 'green';
     tabBtn.weatherTabBtn.style.backgroundColor = 'green';
     tabBtn.contactsTabBtn.style.backgroundColor = 'green';
+    tabBtn.notesTabBtn.style.backgroundColor = 'green';
 }
 
 function openTab(tab) {
@@ -46,6 +50,10 @@ function openTab(tab) {
         case 'home':
             tabs.homeTab.style.display = 'block';
             tabBtn.homeTabBtn.style.backgroundColor = 'darkgreen';
+            break;
+        case 'notes':
+            tabs.notesTab.style.display = 'block';
+            tabBtn.notesTabBtn.style.backgroundColor = 'darkgreen';
             break;
         case 'timer':
             tabs.timerTab.style.display = 'block';
@@ -96,6 +104,9 @@ tabBtn.weatherTabBtn.addEventListener('click', () => {
 });
 tabBtn.contactsTabBtn.addEventListener('click', () => {
     openTab('contacts');
+});
+tabBtn.notesTabBtn.addEventListener('click', () => {
+    openTab('notes');
 });
 
 tabBtn.canvasTabBtn.click();

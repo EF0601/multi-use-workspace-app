@@ -29,8 +29,8 @@
                 <div class="tab" id="home_tab">
                     <h2>Home</h2>
                 </div>
-                <div class="tab" id="stickies_tab">
-                    <h2>Stickies [soon!]</h2>
+                <div class="tab" id="notes_tab">
+                    <h2>Notes</h2>
                 </div>
                 <div class="tab" id="timer_tab">
                     <h2>Time-keep</h2>
@@ -55,9 +55,10 @@
                 <div id="homeTab">
                     <h2 id="clock"></h2>
                     <h1>Welcome to Multi Usage Workspace Application!</h1>
-                    <div id="nineGrid">
-                        <button>
-                            Stickies
+                    <p>How is your day today?</p>
+                    <!-- <div id="nineGrid">
+                        <button onclick="openTab('notes')">
+                            Notes
                         </button>
                         <button onclick="openTab('timer')">
                             Time Apps
@@ -83,7 +84,10 @@
                         <button>
                             README.md
                         </button>
-                    </div>
+                    </div> -->
+                </div>
+                <div id="notesTab">
+                    <iframe src="./notes-app/notes.html" frameborder="0" width="100%" height="490" id="canvasIframe"></iframe>
                 </div>
                 <div id="timerTab">
                     <h2 class="timerTabHeaders">Timer Pro</h2>
